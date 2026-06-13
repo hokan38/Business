@@ -8,15 +8,15 @@
   const nav = document.getElementById("siteNav");
   const toggle = document.getElementById("navToggle");
   const toTop = document.getElementById("toTop");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ----- Header state on scroll ----- */
-  const onScroll = () => {
-    const y = window.scrollY;
-    header.classList.toggle("scrolled", y > 40);
-    if (toTop) toTop.classList.toggle("show", y > 600);
-  };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  /* ----- Scroll progress bar ----- */
+  let progress = null;
+  if (!reduceMotion) {
+    progress = document.createElement("div");
+    progress.className = "scroll-progress";
+    document.body.appendChild(progress);
+  }
 
   /* ----- Mobile nav ----- */
   const closeNav = () => {
@@ -36,19 +36,81 @@
     });
   }
 
-  /* ----- Reveal on scroll ----- */
-  const revealTargets = [
-    ".section-head", ".h2", ".section-intro",
-    ".concept-body", ".concept-lead",
-    ".problem-col", ".problem-arrow",
-    ".card", ".feature-item", ".step",
-    ".stat", ".company-table", ".company-note",
-    ".contact-lead", ".contact-form", ".audience-cta"
+  /* ----- Parallax targets (hero) ----- */
+  const heroGlow = document.querySelector(".hero-glow");
+  const heroLines = document.querySelector(".hero-lines");
+  const heroInner = document.querySelector(".hero-inner");
+  [heroGlow, heroLines, heroInner].forEach((el) => el && el.setAttribute("data-parallax", ""));
+
+  /* ----- Combined scroll handler (header / progress / parallax) ----- */
+  let ticking = false;
+  const render = () => {
+    const y = window.scrollY;
+    const vh = window.innerHeight;
+
+    header.classList.toggle("scrolled", y > 40);
+    if (toTop) toTop.classList.toggle("show", y > 600);
+
+    if (progress) {
+      const max = document.documentElement.scrollHeight - vh;
+      progress.style.transform = "scaleX(" + (max > 0 ? Math.min(y / max, 1) : 0) + ")";
+    }
+
+    if (!reduceMotion && y < vh * 1.5) {
+      // hero elements lag behind the scroll for a sense of depth
+      if (heroGlow) heroGlow.style.transform = "translate(-50%," + y * 0.4 + "px)";
+      if (heroLines) heroLines.style.transform = "translateY(" + y * 0.2 + "px)";
+      if (heroInner) {
+        heroInner.style.transform = "translateY(" + y * 0.28 + "px)";
+        heroInner.style.opacity = String(Math.max(0, 1 - y / (vh * 0.72)));
+      }
+    }
+    ticking = false;
+  };
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(render);
+      ticking = true;
+    }
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  render();
+
+  /* ----- Directional, staggered reveal on scroll ----- */
+  const revealConfig = [
+    [".section-head", "up"],
+    [".concept-lead", "left"],
+    [".concept-body", "right"],
+    [".problem-col.problem-col-new", "right"],
+    [".problem-col:not(.problem-col-new)", "left"],
+    [".problem-arrow", "scale"],
+    [".card", "scale"],
+    [".feature-item", "up"],
+    [".step", "scale"],
+    [".stat", "up"],
+    [".company-table", "up"],
+    [".company-note", "up"],
+    [".contact-lead", "left"],
+    [".contact-form", "right"],
+    [".audience-cta", "up"],
+    [".audience-head .h2", "up"],
+    [".audience-head .section-intro", "up"],
+    [".strength > .container > .h2", "up"],
+    [".flow > .container > .h2", "up"],
+    [".company > .container > .h2", "up"],
+    [".problem .h2", "up"],
+    [".problem .section-intro", "up"],
   ];
-  const els = document.querySelectorAll(revealTargets.join(","));
-  els.forEach((el, i) => {
-    el.classList.add("reveal");
-    el.style.transitionDelay = (i % 4) * 90 + "ms";
+
+  const els = [];
+  revealConfig.forEach(([sel, dir]) => {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      if (el.classList.contains("reveal")) return; // avoid double-tagging
+      el.classList.add("reveal", "reveal--" + dir);
+      el.style.transitionDelay = (i % 4) * 90 + "ms";
+      els.push(el);
+    });
   });
 
   if ("IntersectionObserver" in window) {
