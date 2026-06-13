@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MarkGate ｜ Pattern 4 — Editorial Magazine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ivory:#F6F1E7;--paper:#FBF8F1;--ink:#211D18;--ink2:#4A4339;--gray:#7A7064;
+  --wine:#7B2D34;--wine-d:#5E2027;--line:#E2D8C7;
+  --mincho:"Shippori Mincho",serif;--play:"Playfair Display",serif;--sans:"Noto Sans JP",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);color:var(--ink);background:var(--ivory);line-height:1.95;font-weight:300;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(22px,5vw,60px)}
+.btn{display:inline-flex;align-items:center;gap:.55em;padding:1em 2.2em;font-size:.88rem;letter-spacing:.05em;border-radius:1px;transition:.3s}
+.btn-wine{background:var(--wine);color:#fff}.btn-wine:hover{background:var(--wine-d)}
+.btn-line{border:1px solid var(--ink);color:var(--ink)}.btn-line:hover{background:var(--ink);color:var(--ivory)}
+
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(246,241,231,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.brand{font-family:var(--play);font-size:1.7rem;font-weight:600;letter-spacing:.02em;font-style:italic}
+.menu{display:flex;gap:30px;font-size:.82rem;letter-spacing:.08em;color:var(--ink2)}
+.menu a:hover{color:var(--wine)}
+@media(max-width:820px){.menu{display:none}}
+
+.hero{padding:140px 0 70px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}
+.issue{font-family:var(--play);font-style:italic;font-size:.9rem;color:var(--wine);letter-spacing:.04em;margin-bottom:26px;border-bottom:1px solid var(--line);padding-bottom:18px}
+h1{font-family:var(--mincho);font-weight:700;font-size:clamp(2.4rem,5.6vw,4.4rem);line-height:1.34;letter-spacing:.02em}
+h1 em{font-style:normal;color:var(--wine);position:relative}
+.lead{font-size:1.02rem;color:var(--ink2);margin:28px 0 36px;max-width:520px;line-height:2.1}
+.hcta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-art{aspect-ratio:3/4;border:1px solid var(--line);background:
+   linear-gradient(135deg,#efe6d4,#e4d6bd);position:relative;overflow:hidden;border-radius:2px}
+.hero-art::before{content:"";position:absolute;inset:18px;border:1px solid rgba(123,45,52,.35)}
+.hero-art .mark{position:absolute;inset:0;display:grid;place-items:center}
+.hero-art .mark span{font-family:var(--play);font-style:italic;font-size:5rem;color:var(--wine);opacity:.85}
+.hero-art .cap{position:absolute;bottom:26px;left:0;right:0;text-align:center;font-family:var(--play);font-style:italic;color:var(--ink2);font-size:.85rem}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero-art{max-width:340px;margin:10px auto 0}}
+
+.rule{border:0;border-top:1px solid var(--line)}
+section{padding:clamp(64px,8vw,108px) 0}
+.no{font-family:var(--play);font-style:italic;color:var(--wine);font-size:1.1rem;margin-bottom:10px}
+.kicker{font-size:.74rem;letter-spacing:.34em;color:var(--gray);text-transform:uppercase;margin-bottom:18px}
+.h2{font-family:var(--mincho);font-weight:600;font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.5}
+.concept{display:grid;grid-template-columns:.9fr 1.1fr;gap:54px;align-items:start}
+.concept .drop::first-letter{font-family:var(--play);font-size:3.6rem;float:left;line-height:.8;padding:6px 12px 0 0;color:var(--wine)}
+.concept p{color:var(--ink2);margin-bottom:1.3em}
+.concept strong{color:var(--ink);font-weight:500;font-style:normal;box-shadow:inset 0 -8px 0 rgba(123,45,52,.12)}
+@media(max-width:820px){.concept{grid-template-columns:1fr;gap:22px}}
+
+.strengths .s{display:grid;grid-template-columns:90px 1fr 1.1fr;gap:30px;padding:40px 0;border-top:1px solid var(--line);align-items:baseline}
+.strengths .s:last-child{border-bottom:1px solid var(--line)}
+.strengths .s .num{font-family:var(--play);font-size:2.6rem;font-style:italic;color:var(--wine)}
+.strengths .s h3{font-family:var(--mincho);font-weight:600;font-size:1.4rem;line-height:1.5}
+.strengths .s p{color:var(--ink2);font-size:.96rem}
+@media(max-width:760px){.strengths .s{grid-template-columns:1fr;gap:8px}}
+
+.aud{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink)}
+.acol{padding:46px 40px}
+.acol+.acol{border-left:1px solid var(--ink)}
+.acol h3{font-family:var(--mincho);font-weight:600;font-size:1.55rem;margin-bottom:6px}
+.acol .kicker{margin-bottom:18px}
+.acol li{list-style:none;padding:11px 0;border-top:1px dotted var(--line);color:var(--ink2);font-size:.94rem}
+.acol .btn{margin-top:22px}
+@media(max-width:760px){.aud{grid-template-columns:1fr}.acol+.acol{border-left:0;border-top:1px solid var(--ink)}}
+
+.cta{text-align:center;background:var(--ink);color:var(--ivory)}
+.cta .h2{color:var(--ivory)}.cta .no{color:#d9a7ac}
+.cta .btn-line{border-color:var(--ivory);color:var(--ivory)}.cta .btn-line:hover{background:var(--ivory);color:var(--ink)}
+footer{padding:42px 0;text-align:center;color:var(--gray);font-size:.82rem}
+footer .brand{font-size:1.5rem;margin-bottom:8px}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="#">MarkGate</a>
+  <nav class="menu"><a href="#">Concept</a><a href="#">Strength</a><a href="#">Candidates</a><a href="#">Advisors</a><a href="#">Company</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <p class="issue">Executive Career Platform — Vol.01 / 2026</p>
+    <h1>トップアドバイザー<br>だけが、<em>開ける扉。</em></h1>
+    <p class="lead">各エージェントの実績トップクラスのキャリアアドバイザーだけが集う、ハイクラス層のための転職プラットフォーム。あなたは“最良の伴走者”を、自ら選べる。</p>
+    <div class="hcta"><a class="btn btn-wine" href="#">求職者の方へ</a><a class="btn btn-line" href="#">アドバイザーの方へ</a></div>
+  </div>
+  <div class="hero-art"><div class="mark"><span>MG</span></div><div class="cap">— The Gate to Top Careers —</div></div>
+</div></section>
+
+<section><div class="wrap concept">
+  <div><p class="no">I.</p><p class="kicker">Concept</p><h2 class="h2">キャリアの質は、“誰と出会うか”で決まる。</h2></div>
+  <div>
+    <p class="drop">ハイクラス転職で結果を左右するのは求人数ではなく、市場価値を見極め、非公開ポジションを引き出し、交渉まで導く<strong>アドバイザーの実力</strong>です。しかし従来の人材紹介では、どの担当に当たるかは“運次第”でした。</p>
+    <p>MarkGateは、各社の実績上位アドバイザーだけを審査制で迎え、ハイクラス層が常にトップクラスの専門家と出会える環境をつくります。“Mark（一流の証）”を持つ者だけが立つ、キャリアの“Gate（門）”。</p>
+  </div>
+</div></section>
+
+<section class="strengths"><div class="wrap">
+  <p class="no">II.</p><p class="kicker">Strength</p><h2 class="h2" style="margin-bottom:24px">三つの強み</h2>
+  <div class="s"><div class="num">i</div><h3>トップアドバイザーのみの審査制</h3><p>各エージェントの実績上位者のみが審査を通過して登録。一定水準の専門家だけが集う環境を担保します。</p></div>
+  <div class="s"><div class="num">ii</div><h3>ハイクラス・エグゼクティブ特化</h3><p>経営幹部・管理職・高度専門職、年収800万円以上に特化。表に出ない上位ポジションへつなぎます。</p></div>
+  <div class="s"><div class="num">iii</div><h3>アドバイザーを“指名”できる</h3><p>専門領域・実績を比較し、自分に最適な伴走者を指名。出会う相手を選ぶ新しい体験を。</p></div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="no">III.</p><p class="kicker">For You</p><h2 class="h2" style="margin-bottom:28px">あなたの立場から。</h2>
+  <div class="aud">
+    <div class="acol"><h3>求職者の方へ</h3><p class="kicker">For Candidates</p><ul><li>厳選されたアドバイザーだけと出会える</li><li>非公開・上位ポジションへのアクセス</li><li>プロフィールを見て“指名”できる</li><li>登録・ご利用は無料</li></ul><a class="btn btn-wine" href="#">無料で会員登録</a></div>
+    <div class="acol"><h3>アドバイザーの方へ</h3><p class="kicker">For Advisors</p><ul><li>ハイクラス層の求職者と直接つながる</li><li>“選ばれる”プロフィール掲載</li><li>トップ同士の質の高いコミュニティ</li><li>登録は審査制</li></ul><a class="btn btn-line" href="#">登録を申請する</a></div>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap"><p class="no">—</p><h2 class="h2">最良の出会いを、ここから。</h2><div style="margin-top:24px"><a class="btn btn-line" href="#">お問い合わせ</a></div></div></section>
+
+<footer><div class="wrap"><div class="brand" style="font-family:var(--play);font-style:italic;color:var(--ink)">MarkGate</div><p>&copy; 2026 MarkGate Inc. ｜ Pattern 4 — Editorial Magazine</p></div></footer>
+</body>
+</html>

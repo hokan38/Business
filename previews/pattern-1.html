@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MarkGate ｜ Pattern 1 — Light Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --paper:#ffffff;--cream:#FAF7F1;--cream2:#F3EEE4;--ink:#2A2724;--ink-soft:#6B655C;
+  --gold:#C0995A;--gold-d:#A07C40;--gold-l:#E6D2A8;--line:#EBE3D5;
+  --serif:"Noto Serif JP",serif;--sans:"Noto Sans JP",sans-serif;--disp:"Cormorant Garamond",serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.9;font-weight:300;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+.btn{display:inline-flex;align-items:center;gap:.6em;padding:1em 2.3em;font-size:.9rem;letter-spacing:.06em;border-radius:2px;transition:.35s}
+.btn-gold{background:linear-gradient(135deg,var(--gold-l),var(--gold));color:#3a2e15;box-shadow:0 12px 26px -14px rgba(192,153,90,.7)}
+.btn-gold:hover{transform:translateY(-3px)}
+.btn-line{border:1px solid var(--gold);color:var(--gold-d)}
+.btn-line:hover{background:var(--cream)}
+
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-family:var(--disp);font-size:1.55rem;font-weight:600;letter-spacing:.06em;display:flex;align-items:center;gap:10px}
+.brand b{color:var(--gold-d);font-weight:600}
+.gate{width:26px;height:26px;flex:0 0 auto}
+.menu{display:flex;gap:30px;font-size:.84rem;letter-spacing:.04em;color:var(--ink-soft)}
+.menu a:hover{color:var(--gold-d)}
+@media(max-width:760px){.menu{display:none}}
+
+.hero{padding:190px 0 120px;text-align:center;background:radial-gradient(120% 90% at 50% 0%,var(--cream) 0%,#fff 60%)}
+.eyebrow{font-family:var(--disp);letter-spacing:.5em;font-size:.82rem;color:var(--gold-d);text-indent:.5em;margin-bottom:30px}
+.eyebrow::before{content:"";display:block;width:42px;height:1px;background:var(--gold);margin:0 auto 22px}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.2rem,5.4vw,4rem);line-height:1.4;letter-spacing:.04em;margin-bottom:30px}
+h1 em{font-style:normal;color:var(--gold-d)}
+.lead{color:var(--ink-soft);font-size:clamp(.95rem,1.4vw,1.08rem);max-width:640px;margin:0 auto 44px;line-height:2.1}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+.tags{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--cream)}
+.tags .wrap{display:flex;justify-content:center;gap:14px 30px;flex-wrap:wrap;padding-top:20px;padding-bottom:20px;font-family:var(--disp);letter-spacing:.14em;color:var(--gold-d)}
+.tags span{color:var(--ink)}
+
+section{padding:clamp(70px,10vw,120px) 0}
+.lbl{font-family:var(--disp);letter-spacing:.4em;font-size:.8rem;color:var(--gold-d);margin-bottom:14px}
+.h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.4rem);line-height:1.55;margin-bottom:18px}
+.concept{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
+.concept p{color:var(--ink-soft);margin-bottom:1.3em}
+.concept strong{color:var(--ink);font-weight:500;border-bottom:1px solid var(--gold-l)}
+@media(max-width:820px){.concept{grid-template-columns:1fr;gap:24px}}
+
+.strengths{background:var(--cream)}
+.s-row{display:grid;grid-template-columns:120px 1fr;gap:30px;padding:38px 0;border-top:1px solid var(--line);align-items:baseline}
+.s-row:last-child{border-bottom:1px solid var(--line)}
+.s-num{font-family:var(--disp);font-size:3rem;color:var(--gold);line-height:1}
+.s-row h3{font-family:var(--serif);font-weight:600;font-size:1.25rem;margin-bottom:10px}
+.s-row p{color:var(--ink-soft);font-size:.96rem}
+@media(max-width:620px){.s-row{grid-template-columns:1fr;gap:8px}}
+
+.aud{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.aud-card{border:1px solid var(--line);border-radius:8px;padding:42px 36px;background:#fff;transition:.35s}
+.aud-card:hover{box-shadow:0 24px 50px -30px rgba(160,124,64,.4);transform:translateY(-5px)}
+.aud-card .lbl{margin-bottom:10px}
+.aud-card h3{font-family:var(--serif);font-weight:600;font-size:1.4rem;margin-bottom:14px}
+.aud-card ul{list-style:none;margin:18px 0 26px}
+.aud-card li{position:relative;padding-left:24px;margin-bottom:10px;color:var(--ink-soft);font-size:.94rem}
+.aud-card li::before{content:"";position:absolute;left:2px;top:.6em;width:9px;height:9px;border:1.5px solid var(--gold);border-radius:50%}
+@media(max-width:760px){.aud{grid-template-columns:1fr}}
+
+.cta{text-align:center;background:linear-gradient(135deg,var(--cream),var(--cream2))}
+.cta .h2{margin-bottom:24px}
+footer{background:#fff;border-top:1px solid var(--line);padding:44px 0;text-align:center;color:var(--ink-soft);font-size:.82rem}
+footer .brand{justify-content:center;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="#"><svg class="gate" viewBox="0 0 40 40"><path d="M7 34V14L20 6l13 8v20" fill="none" stroke="#C0995A" stroke-width="2.2"/><path d="M14.5 34V21a5.5 5.5 0 0 1 11 0v13" fill="none" stroke="#C0995A" stroke-width="2.2"/></svg>Mark<b>Gate</b></a>
+  <nav class="menu"><a href="#">コンセプト</a><a href="#">強み</a><a href="#">求職者の方</a><a href="#">アドバイザーの方</a><a href="#">会社概要</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">EXECUTIVE CAREER PLATFORM</p>
+  <h1>トップアドバイザーだけが、<br><em>開ける扉。</em></h1>
+  <p class="lead">各エージェントの実績トップクラスのキャリアアドバイザーだけが集う、ハイクラス層のための転職プラットフォーム。あなたは“最良の伴走者”を、自ら選べる。</p>
+  <div class="hero-cta"><a class="btn btn-gold" href="#">求職者の方へ</a><a class="btn btn-line" href="#">アドバイザーの方へ</a></div>
+</div></section>
+
+<div class="tags"><div class="wrap">審査制<span>/</span>トップアドバイザー限定<span>/</span>ハイクラス特化<span>/</span>アドバイザーを“選べる”</div></div>
+
+<section><div class="wrap concept">
+  <div><p class="lbl">CONCEPT</p><h2 class="h2">キャリアの質は、<br>“誰と出会うか”で決まる。</h2></div>
+  <div>
+    <p>ハイクラス転職で結果を左右するのは求人数ではなく、市場価値を見極め、非公開ポジションを引き出し、交渉まで導く<strong>アドバイザーの実力</strong>です。</p>
+    <p>しかし従来の人材紹介では、どのアドバイザーが担当になるかは“運次第”。本来出会えたはずの機会を逃すことも少なくありません。</p>
+    <p>MarkGateは、各社の実績上位アドバイザーだけを審査制で迎え、ハイクラス層が常にトップクラスの専門家と出会える環境をつくります。</p>
+  </div>
+</div></section>
+
+<section class="strengths"><div class="wrap">
+  <p class="lbl">STRENGTH</p><h2 class="h2" style="margin-bottom:30px">MarkGate ３つの強み</h2>
+  <div class="s-row"><div class="s-num">01</div><div><h3>トップアドバイザーのみが登録できる審査制</h3><p>各エージェントの実績上位者のみが審査を通過して登録。一定水準のプロフェッショナルだけが集う環境を担保します。</p></div></div>
+  <div class="s-row"><div class="s-num">02</div><div><h3>ハイクラス・エグゼクティブ領域に特化</h3><p>経営幹部・管理職・高度専門職、年収800万円以上に特化。表に出ない上位ポジションへつなぎます。</p></div></div>
+  <div class="s-row"><div class="s-num">03</div><div><h3>アドバイザーを“選べる・指名できる”</h3><p>専門領域・実績を比較し、自分に最適な伴走者を指名。“出会う相手を選ぶ”新しい転職体験を。</p></div></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="aud">
+    <div class="aud-card"><p class="lbl">FOR CANDIDATES</p><h3>求職者の方へ</h3><ul><li>厳選されたアドバイザーだけと出会える</li><li>非公開・上位ポジションへのアクセス</li><li>プロフィールを見て“指名”できる</li><li>登録・ご利用は無料</li></ul><a class="btn btn-gold" href="#">無料で会員登録</a></div>
+    <div class="aud-card"><p class="lbl">FOR ADVISORS</p><h3>アドバイザーの方へ</h3><ul><li>ハイクラス層の求職者と直接つながる</li><li>“選ばれる”プロフィール掲載</li><li>トップ同士の質の高いコミュニティ</li><li>登録は審査制</li></ul><a class="btn btn-line" href="#">登録を申請する</a></div>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap">
+  <p class="lbl">CONTACT</p><h2 class="h2">最良の出会いを、ここから。</h2>
+  <a class="btn btn-gold" href="#">お問い合わせ</a>
+</div></section>
+
+<footer><div class="wrap"><a class="brand" href="#">Mark<b>Gate</b></a><p>&copy; 2026 MarkGate Inc. ｜ Pattern 1 — Light Premium</p></div></footer>
+</body>
+</html>

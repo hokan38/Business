@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MarkGate ｜ デザイン案ギャラリー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root{--bg:#0E1117;--card:#161B24;--ink:#E8E8EC;--gray:#9AA1AD;--gold:#C6A15B;--line:rgba(255,255,255,.1)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink);line-height:1.85;font-weight:300}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+header{padding:70px 0 40px;text-align:center;border-bottom:1px solid var(--line)}
+.brand{font-family:"Cormorant Garamond",serif;font-size:2.4rem;font-weight:600;letter-spacing:.05em}
+.brand span{color:var(--gold)}
+header p{color:var(--gray);margin-top:10px;font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;padding:50px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:.3s;display:block}
+.card:hover{transform:translateY(-5px);border-color:var(--gold)}
+.swatch{height:120px;display:flex}
+.swatch i{flex:1}
+.card .body{padding:22px 24px}
+.card .tag{font-family:"Cormorant Garamond",serif;letter-spacing:.2em;font-size:.78rem;color:var(--gold);text-transform:uppercase}
+.card h3{font-size:1.15rem;font-weight:500;margin:6px 0 8px}
+.card p{color:var(--gray);font-size:.88rem}
+.card .open{margin-top:14px;font-size:.84rem;color:var(--gold)}
+a{color:inherit;text-decoration:none}
+footer{text-align:center;color:var(--gray);font-size:.82rem;padding:30px 0 60px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brand">Mark<span>Gate</span></div>
+  <p>コーポレートサイト デザイン案 — 5パターン プレビュー</p>
+</div></header>
+
+<div class="wrap"><div class="grid">
+  <a class="card" href="pattern-1.html">
+    <div class="swatch"><i style="background:#fff"></i><i style="background:#FAF7F1"></i><i style="background:#C0995A"></i></div>
+    <div class="body"><span class="tag">Pattern 01</span><h3>Light Premium</h3><p>白／シャンパンゴールド。明るく余白広め、上品で信頼感のある王道プレミアム。</p><div class="open">プレビューを開く →</div></div>
+  </a>
+  <a class="card" href="pattern-2.html">
+    <div class="swatch"><i style="background:#0E0E0E"></i><i style="background:#fff"></i><i style="background:#E0512B"></i></div>
+    <div class="body"><span class="tag">Pattern 02</span><h3>Modern Minimal Mono</h3><p>黒×白＋アクセント。大型サンセリフと罫線グリッドで先進的・SaaS的。</p><div class="open">プレビューを開く →</div></div>
+  </a>
+  <a class="card" href="pattern-3.html">
+    <div class="swatch"><i style="background:#0B2E5C"></i><i style="background:#1F6FB2"></i><i style="background:#EAF2FA"></i></div>
+    <div class="body"><span class="tag">Pattern 03</span><h3>Corporate Trust Blue</h3><p>紺／ブルー＋グレー。堅実な日本的コーポレート、カード構成でB2B信頼感。</p><div class="open">プレビューを開く →</div></div>
+  </a>
+  <a class="card" href="pattern-4.html">
+    <div class="swatch"><i style="background:#F6F1E7"></i><i style="background:#7B2D34"></i><i style="background:#211D18"></i></div>
+    <div class="body"><span class="tag">Pattern 04</span><h3>Editorial Magazine</h3><p>アイボリー×ワイン×チャコール。セリフ大見出しと非対称レイアウトの雑誌調。</p><div class="open">プレビューを開く →</div></div>
+  </a>
+  <a class="card" href="pattern-5.html">
+    <div class="swatch"><i style="background:#070710"></i><i style="background:#8B5CF6"></i><i style="background:#22D3EE"></i></div>
+    <div class="body"><span class="tag">Pattern 05</span><h3>Dark Premium Gradient</h3><p>ダーク＋グラデーション/ガラス質感。フィンテック風の洗練・モダン。</p><div class="open">プレビューを開く →</div></div>
+  </a>
+  <a class="card" href="../index.html">
+    <div class="swatch"><i style="background:#0A0E1A"></i><i style="background:#C6A15B"></i><i style="background:#F8F6F1"></i></div>
+    <div class="body"><span class="tag">Current</span><h3>Editorial Luxury（現行）</h3><p>ディープネイビー×ゴールド・明朝。現在のベースライン案。</p><div class="open">現行サイトを開く →</div></div>
+  </a>
+</div></div>
+
+<footer><div class="wrap">&copy; 2026 MarkGate Inc. ｜ Design Preview Gallery</div></footer>
+</body>
+</html>
