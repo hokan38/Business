@@ -33,8 +33,15 @@ var PROP = {
   title:    '会議名',
   date:     '開催日時',
   people:   '参加者',
-  project:  'プロジェクト',
+  project:  'DB_Project',      // ※ DB_Meeting のプロジェクト・リレーション列名（旧「プロジェクト」）
   files:    'ファイル&メディア'
+};
+
+// プロジェクト自動判定の既定キーワード（スクリプト プロパティ PROJECT_KEYWORDS が
+// 未設定のときに使用）。Notion 側のプロジェクト名をキーにする。
+var DEFAULT_PROJECT_KEYWORDS = {
+  '有料職業紹介免許の取得': ['職業紹介', '有料職業紹介', '募集情報', '労働局', '需給調整', '職業安定法', '免許', '許認可', '紹介事業'],
+  '会社登記': ['登記', '会社設立', '設立', '定款', '資本金', '商号', '会社名', '法人']
 };
 
 // ===== セットアップ用ユーティリティ ========================================
@@ -106,7 +113,10 @@ function handleMeeting_(memo, users, projects) {
   // 1) メモDocを解析（概要・ネクストアクション・参加者メール）
   var parsed = parseMemoDoc_(memo.id);
 
-  // 2) 同フォルダ内の録画mp4を、同じタイムスタンプ文字列で突き合わせ
+  // 会議名: 即席会議（カレンダー予定なし）の自動名は、要約の冒頭から内容ベースの名前に置き換える
+  var name = isAdHocName_(memo.name) ? deriveMeetingName_(parsed.summary, memo.name) : memo.name;
+
+  // 2) 録画mp4を突き合わせ（タイトル内の日時の近さで判定）
   var recording = findRecordingForMeeting_(memo.folderId, memo.approxStart, memo.created);
 
   // 3) Calendar から正確な開催日時・参加者メールを取得（無ければメモの値で代替）
@@ -116,7 +126,7 @@ function handleMeeting_(memo, users, projects) {
   var emails = (cal && cal.emails.length) ? cal.emails : parsed.attendeeEmails;
 
   // 4) 重複ガード（同名＋同日が既にあればスキップ）
-  if (existsMeeting_(memo.name, start)) { Logger.log('  既にNotionに存在するためスキップ'); return; }
+  if (existsMeeting_(name, start)) { Logger.log('  既にNotionに存在するためスキップ'); return; }
 
   // 5) 参加者を Notion ユーザーへマッピング（未登録は本文へ）
   var peopleIds = [], unmatched = [];
@@ -127,16 +137,16 @@ function handleMeeting_(memo, users, projects) {
   });
 
   // 6) プロジェクト紐付け（キーワード一致でスコアリング）
-  var haystack = memo.name + '\n' + parsed.summary.join('\n');
+  var haystack = name + '\n' + parsed.summary.join('\n');
   var projectId = matchProject_(haystack, projects, CFG().PROJECT_KEYWORDS);
 
   // 7) ファイル: 要約Docは.docxで実体アップロード、録画はDriveリンク
   var fileItems = [];
   try {
-    var blob = exportDocAsDocx_(memo.id, memo.name);
-    var uploadId = uploadFileToNotion_(blob, sanitize_(memo.name) + '.docx',
+    var blob = exportDocAsDocx_(memo.id, name);
+    var uploadId = uploadFileToNotion_(blob, sanitize_(name) + '.docx',
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-    fileItems.push({ type: 'file_upload', name: sanitize_(memo.name) + '.docx', file_upload: { id: uploadId } });
+    fileItems.push({ type: 'file_upload', name: sanitize_(name) + '.docx', file_upload: { id: uploadId } });
   } catch (e) {
     Logger.log('  要約のアップロードに失敗（Docリンクで代替）: ' + e);
     fileItems.push({ type: 'external', name: 'Gemini によるメモ', external: { url: memo.url } });
@@ -147,7 +157,7 @@ function handleMeeting_(memo, users, projects) {
 
   // 8) Notion ページ作成
   var props = {};
-  props[PROP.title]  = { title: [ txt_(memo.name) ] };
+  props[PROP.title]  = { title: [ txt_(name) ] };
   props[PROP.date]   = { date: { start: rfc3339_(start), end: rfc3339_(end) } };
   if (peopleIds.length) props[PROP.people]  = { people: peopleIds.map(function (id) { return { id: id }; }) };
   if (projectId)        props[PROP.project] = { relation: [ { id: projectId } ] };
@@ -232,6 +242,21 @@ function parseFlexibleDateTime_(s) {
   var m = String(s).match(/(\d{4})[\/\-](\d{2})[\/\-](\d{2})\s+(\d{2}):(\d{2})/);
   if (!m) return null;
   return new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4] - 9, +m[5], 0));
+}
+
+/** 即席会議（カレンダー予定なし）の自動生成名かどうか */
+function isAdHocName_(name) {
+  return /に開始した会議\s*$/.test(name) || /^\s*\d{4}\/\d{2}\/\d{2}\s+\d{2}:\d{2}\s*JST/.test(name);
+}
+
+/** 要約の冒頭(第1文)から会議名を生成。取れなければ fallback を返す */
+function deriveMeetingName_(summaryLines, fallback) {
+  if (summaryLines && summaryLines.length) {
+    var first = String(summaryLines[0]).split(/[。\n]/)[0].replace(/^[\s・\-]+/, '').trim();
+    if (first.length > 30) first = first.substring(0, 30) + '…';
+    if (first) return first;
+  }
+  return fallback;
 }
 
 /** 要約Docを.docxバイナリとしてエクスポート */
@@ -365,7 +390,8 @@ function existsMeeting_(name, start) {
 function matchProject_(haystack, projects, keywordMap) {
   var best = null, bestScore = 0;
   projects.forEach(function (pr) {
-    var kws = (keywordMap && keywordMap[pr.name] && keywordMap[pr.name].length) ? keywordMap[pr.name] : [pr.name];
+    var kws = (keywordMap && keywordMap[pr.name] && keywordMap[pr.name].length) ? keywordMap[pr.name]
+            : (DEFAULT_PROJECT_KEYWORDS[pr.name] || [pr.name]);
     var score = 0;
     kws.forEach(function (kw) { if (kw && haystack.indexOf(kw) >= 0) score++; });
     if (score > bestScore) { bestScore = score; best = pr; }
