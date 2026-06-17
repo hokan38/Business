@@ -107,7 +107,7 @@ function handleMeeting_(memo, users, projects) {
   var parsed = parseMemoDoc_(memo.id);
 
   // 2) 同フォルダ内の録画mp4を、同じタイムスタンプ文字列で突き合わせ
-  var recording = findRecordingByStamp_(memo.folderId, memo.stamp);
+  var recording = findRecordingForMeeting_(memo.folderId, memo.approxStart, memo.created);
 
   // 3) Calendar から正確な開催日時・参加者メールを取得（無ければメモの値で代替）
   var cal = getCalendarInfo_(memo.name, memo.approxStart);
@@ -190,25 +190,48 @@ function findNewMemoDocs_(folderId, since, processed) {
   return out;
 }
 
-/** タイトル「{会議名} - YYYY/MM/DD HH:MM JST - Gemini によるメモ」を解析 */
+/**
+ * 要約Docのタイトルを解析。次の2形式に対応する。
+ *   A) "{会議名} - YYYY/MM/DD HH:MM JST - Gemini によるメモ"（カレンダー予定あり）
+ *   B) "YYYY/MM/DD HH:MM JST に開始した会議 - Gemini によるメモ"（予定なしの即席会議）
+ */
 function parseTitle_(title) {
-  var m = title.match(/^(.*?)\s-\s(\d{4})\/(\d{2})\/(\d{2})\s(\d{2}):(\d{2})\sJST/);
-  if (!m) return null;
-  var y = +m[2], mo = +m[3], d = +m[4], h = +m[5], mi = +m[6];
-  // JST(=UTC+9) を UTC に変換して Date を生成
-  var start = new Date(Date.UTC(y, mo - 1, d, h - 9, mi, 0));
-  return { name: m[1].trim(), stamp: m[2] + '/' + m[3] + '/' + m[4] + ' ' + m[5] + ':' + m[6] + ' JST', start: start };
+  var label = title.replace(/\s*-\s*Gemini によるメモ\s*$/, '').trim();
+  var dm = label.match(/(\d{4})\/(\d{2})\/(\d{2})\s+(\d{2}):(\d{2})\s*JST/);
+  if (!dm) return null;
+  var start = new Date(Date.UTC(+dm[1], +dm[2] - 1, +dm[3], +dm[4] - 9, +dm[5], 0));
+  var stamp = dm[1] + '/' + dm[2] + '/' + dm[3] + ' ' + dm[4] + ':' + dm[5] + ' JST';
+  // "{name} - {date} JST" 形式なら name 部分、そうでなければ label 全体を会議名にする
+  var nm = label.match(/^(.+?)\s-\s\d{4}\/\d{2}\/\d{2}\s+\d{2}:\d{2}\s*JST\s*$/);
+  var name = nm ? nm[1].trim() : label.trim();
+  return { name: name, stamp: stamp, start: start };
 }
 
-/** 同タイムスタンプの録画mp4を探す */
-function findRecordingByStamp_(folderId, stamp) {
+/**
+ * 会議の録画mp4を探す。タイトル内の日時（"YYYY/MM/DD HH:MM" / "YYYY-MM-DD HH:MM"）が
+ * 会議開始時刻に最も近いものを採用（読めない場合はメモ作成時刻との近さで判定）。
+ * いずれも前後3時間以内のものだけを採用する。
+ */
+function findRecordingForMeeting_(folderId, approxStart, memoCreated) {
   var it = DriveApp.getFolderById(folderId).getFiles();
+  var best = null, bestDiff = Infinity;
   while (it.hasNext()) {
     var f = it.next();
     if (f.getMimeType() !== 'video/mp4') continue;
-    if (f.getName().indexOf(stamp) >= 0) return { id: f.getId(), url: f.getUrl(), name: f.getName() };
+    var dt = parseFlexibleDateTime_(f.getName());
+    var diff = dt ? Math.abs(dt.getTime() - approxStart.getTime())
+                  : Math.abs(f.getDateCreated().getTime() - memoCreated.getTime());
+    if (diff < bestDiff) { bestDiff = diff; best = f; }
   }
+  if (best && bestDiff <= 3 * 3600 * 1000) return { id: best.getId(), url: best.getUrl(), name: best.getName() };
   return null;
+}
+
+/** "YYYY/MM/DD HH:MM" または "YYYY-MM-DD HH:MM"（JST=GMT+9前提）を Date に変換 */
+function parseFlexibleDateTime_(s) {
+  var m = String(s).match(/(\d{4})[\/\-](\d{2})[\/\-](\d{2})\s+(\d{2}):(\d{2})/);
+  if (!m) return null;
+  return new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4] - 9, +m[5], 0));
 }
 
 /** 要約Docを.docxバイナリとしてエクスポート */
@@ -270,7 +293,7 @@ function getCalendarInfo_(name, approxStart) {
       var d = Math.abs(events[j].getStartTime().getTime() - approxStart.getTime());
       if (d < bestDiff) { bestDiff = d; best = events[j]; }
     }
-    if (best && bestDiff <= 2 * 3600 * 1000) ev = best;
+    if (best && bestDiff <= 5 * 60 * 1000) ev = best;  // 即席会議で無関係な予定を誤検出しないよう±5分に限定
   }
   if (!ev) return null;
   var emails = [];
