@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MarkGate株式会社 ｜ ハイクラス転職プラットフォーム ─ トップアドバイザーだけが、開ける扉。｜ Modern Trust</title>
+<meta name="description" content="MarkGate（マークゲート）は、各人材紹介エージェントの実績トップクラスのCAだけが登録できる、ハイクラス求職者専用の品質保証型マッチングプラットフォーム。量のスカウトではなく、あなたが実績で“指名”する転職を。" />
+<meta name="theme-color" content="#1E2A78" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MarkGate株式会社" />
+<meta property="og:title" content="MarkGate ｜ トップアドバイザーだけが、開ける扉。" />
+<meta property="og:description" content="各エージェントの実績トップクラスのCAだけが集う、ハイクラス求職者専用の品質保証型マッチングプラットフォーム。量ではなく、質で“指名”する転職へ。" />
+<meta property="og:locale" content="ja_JP" />
+
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* =====================================================================
+   MarkGate — Pattern 2 "Modern Trust / Clarity"
+   Clean product-led B2B2C SaaS look. Maximum clarity.
+   ===================================================================== */
+
+/* ---------- Design tokens ---------- */
+:root{
+  --white:#FFFFFF;
+  --gray-50:#F6F8FC;     /* very light cool gray */
+  --indigo:#1E2A78;      /* primary deep indigo */
+  --indigo-accent:#3A56E4; /* vivid indigo accent */
+  --indigo-700:#2A3A9E;
+  --ink:#0F1734;         /* ink text */
+  --slate:#5B6478;       /* muted slate */
+  --hair:#E6EAF2;        /* hairline border */
+  --tint:#EEF1FE;        /* soft indigo-tinted highlight */
+  --tint-2:#F2F5FF;
+  --coral:#E2603F;       /* warm contrast — problem (量) side only */
+  --coral-soft:#FDF0EC;
+  --coral-line:#F4D6CC;
+  --check:#1E9E6A;       /* solution check green */
+
+  --shadow-sm:0 1px 2px rgba(15,23,52,.05), 0 1px 3px rgba(15,23,52,.06);
+  --shadow:0 6px 16px -6px rgba(15,23,52,.12), 0 2px 6px -2px rgba(15,23,52,.06);
+  --shadow-lg:0 24px 48px -16px rgba(20,30,80,.22), 0 8px 20px -10px rgba(20,30,80,.12);
+  --shadow-indigo:0 18px 40px -14px rgba(58,86,228,.40);
+
+  --r-sm:10px;
+  --r:14px;
+  --r-lg:16px;
+  --r-xl:22px;
+
+  --maxw:1140px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --reveal-y:26px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html{ -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  font-family:"Noto Sans JP","Plus Jakarta Sans",system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--white);
+  line-height:1.9;
+  letter-spacing:.01em;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul,ol{margin:0;padding:0;list-style:none}
+button{font-family:inherit}
+:focus-visible{outline:3px solid rgba(58,86,228,.55);outline-offset:3px;border-radius:6px}
+
+/* Latin / numerals helper */
+.font-lat{font-family:"Plus Jakarta Sans",system-ui,sans-serif}
+
+/* ---------- Layout helpers ---------- */
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.section{padding:clamp(72px,9vw,128px) 0}
+.section--gray{background:var(--gray-50)}
+.section--tint{background:linear-gradient(180deg,#FAFBFF 0%, var(--tint-2) 100%)}
+
+/* pill eyebrow label */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:"Plus Jakarta Sans",sans-serif;
+  font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--indigo-accent);
+  background:var(--tint);
+  border:1px solid #DCE2FB;
+  padding:7px 14px;border-radius:999px;
+}
+.eyebrow .num{
+  font-size:.7rem;color:#fff;background:var(--indigo-accent);
+  border-radius:999px;padding:1px 8px;letter-spacing:.04em;
+}
+.eyebrow--coral{color:var(--coral);background:var(--coral-soft);border-color:var(--coral-line)}
+.eyebrow--coral .num{background:var(--coral)}
+
+.section-head{margin-bottom:clamp(34px,5vw,56px)}
+.section-head.center{text-align:center;display:flex;flex-direction:column;align-items:center}
+
+h2.h2{
+  font-family:"Plus Jakarta Sans","Noto Sans JP",sans-serif;
+  font-weight:800;
+  font-size:clamp(1.7rem,4.2vw,2.6rem);
+  line-height:1.34;
+  letter-spacing:.005em;
+  color:var(--ink);
+  margin:18px 0 0;
+}
+h2.h2 em{font-style:normal;color:var(--indigo-accent)}
+.h2.light{color:#fff}
+.lead{
+  font-size:clamp(1rem,1.6vw,1.075rem);
+  color:var(--slate);
+  max-width:62ch;
+  margin:18px 0 0;
+}
+.section-head.center .lead{margin-left:auto;margin-right:auto}
+.lead.light{color:rgba(255,255,255,.82)}
+
+/* ---------- Buttons ---------- */
+.btn{
+  --bg:var(--indigo-accent);--fg:#fff;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:"Plus Jakarta Sans","Noto Sans JP",sans-serif;
+  font-weight:700;font-size:.97rem;letter-spacing:.02em;
+  padding:15px 28px;border-radius:999px;
+  border:1.5px solid transparent;cursor:pointer;
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease), background .2s, color .2s, border-color .2s;
+  background:var(--bg);color:var(--fg);
+  box-shadow:var(--shadow-indigo);
+}
+.btn svg{width:18px;height:18px}
+.btn:hover{transform:translateY(-3px);box-shadow:0 22px 44px -14px rgba(58,86,228,.52)}
+.btn:active{transform:translateY(-1px)}
+.btn--solid-deep{background:var(--indigo);box-shadow:0 16px 36px -14px rgba(30,42,120,.5)}
+.btn--solid-deep:hover{box-shadow:0 22px 44px -14px rgba(30,42,120,.6)}
+.btn--outline{
+  background:transparent;color:var(--indigo);border-color:#C9D1EE;box-shadow:none;
+}
+.btn--outline:hover{background:var(--white);border-color:var(--indigo-accent);color:var(--indigo-accent);box-shadow:var(--shadow)}
+.btn--ghost-light{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.4);box-shadow:none;backdrop-filter:blur(4px)}
+.btn--ghost-light:hover{background:rgba(255,255,255,.2)}
+.btn--block{width:100%}
+
+/* ---------- Header ---------- */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
+  border-bottom:1px solid transparent;
+}
+.site-header.scrolled{
+  background:rgba(255,255,255,.82);
+  backdrop-filter:saturate(160%) blur(14px);
+  -webkit-backdrop-filter:saturate(160%) blur(14px);
+  box-shadow:0 1px 0 rgba(15,23,52,.04), 0 8px 24px -16px rgba(15,23,52,.3);
+  border-bottom-color:var(--hair);
+}
+.header-inner{
+  max-width:var(--maxw);margin:0 auto;padding:0 28px;
+  height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;
+  background:linear-gradient(135deg,var(--tint),#fff);border:1px solid var(--hair);box-shadow:var(--shadow-sm)}
+.brand-text{display:flex;flex-direction:column;line-height:1.1}
+.brand-name{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:1.16rem;letter-spacing:.01em;color:var(--ink)}
+.brand-sub{font-size:.66rem;color:var(--slate);letter-spacing:.18em;font-weight:500}
+
+.site-nav{display:flex;align-items:center;gap:4px}
+.site-nav a{
+  font-size:.9rem;font-weight:500;color:#404a63;
+  padding:9px 13px;border-radius:9px;
+  transition:color .2s, background .2s;
+}
+.site-nav a:not(.nav-cta):hover{color:var(--indigo-accent);background:var(--tint)}
+.nav-cta{
+  margin-left:8px;background:var(--indigo-accent);color:#fff !important;
+  font-weight:700;padding:10px 20px !important;border-radius:999px;
+  box-shadow:0 10px 22px -10px rgba(58,86,228,.6);
+  transition:transform .2s var(--ease), box-shadow .2s;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 14px 26px -10px rgba(58,86,228,.7);background:var(--indigo-accent)}
+
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:46px;height:46px;
+  border:1px solid var(--hair);background:#fff;border-radius:12px;cursor:pointer;box-shadow:var(--shadow-sm)}
+.nav-toggle span{display:block;width:20px;height:2px;background:var(--ink);margin:0 auto;border-radius:2px;transition:transform .3s var(--ease), opacity .2s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* mobile nav panel */
+.mobile-nav{
+  position:fixed;inset:0 0 0 auto;z-index:99;width:min(86vw,360px);
+  background:#fff;box-shadow:-24px 0 60px -20px rgba(15,23,52,.4);
+  transform:translateX(100%);transition:transform .38s var(--ease);
+  padding:96px 26px 40px;display:flex;flex-direction:column;gap:6px;
+  border-left:1px solid var(--hair);overflow-y:auto;
+}
+.mobile-nav.open{transform:translateX(0)}
+.mobile-nav a{font-size:1.04rem;font-weight:500;padding:14px 14px;border-radius:12px;color:var(--ink);transition:background .2s,color .2s}
+.mobile-nav a:hover,.mobile-nav a:focus-visible{background:var(--tint);color:var(--indigo-accent)}
+.mobile-nav .nav-cta{margin-top:14px;text-align:center}
+.scrim{position:fixed;inset:0;background:rgba(15,23,52,.42);backdrop-filter:blur(2px);z-index:98;opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.show{opacity:1;pointer-events:auto}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  padding:clamp(118px,16vw,176px) 0 clamp(64px,8vw,96px);
+  background:
+    radial-gradient(1000px 520px at 78% -8%, rgba(58,86,228,.10), transparent 60%),
+    radial-gradient(720px 420px at 6% 18%, rgba(30,42,120,.07), transparent 60%),
+    linear-gradient(180deg,#FBFCFF 0%, #F6F8FC 100%);
+}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(40px);opacity:.5;pointer-events:none}
+.hero-blob.b1{width:420px;height:420px;top:-120px;right:-80px;background:radial-gradient(circle at 30% 30%, rgba(58,86,228,.35), transparent 70%)}
+.hero-blob.b2{width:340px;height:340px;bottom:-140px;left:-90px;background:radial-gradient(circle at 60% 40%, rgba(30,42,120,.22), transparent 70%)}
+.hero-grid-overlay{position:absolute;inset:0;background-image:linear-gradient(var(--hair) 1px,transparent 1px),linear-gradient(90deg,var(--hair) 1px,transparent 1px);background-size:56px 56px;opacity:.28;mask-image:radial-gradient(900px 600px at 70% 10%, #000, transparent 75%);pointer-events:none}
+.hero-inner{position:relative;max-width:900px}
+.hero .eyebrow{margin-bottom:24px}
+.hero-title{
+  font-family:"Plus Jakarta Sans","Noto Sans JP",sans-serif;
+  font-weight:800;
+  font-size:clamp(2.3rem,6.6vw,4.3rem);
+  line-height:1.18;letter-spacing:-.005em;
+  margin:0 0 24px;color:var(--ink);
+}
+.hero-title em{font-style:normal;color:var(--indigo-accent);position:relative;white-space:nowrap}
+.hero-title em::after{
+  content:"";position:absolute;left:-2px;right:-2px;bottom:.06em;height:.18em;border-radius:4px;
+  background:linear-gradient(90deg,rgba(58,86,228,.25),rgba(58,86,228,.12));z-index:-1;
+}
+.hero-lead{
+  font-size:clamp(1.02rem,1.9vw,1.2rem);color:#3b4663;max-width:60ch;
+  line-height:2;margin:0 0 36px;font-weight:400;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:40px}
+.hero-trust{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center}
+.hero-trust .ht{display:inline-flex;align-items:center;gap:9px;font-size:.875rem;color:var(--slate);font-weight:500}
+.hero-trust .ht svg{width:18px;height:18px;color:var(--indigo-accent);flex:none}
+
+/* ---------- Trust band ---------- */
+.trustband{background:var(--indigo);color:#fff}
+.trustband .container{display:flex;justify-content:center}
+.trust-row{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:14px 22px;padding:18px 0;text-align:center;
+}
+.trust-row span{font-weight:500;font-size:.95rem;letter-spacing:.04em;display:inline-flex;align-items:center;gap:9px}
+.trust-row span svg{width:17px;height:17px;color:#9DB0FF}
+.trust-row i{color:rgba(255,255,255,.32);font-style:normal}
+
+/* ---------- Problem (data-forward) ---------- */
+.problem-intro{margin-bottom:clamp(30px,4vw,46px)}
+.stat-cards{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;
+}
+.stat-card{
+  position:relative;background:#fff;border:1px solid var(--hair);border-radius:var(--r-lg);
+  padding:26px 24px 24px;box-shadow:var(--shadow-sm);overflow:hidden;
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
+}
+.stat-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--coral),#EE8466)}
+.stat-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--coral-line)}
+.sc-icon{
+  width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+  background:var(--coral-soft);color:var(--coral);margin-bottom:14px;border:1px solid var(--coral-line);
+}
+.sc-icon svg{width:22px;height:22px}
+.sc-fig{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;color:var(--coral);
+  font-size:clamp(1.9rem,4vw,2.4rem);line-height:1.05;letter-spacing:-.01em;display:flex;align-items:baseline;gap:4px}
+.sc-fig .unit{font-size:.95rem;font-weight:700;color:#C0533A;letter-spacing:0}
+.sc-fig .pre{font-size:1.1rem;font-weight:700;color:#C0533A}
+.sc-title{font-weight:700;font-size:1.02rem;margin:12px 0 7px;color:var(--ink)}
+.sc-text{font-size:.92rem;color:var(--slate);line-height:1.85;margin:0}
+.problem-foot{
+  margin-top:clamp(30px,4vw,44px);text-align:center;
+  font-size:clamp(1.05rem,2vw,1.3rem);font-weight:700;color:var(--ink);line-height:1.7;
+}
+.problem-foot em{font-style:normal;color:var(--coral)}
+
+/* ---------- Concept + Comparison table ---------- */
+.concept-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(30px,5vw,64px);align-items:start}
+.concept-body p{margin:0 0 16px;color:#3b4663;font-size:1.03rem;line-height:2.05}
+.concept-body p:last-child{margin-bottom:0}
+.concept-body strong{color:var(--indigo);font-weight:700}
+.concept-body .gate-note{
+  margin-top:22px;padding:16px 20px;background:var(--tint);border:1px solid #DCE2FB;border-radius:var(--r);
+  font-size:.98rem;color:var(--indigo-700);font-weight:500;line-height:1.85;
+}
+.concept-body .gate-note strong{color:var(--indigo-accent)}
+
+/* comparison */
+.compare-wrap{margin-top:clamp(46px,6vw,72px)}
+.compare-caption{text-align:center;margin-bottom:26px}
+.compare-caption .t{font-family:"Plus Jakarta Sans","Noto Sans JP",sans-serif;font-weight:800;font-size:clamp(1.3rem,3vw,1.7rem);color:var(--ink)}
+.compare-caption .t .arrow{color:var(--indigo-accent)}
+.compare{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;
+}
+.cmp-col{border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow);background:#fff;display:flex;flex-direction:column}
+.cmp-head{padding:22px 26px;color:#fff;display:flex;flex-direction:column;gap:4px}
+.cmp-head .k{font-family:"Plus Jakarta Sans",sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;opacity:.85}
+.cmp-head .v{font-weight:800;font-size:1.22rem;font-family:"Noto Sans JP",sans-serif}
+.cmp-col--old{border:1px solid var(--coral-line)}
+.cmp-col--old .cmp-head{background:linear-gradient(135deg,var(--coral),#EE7E5E)}
+.cmp-col--new{border:1.5px solid #C9D1EE;box-shadow:var(--shadow-lg)}
+.cmp-col--new .cmp-head{background:linear-gradient(135deg,var(--indigo),var(--indigo-accent))}
+.cmp-body{padding:8px 0;flex:1}
+.cmp-row{display:flex;gap:13px;align-items:flex-start;padding:15px 26px;border-top:1px solid var(--hair)}
+.cmp-body .cmp-row:first-child{border-top:none}
+.cmp-col--old .cmp-row{background:linear-gradient(90deg,var(--coral-soft),#fff 70%)}
+.cmp-mark{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;margin-top:1px}
+.cmp-mark svg{width:14px;height:14px}
+.mark-x{background:var(--coral-soft);color:var(--coral);border:1px solid var(--coral-line)}
+.mark-c{background:#E4F6EE;color:var(--check);border:1px solid #BFE8D4}
+.cmp-row p{margin:0;font-size:.96rem;line-height:1.7;color:var(--ink)}
+.cmp-col--old .cmp-row p{color:#6b5147}
+
+/* ---------- Mechanism — numbered step diagram ---------- */
+.mech{position:relative}
+.mech-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;margin-top:8px}
+.mech-line{position:absolute;top:34px;left:11%;right:11%;height:2px;background:repeating-linear-gradient(90deg,#C9D1EE 0 10px,transparent 10px 18px);z-index:0}
+.mech-step{position:relative;z-index:1;background:#fff;border:1px solid var(--hair);border-radius:var(--r-lg);padding:26px 22px;box-shadow:var(--shadow-sm);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.mech-step:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:#C9D1EE}
+.mech-badge{
+  width:54px;height:54px;border-radius:15px;display:grid;place-items:center;margin:0 auto 16px;
+  background:linear-gradient(135deg,var(--indigo),var(--indigo-accent));color:#fff;
+  font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:1.35rem;
+  box-shadow:0 10px 22px -8px rgba(58,86,228,.55);position:relative;
+}
+.mech-icon{position:absolute;bottom:-8px;right:-8px;width:26px;height:26px;border-radius:50%;background:#fff;border:1px solid var(--hair);display:grid;place-items:center}
+.mech-icon svg{width:15px;height:15px;color:var(--indigo-accent)}
+.mech-step h3{text-align:center;font-size:1.05rem;font-weight:700;margin:0 0 10px;color:var(--ink);line-height:1.5}
+.mech-step p{font-size:.9rem;color:var(--slate);line-height:1.85;margin:0;text-align:left}
+.mech-step .sub{display:block;margin-top:8px;font-size:.86rem;color:#475173}
+.mech-step .sub b{color:var(--indigo-accent);font-weight:700}
+
+/* arrows shown only when stacked (mobile) */
+.mech-arrow{display:none}
+
+/* ---------- Strength cards ---------- */
+.str-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.str-card{
+  position:relative;background:#fff;border:1px solid var(--hair);border-radius:var(--r-xl);
+  padding:32px 28px 30px;box-shadow:var(--shadow-sm);overflow:hidden;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;
+}
+.str-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(180deg,rgba(58,86,228,.05),transparent 40%);opacity:0;transition:opacity .3s}
+.str-card:hover{transform:translateY(-7px);box-shadow:var(--shadow-lg);border-color:#C9D1EE}
+.str-card:hover::after{opacity:1}
+.str-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.str-num{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:1.5rem;color:var(--indigo-accent);line-height:1}
+.str-chip{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;background:var(--tint);color:var(--indigo-accent);border:1px solid #DCE2FB}
+.str-chip svg{width:24px;height:24px}
+.str-card h3{font-size:1.16rem;font-weight:700;margin:0 0 12px;color:var(--ink);line-height:1.5}
+.str-card p{font-size:.95rem;color:var(--slate);line-height:1.95;margin:0}
+
+/* ---------- Audience (candidate / advisor) ---------- */
+.aud-head{max-width:760px}
+.aud-head.center{margin:0 auto;text-align:center}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:clamp(34px,4vw,48px)}
+.feature-item{
+  display:flex;gap:16px;background:#fff;border:1px solid var(--hair);border-radius:var(--r-lg);
+  padding:24px 24px;box-shadow:var(--shadow-sm);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;
+}
+.feature-item:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#C9D1EE}
+.fi-chip{flex:none;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--tint);color:var(--indigo-accent);border:1px solid #DCE2FB}
+.fi-chip svg{width:23px;height:23px}
+.feature-item h3{font-size:1.05rem;font-weight:700;margin:2px 0 8px;color:var(--ink);line-height:1.45}
+.feature-item p{font-size:.93rem;color:var(--slate);line-height:1.85;margin:0}
+.aud-cta{margin-top:clamp(34px,4vw,44px);display:flex;justify-content:center}
+
+/* dark audience variant (advisor) */
+.section--indigo{background:radial-gradient(900px 500px at 80% -10%, rgba(58,86,228,.30), transparent 60%), linear-gradient(180deg,#1A246A,#141C52)}
+.section--indigo .feature-item{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);box-shadow:none;backdrop-filter:blur(4px)}
+.section--indigo .feature-item:hover{background:rgba(255,255,255,.09);border-color:rgba(157,176,255,.5)}
+.section--indigo .feature-item h3{color:#fff}
+.section--indigo .feature-item p{color:rgba(255,255,255,.74)}
+.section--indigo .fi-chip{background:rgba(157,176,255,.16);color:#BDC9FF;border-color:rgba(157,176,255,.35)}
+
+/* ---------- Flow ---------- */
+.flow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative}
+.flow-line{position:absolute;top:30px;left:11%;right:11%;height:2px;background:linear-gradient(90deg,#C9D1EE,#C9D1EE);z-index:0}
+.flow-step{position:relative;z-index:1;text-align:center;background:#fff;border:1px solid var(--hair);border-radius:var(--r-lg);padding:24px 20px;box-shadow:var(--shadow-sm);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.flow-step:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.flow-dot{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;margin:0 auto 14px;background:#fff;border:2px solid var(--indigo-accent);color:var(--indigo-accent);font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:1.05rem;box-shadow:0 0 0 6px var(--tint)}
+.flow-step .label{font-family:"Plus Jakarta Sans",sans-serif;font-size:.72rem;letter-spacing:.14em;color:var(--indigo-accent);font-weight:700;text-transform:uppercase;display:block;margin-bottom:6px}
+.flow-step h3{font-size:1.04rem;font-weight:700;margin:0 0 9px;color:var(--ink)}
+.flow-step p{font-size:.88rem;color:var(--slate);line-height:1.8;margin:0}
+
+/* ---------- Stats ---------- */
+.stats{background:linear-gradient(135deg,#161E58,#1E2A78 55%, #2A3A9E);color:#fff;position:relative;overflow:hidden}
+.stats::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(700px 400px at 50% 0%, #000, transparent 75%)}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative}
+.stat{text-align:center;padding:14px}
+.stat-num{display:flex;align-items:baseline;justify-content:center;gap:6px;font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;line-height:1;color:#fff}
+.stat-num .big{font-size:clamp(3.2rem,8vw,5rem);letter-spacing:-.02em;background:linear-gradient(180deg,#fff,#C7D2FF);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat-num .pre,.stat-num .unit{font-size:clamp(1.05rem,2.4vw,1.5rem);font-weight:700;color:#AFC0FF}
+.stat-label{margin-top:12px;font-size:.95rem;color:rgba(255,255,255,.78);font-weight:500;font-family:"Noto Sans JP",sans-serif;letter-spacing:.02em}
+.stats-note{text-align:center;margin-top:clamp(34px,4vw,48px);font-size:.82rem;color:rgba(255,255,255,.6)}
+
+/* ---------- Company ---------- */
+.company-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--hair);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);max-width:840px;margin:0 auto}
+.company-table th,.company-table td{text-align:left;padding:18px 24px;border-top:1px solid var(--hair);font-size:.96rem;vertical-align:top}
+.company-table tr:first-child th,.company-table tr:first-child td{border-top:none}
+.company-table th{width:34%;background:var(--gray-50);color:var(--indigo);font-weight:700;font-family:"Noto Sans JP",sans-serif}
+.company-table td{color:#3b4663;line-height:1.8}
+.company-table td a{color:var(--indigo-accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.company-note{text-align:center;margin-top:20px;font-size:.82rem;color:var(--slate)}
+
+/* ---------- Contact ---------- */
+.contact-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(34px,5vw,64px);align-items:start}
+.contact-lead .lead{margin-top:18px}
+.contact-aside{margin-top:26px;display:flex;flex-direction:column;gap:14px}
+.contact-aside .ca-item{display:flex;gap:12px;align-items:flex-start;font-size:.92rem;color:#3b4663;line-height:1.7}
+.contact-aside .ca-item svg{width:20px;height:20px;color:var(--indigo-accent);flex:none;margin-top:2px}
+.contact-form{background:#fff;border:1px solid var(--hair);border-radius:var(--r-xl);padding:clamp(26px,3.5vw,40px);box-shadow:var(--shadow-lg)}
+.field{margin-bottom:18px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field label{display:flex;align-items:center;gap:8px;font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:8px}
+.field label .req{font-size:.66rem;font-weight:700;color:#fff;background:var(--coral);padding:2px 8px;border-radius:999px;letter-spacing:.06em}
+.field label .opt{font-size:.66rem;font-weight:600;color:var(--slate);background:var(--gray-50);border:1px solid var(--hair);padding:2px 8px;border-radius:999px}
+.field input,.field select,.field textarea{
+  width:100%;font-family:inherit;font-size:.97rem;color:var(--ink);
+  padding:13px 15px;border:1.5px solid var(--hair);border-radius:var(--r-sm);background:#fff;
+  transition:border-color .2s, box-shadow .2s;
+}
+.field textarea{resize:vertical;min-height:120px;line-height:1.7}
+.field input::placeholder,.field textarea::placeholder{color:#9aa3b8}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--indigo-accent);box-shadow:0 0 0 4px rgba(58,86,228,.13)}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--coral);box-shadow:0 0 0 4px rgba(226,96,63,.12)}
+.field .err{display:none;font-size:.8rem;color:var(--coral);margin-top:6px;font-weight:500}
+.field.invalid .err{display:block}
+.check{display:flex;align-items:flex-start;gap:11px;font-size:.9rem;color:#3b4663;margin:6px 0 22px;cursor:pointer;line-height:1.6}
+.check input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--indigo-accent);cursor:pointer}
+.check.invalid span{color:var(--coral)}
+.check a{color:var(--indigo-accent);text-decoration:underline;text-underline-offset:3px}
+.form-status{margin:16px 0 0;font-size:.92rem;font-weight:600;min-height:1.4em;line-height:1.7}
+.form-status.ok{color:var(--check)}
+.form-status.ng{color:var(--coral)}
+.form-success{
+  display:none;margin-top:18px;padding:16px 18px;border-radius:var(--r);
+  background:#E4F6EE;border:1px solid #BFE8D4;color:#127A52;font-weight:600;font-size:.94rem;
+  align-items:flex-start;gap:11px;line-height:1.7;
+}
+.form-success svg{width:20px;height:20px;flex:none;margin-top:1px}
+.form-success.show{display:flex}
+
+/* ---------- Footer ---------- */
+.site-footer{background:#0C123A;color:rgba(255,255,255,.7)}
+.footer-inner{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;padding-top:clamp(56px,7vw,80px);padding-bottom:40px}
+.footer-brand .fb-top{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.footer-brand .brand-mark{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+.footer-brand .brand-name{color:#fff}
+.footer-tagline{margin:0;font-size:.95rem;color:rgba(255,255,255,.62);font-weight:500;letter-spacing:.02em}
+.footer-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;align-content:start}
+.footer-nav a{font-size:.9rem;color:rgba(255,255,255,.66);padding:4px 0;transition:color .2s;width:fit-content}
+.footer-nav a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1)}
+.footer-bottom .container{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding-top:22px;padding-bottom:30px}
+.footer-bottom p{margin:0;font-size:.82rem;color:rgba(255,255,255,.5);font-family:"Plus Jakarta Sans",sans-serif;letter-spacing:.02em}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;color:#AFC0FF;font-weight:600;padding:8px 16px;border:1px solid rgba(157,176,255,.3);border-radius:999px;transition:background .2s,border-color .2s,transform .2s}
+.back-link:hover{background:rgba(157,176,255,.12);border-color:rgba(157,176,255,.6);transform:translateX(-3px)}
+
+/* ---------- To-top ---------- */
+.to-top{
+  position:fixed;right:24px;bottom:24px;z-index:90;width:50px;height:50px;border-radius:14px;
+  display:grid;place-items:center;background:var(--indigo-accent);color:#fff;border:none;cursor:pointer;
+  box-shadow:0 14px 30px -10px rgba(58,86,228,.6);
+  opacity:0;transform:translateY(16px) scale(.9);pointer-events:none;
+  transition:opacity .3s var(--ease), transform .3s var(--ease), background .2s;
+}
+.to-top svg{width:22px;height:22px}
+.to-top.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.to-top:hover{background:var(--indigo);transform:translateY(-3px)}
+
+/* ---------- Reveal animation ---------- */
+.reveal{opacity:0;transform:translateY(var(--reveal-y));transition:opacity .7s var(--ease), transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}
+.reveal.d2{transition-delay:.16s}
+.reveal.d3{transition-delay:.24s}
+.reveal.d4{transition-delay:.32s}
+
+/* ---------- Responsive ---------- */
+.pc-only{display:inline}
+@media (max-width:980px){
+  .site-nav{display:none}
+  .nav-toggle{display:flex}
+  .concept-grid{grid-template-columns:1fr;gap:28px}
+  .mech-steps{grid-template-columns:repeat(2,1fr);gap:18px}
+  .mech-line{display:none}
+  .str-cards{grid-template-columns:1fr 1fr}
+  .flow-steps{grid-template-columns:repeat(2,1fr)}
+  .flow-line{display:none}
+}
+@media (max-width:768px){
+  .pc-only{display:none}
+  .container{padding:0 22px}
+  .compare{grid-template-columns:1fr}
+  .feature-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr;gap:30px}
+  .stats-grid{grid-template-columns:1fr;gap:30px}
+  .footer-inner{grid-template-columns:1fr;gap:30px}
+  .str-cards{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .header-inner{height:64px}
+  .mech-steps{grid-template-columns:1fr;gap:0}
+  .mech-step{margin-bottom:0}
+  .mech-arrow{display:grid;place-items:center;height:34px;color:var(--indigo-accent)}
+  .mech-arrow svg{width:24px;height:24px}
+  .flow-steps{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr;gap:0}
+  .company-table th{width:40%}
+}
+@media (max-width:520px){
+  .btn{width:100%}
+  .hero-actions{flex-direction:column}
+  .hero-actions .btn{width:100%}
+  .company-table th,.company-table td{display:block;width:100%}
+  .company-table td{border-top:none;padding-top:0;padding-bottom:18px}
+  .company-table th{border-top:1px solid var(--hair)}
+  .company-table tr:first-child th{border-top:none}
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1 !important;transform:none !important}
+  .btn:hover,.str-card:hover,.feature-item:hover,.mech-step:hover,.flow-step:hover,.stat-card:hover,.to-top:hover,.back-link:hover,.nav-cta:hover{transform:none !important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#hero" class="brand" aria-label="MarkGate ホームへ">
+      <span class="brand-mark">
+        <svg viewBox="0 0 40 40" width="30" height="30" aria-hidden="true">
+          <path d="M6 35 V14 L20 5 L34 14 V35" fill="none" stroke="#3A56E4" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M14 35 V20 a6 6 0 0 1 12 0 V35" fill="none" stroke="#3A56E4" stroke-width="2.2" stroke-linejoin="round"/>
+          <line x1="3" y1="35" x2="37" y2="35" stroke="#3A56E4" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">MarkGate</span>
+        <span class="brand-sub">マークゲート</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="グローバルナビゲーション">
+      <a href="#problem">課題</a>
+      <a href="#mechanism">仕組み</a>
+      <a href="#strength">強み</a>
+      <a href="#candidate">求職者の方</a>
+      <a href="#advisor">アドバイザーの方</a>
+      <a href="#company">会社概要</a>
+      <a href="#contact" class="nav-cta">お問い合わせ</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim" hidden></div>
+<nav class="mobile-nav" id="mobileNav" aria-label="モバイルナビゲーション">
+  <a href="#problem">課題</a>
+  <a href="#mechanism">仕組み</a>
+  <a href="#strength">強み</a>
+  <a href="#candidate">求職者の方</a>
+  <a href="#advisor">アドバイザーの方</a>
+  <a href="#company">会社概要</a>
+  <a href="#contact" class="nav-cta">お問い合わせ</a>
+</nav>
+
+<main>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="hero">
+  <span class="hero-blob b1" aria-hidden="true"></span>
+  <span class="hero-blob b2" aria-hidden="true"></span>
+  <span class="hero-grid-overlay" aria-hidden="true"></span>
+  <div class="container">
+    <div class="hero-inner">
+      <p class="eyebrow reveal">EXECUTIVE CAREER PLATFORM</p>
+      <h1 class="hero-title reveal d1">
+        トップアドバイザーだけが、<br />
+        <em>開ける扉。</em>
+      </h1>
+      <p class="hero-lead reveal d2">
+        各エージェントの実績トップクラスのキャリアアドバイザー（CA）だけが集う、ハイクラス層のための“品質保証型”転職プラットフォーム。スカウトの「量」ではなく、あなたが実績で伴走者を選ぶ「質」へ。
+      </p>
+      <div class="hero-actions reveal d3">
+        <a href="#candidate" class="btn">求職者の方へ
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#advisor" class="btn btn--outline">アドバイザー（CA）の方へ</a>
+      </div>
+      <div class="hero-trust reveal d4">
+        <span class="ht"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>審査制</span>
+        <span class="ht"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15l-3.09 1.9 1-3.6-2.9-2.4 3.74-.2L12 7l1.25 3.5 3.74.2-2.9 2.4 1 3.6z"/></svg>トップCA限定</span>
+        <span class="ht"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg>エグゼクティブ特化</span>
+        <span class="ht"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5-5 5 5"/><path d="M17 14l-5 5-5-5"/></svg>指名型（双方向）</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TRUST BAND ============================ -->
+<section class="trustband" aria-label="MarkGate の特徴">
+  <div class="container">
+    <p class="trust-row">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>審査制</span><i>/</i>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15l-3.09 1.9 1-3.6-2.9-2.4 3.74-.2L12 7l1.25 3.5 3.74.2-2.9 2.4 1 3.6z"/></svg>トップCA限定</span><i>/</i>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg>ハイクラス・エグゼクティブ特化</span><i>/</i>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17l5-5 5 5"/><path d="M7 7l5 5 5-5"/></svg>指名型（双方向）</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============================ PROBLEM ============================ -->
+<section class="section section--gray" id="problem">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow eyebrow--coral"><span class="num">01</span>PROBLEM</span>
+      <h2 class="h2">「量の競争」が、<em style="color:var(--coral)">最良の出会い</em>を埋もれさせる。</h2>
+      <p class="lead">ビズリーチに代表されるスカウト型の転職サービスは、いま構造疲労に達しています。</p>
+    </div>
+
+    <div class="stat-cards">
+      <article class="stat-card reveal">
+        <span class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+        <div class="sc-fig"><span class="num" data-count="3.8" data-dec="1">0</span><span class="unit">万社+</span></div>
+        <h3 class="sc-title">同一DBへの殺到</h3>
+        <p class="sc-text">導入企業 約3.8万社 ＋ 登録アドバイザー 9,000人超 が、同じデータベースの優秀層へ一斉にアプローチ。</p>
+      </article>
+
+      <article class="stat-card reveal d1">
+        <span class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/></svg></span>
+        <div class="sc-fig"><span class="num" data-count="100">0</span><span class="unit">通+ / 月</span></div>
+        <h3 class="sc-title">受信箱の飽和</h3>
+        <p class="sc-text">優秀な人材ほどスカウトが集中。登録からわずか1ヶ月で100通超に達することも。</p>
+      </article>
+
+      <article class="stat-card reveal d2">
+        <span class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v6h-6"/></svg></span>
+        <div class="sc-fig"><span class="pre">わずか</span><span class="num" data-count="3">0</span><span class="unit">% 台</span></div>
+        <h3 class="sc-title">返信率は数%</h3>
+        <p class="sc-text">「浴びせる」量の競争の結果、求職者の返信率はわずか数%まで低下することも。</p>
+      </article>
+
+      <article class="stat-card reveal d1">
+        <span class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <div class="sc-fig"><span class="symbol" style="font-size:.85em">?</span></div>
+        <h3 class="sc-title">担当者ガチャ</h3>
+        <p class="sc-text">どの経験レベルのCAが担当になるか、求職者は事前に判別できない。</p>
+      </article>
+
+      <article class="stat-card reveal d2">
+        <span class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M3 16v5h5"/><path d="M21 16v5h-5"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <div class="sc-fig"><span class="num" data-count="3">0</span><span class="unit">社+ 登録</span></div>
+        <h3 class="sc-title">多重登録の強制</h3>
+        <p class="sc-text">ハズレを避けるため、複数エージェントへの登録を強いられ、求職者の負担が増える。</p>
+      </article>
+    </div>
+
+    <p class="problem-foot reveal">量を競うほど、本当に出会うべき「<em>人</em>」と「<em>機会</em>」が、ノイズに埋もれていく。</p>
+  </div>
+</section>
+
+<!-- ============================ CONCEPT + COMPARISON ============================ -->
+<section class="section" id="concept">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="num">02</span>CONCEPT</span>
+    </div>
+    <div class="concept-grid">
+      <div class="reveal">
+        <h2 class="h2" style="margin-top:0">市場を、<br />「量」から<em>「質」</em>へ反転させる。</h2>
+      </div>
+      <div class="concept-body reveal d1">
+        <p>ハイクラス転職で結果を左右するのは、求人やスカウトの“量”ではありません。あなたの市場価値を正しく見極め、非公開ポジションを引き出し、交渉まで導く——CA（キャリアアドバイザー）の<strong>“実力”</strong>です。</p>
+        <p>MarkGateは、送り手が殺到する「量の競争」を終わらせ、求職者が実績でCAを“指名”する<strong>「質の競争」</strong>へと市場を反転させます。</p>
+        <p class="gate-note">“<strong>Mark（一流の証）</strong>”を持つCAだけが立つ、キャリアの“<strong>Gate（門）</strong>”。それがMarkGateです。</p>
+      </div>
+    </div>
+
+    <!-- 量 vs 質 comparison -->
+    <div class="compare-wrap">
+      <div class="compare-caption reveal">
+        <p class="t" style="margin:0">量 <span class="arrow">→</span> 質。同じ転職市場でも、構造がまるで違う。</p>
+      </div>
+      <div class="compare">
+        <div class="cmp-col cmp-col--old reveal">
+          <div class="cmp-head">
+            <span class="k">Before</span>
+            <span class="v">量の競争（従来のスカウト型）</span>
+          </div>
+          <div class="cmp-body">
+            <div class="cmp-row"><span class="cmp-mark mark-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span><p>送り手が同一DBに殺到</p></div>
+            <div class="cmp-row"><span class="cmp-mark mark-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span><p>受信箱が飽和・返信率は数%</p></div>
+            <div class="cmp-row"><span class="cmp-mark mark-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span><p>担当者は運次第（担当者ガチャ）</p></div>
+            <div class="cmp-row"><span class="cmp-mark mark-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span><p>ハズレ回避のため多重登録</p></div>
+            <div class="cmp-row"><span class="cmp-mark mark-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span><p>経験レベルがばらつく</p></div>
+          </div>
+        </div>
+        <div class="cmp-col cmp-col--new reveal d1">
+          <div class="cmp-head">
+            <span class="k">After</span>
+            <span class="v">質の競争（MarkGate）</span>
+          </div>
+          <div class="cmp-body">
+            <div class="cmp-row"><span class="cmp-mark mark-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg></span><p>審査を通過したトップCAのみが在籍</p></div>
+            <div class="cmp-row"><span class="cmp-mark mark-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg></span><p>上限付きスカウトで返信率を担保</p></div>
+            <div class="cmp-row"><span class="cmp-mark mark-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg></span><p>求職者が実績でCAを“指名”</p></div>
+            <div class="cmp-row"><span class="cmp-mark mark-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg></span><p>一人の最良の伴走者に集中</p></div>
+            <div class="cmp-row"><span class="cmp-mark mark-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg></span><p>各社トップクラスの実力を継続保証</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MECHANISM ============================ -->
+<section class="section section--tint" id="mechanism">
+  <div class="container mech">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="num">03</span>HOW IT WORKS</span>
+      <h2 class="h2">品質を<em>“保証”</em>する、4つの仕組み。</h2>
+      <p class="lead">「審査 → 維持 → 好循環 → 設計」。4つが噛み合うことで、質が構造的に担保されます。</p>
+    </div>
+
+    <div class="mech-steps">
+      <span class="mech-line" aria-hidden="true"></span>
+
+      <div class="mech-step reveal">
+        <span class="mech-badge">1
+          <span class="mech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+        </span>
+        <h3>入会審査<br />（トップCAのみ）</h3>
+        <p>各エージェントの実績トップクラスのCAだけが、独自の審査を通過して登録できる。</p>
+      </div>
+
+      <div class="mech-arrow reveal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+
+      <div class="mech-step reveal d1">
+        <span class="mech-badge">2
+          <span class="mech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2 7 4-14 2 7h6"/></svg></span>
+        </span>
+        <h3>継続<br />モニタリング</h3>
+        <p>登録後も実績を継続的にモニタリング。結果が出ないCAは登録を解除し、品質水準を維持する。</p>
+      </div>
+
+      <div class="mech-arrow reveal d1" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+
+      <div class="mech-step reveal d2">
+        <span class="mech-badge">3
+          <span class="mech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+        </span>
+        <h3>ハイクラス限定の<br />好循環</h3>
+        <p>求職者もハイクラス帯に限定。成約単価が上がり、トップCAが登録し続ける強いインセンティブが生まれる。</p>
+      </div>
+
+      <div class="mech-arrow reveal d2" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+
+      <div class="mech-step reveal d3">
+        <span class="mech-badge">4
+          <span class="mech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l-4 4 4 4"/><path d="M17 17l4-4-4-4"/><path d="M3 11h12"/><path d="M9 13h12"/></svg></span>
+        </span>
+        <h3>双方向 ×<br />上限付きスカウト</h3>
+        <p>①求職者がCAを実績で“指名”、②CAが求職者へスカウト。<span class="sub"><b>上限付き</b>で返信率を担保し、「浴びせる」構造を作らない。</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ STRENGTH ============================ -->
+<section class="section" id="strength">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="num">04</span>STRENGTH</span>
+      <h2 class="h2">MarkGate <em>3つの強み</em></h2>
+    </div>
+    <div class="str-cards">
+      <article class="str-card reveal">
+        <div class="str-top">
+          <span class="str-num font-lat">01</span>
+          <span class="str-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        </div>
+        <h3>トップアドバイザーのみが登録できる審査制</h3>
+        <p>各エージェントの実績上位者のみが、経歴・成約実績・専門性を基準とした審査を通過して登録。一定水準のプロだけが集う環境を担保します。</p>
+      </article>
+
+      <article class="str-card reveal d1">
+        <div class="str-top">
+          <span class="str-num font-lat">02</span>
+          <span class="str-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 6.9H22l-5.8 4.3 2.2 7L12 16.9 5.6 20.2l2.2-7L2 8.9h7.6z"/></svg></span>
+        </div>
+        <h3>ハイクラス・エグゼクティブ領域に特化</h3>
+        <p>経営幹部・管理職・高度専門職、年収800万円以上に特化。各業界に精通したCAが、表に出ない上位ポジションへつなぎます。</p>
+      </article>
+
+      <article class="str-card reveal d2">
+        <div class="str-top">
+          <span class="str-num font-lat">03</span>
+          <span class="str-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 11a4 4 0 1 0-4-4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8l2 2 3-3"/></svg></span>
+        </div>
+        <h3>アドバイザーを“選べる・指名できる”</h3>
+        <p>CAの専門領域・実績・スタンスを比較し、自分に最適な伴走者を指名。“出会う相手を選ぶ”新しい転職体験を提供します。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOR CANDIDATES ============================ -->
+<section class="section section--gray" id="candidate">
+  <div class="container">
+    <div class="aud-head center reveal">
+      <span class="eyebrow"><span class="num">05</span>FOR CANDIDATES</span>
+      <h2 class="h2">求職者の方へ</h2>
+      <p class="lead">実力あるCAを、あなた自身の目で選ぶ。ハイクラスのキャリアにふさわしい、最良の出会いを。</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item reveal">
+        <span class="fi-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <div>
+          <h3>厳選されたCAだけと出会える</h3>
+          <p>担当者の質に左右されない。審査を通過したプロが、あなたのキャリアに本気で向き合います。</p>
+        </div>
+      </div>
+      <div class="feature-item reveal d1">
+        <span class="fi-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+        <div>
+          <h3>非公開・上位ポジションへのアクセス</h3>
+          <p>一般に流通しない経営層・幹部クラスの求人を、各領域に強いCA経由でご紹介。</p>
+        </div>
+      </div>
+      <div class="feature-item reveal d2">
+        <span class="fi-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M9 11l1.5 1.5L14 9"/></svg></span>
+        <div>
+          <h3>プロフィールを見て“指名”できる</h3>
+          <p>得意業界・職種、支援実績、経歴を確認し、納得した上で相談相手を選べます。</p>
+        </div>
+      </div>
+      <div class="feature-item reveal d3">
+        <span class="fi-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+        <div>
+          <h3>登録・ご利用は無料</h3>
+          <p>ご登録および転職支援のご利用は無料。まずは市場価値を知ることから。</p>
+        </div>
+      </div>
+    </div>
+    <div class="aud-cta reveal">
+      <a href="#contact" class="btn btn--solid-deep">無料で会員登録（審査制）
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOR ADVISORS ============================ -->
+<section class="section section--indigo" id="advisor">
+  <div class="container">
+    <div class="aud-head center reveal">
+      <span class="eyebrow" style="background:rgba(157,176,255,.16);color:#CFD8FF;border-color:rgba(157,176,255,.35)"><span class="num" style="background:#9DB0FF;color:#1A246A">06</span>FOR ADVISORS</span>
+      <h2 class="h2 light">アドバイザー（CA）の方へ</h2>
+      <p class="lead light">実績あるトップCAのための、選ばれる舞台。質の高い出会いが、あなたの成果を最大化します。</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item reveal">
+        <span class="fi-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13A4 4 0 0 1 16 11"/></svg></span>
+        <div>
+          <h3>ハイクラス層の求職者と直接つながる</h3>
+          <p>意欲と市場価値の高い層に、専門性を直接届けられます。</p>
+        </div>
+      </div>
+      <div class="feature-item reveal d1">
+        <span class="fi-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5.5 21a7 7 0 0 1 13 0"/><path d="M19 3l1.5 1.5L23 2"/></svg></span>
+        <div>
+          <h3>“選ばれる”プロフィール掲載</h3>
+          <p>実績や専門領域を提示し、求職者から指名される。実力がそのまま機会に。</p>
+        </div>
+      </div>
+      <div class="feature-item reveal d2">
+        <span class="fi-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2 7 4-14 2 7h6"/></svg></span>
+        <div>
+          <h3>上限付きスカウトで高い返信率</h3>
+          <p>「浴びせない」設計。質の高いアプローチが、高い返信率につながります。</p>
+        </div>
+      </div>
+      <div class="feature-item reveal d3">
+        <span class="fi-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span>
+        <div>
+          <h3>登録には審査があります</h3>
+          <p>成約実績・専門性・経歴を基準とした審査制。品質を、ともに守ります。</p>
+        </div>
+      </div>
+    </div>
+    <div class="aud-cta reveal">
+      <a href="#contact" class="btn">アドバイザー登録を申請する
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FLOW ============================ -->
+<section class="section" id="flow">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="num">07</span>FLOW</span>
+      <h2 class="h2">ご利用の流れ</h2>
+      <p class="lead">求職者の方が入社に至るまでの基本的な流れです。</p>
+    </div>
+    <ol class="flow-steps">
+      <span class="flow-line" aria-hidden="true"></span>
+      <li class="flow-step reveal">
+        <span class="flow-dot font-lat">01</span>
+        <span class="label">Step 01</span>
+        <h3>会員登録（審査制）</h3>
+        <p>経歴・ご希望を登録。ハイクラス特化のため簡単な審査を行います。</p>
+      </li>
+      <li class="flow-step reveal d1">
+        <span class="flow-dot font-lat">02</span>
+        <span class="label">Step 02</span>
+        <h3>CAを探す・指名</h3>
+        <p>専門領域や実績を比較し、最適なCAを指名します。</p>
+      </li>
+      <li class="flow-step reveal d2">
+        <span class="flow-dot font-lat">03</span>
+        <span class="label">Step 03</span>
+        <h3>面談・求人提案</h3>
+        <p>キャリアの棚卸しと市場価値の見極めを行い、最適な求人をご提案。</p>
+      </li>
+      <li class="flow-step reveal d3">
+        <span class="flow-dot font-lat">04</span>
+        <span class="label">Step 04</span>
+        <h3>選考・内定・入社</h3>
+        <p>書類添削から面接対策、条件交渉、入社後フォローまで一貫伴走。</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================ STATS ============================ -->
+<section class="section stats" id="stats" aria-label="数値で見るMarkGate">
+  <div class="container">
+    <div class="section-head center reveal" style="margin-bottom:clamp(28px,4vw,44px)">
+      <span class="eyebrow" style="background:rgba(157,176,255,.16);color:#CFD8FF;border-color:rgba(157,176,255,.35)">BY THE NUMBERS</span>
+      <h2 class="h2 light">数値で見る MarkGate</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <span class="stat-num"><span class="big" data-count="800">0</span><span class="unit">万円+</span></span>
+        <span class="stat-label">想定年収レンジ</span>
+      </div>
+      <div class="stat reveal d1">
+        <span class="stat-num"><span class="big" data-count="100">0</span><span class="unit">%</span></span>
+        <span class="stat-label">登録CAの審査通過</span>
+      </div>
+      <div class="stat reveal d2">
+        <span class="stat-num"><span class="big" data-count="1">0</span><span class="unit">名</span></span>
+        <span class="stat-label">あなたが選ぶ、専属の伴走者</span>
+      </div>
+    </div>
+    <p class="stats-note reveal">※ 数値はサービスコンセプトを示すものであり、実績値は順次公開予定です。</p>
+  </div>
+</section>
+
+<!-- ============================ COMPANY ============================ -->
+<section class="section section--gray" id="company">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="num">08</span>COMPANY</span>
+      <h2 class="h2">会社概要</h2>
+    </div>
+    <table class="company-table reveal">
+      <tbody>
+        <tr><th>会社名</th><td>MarkGate株式会社（マークゲート）</td></tr>
+        <tr><th>事業内容</th><td>ハイクラス層向け「品質保証型」人材紹介プラットフォームの企画・運営／有料職業紹介事業</td></tr>
+        <tr><th>設立</th><td>準備中</td></tr>
+        <tr><th>代表者</th><td>準備中</td></tr>
+        <tr><th>所在地</th><td>準備中</td></tr>
+        <tr><th>資本金</th><td>準備中</td></tr>
+        <tr><th>許可番号</th><td>有料職業紹介事業許可番号：申請準備中</td></tr>
+        <tr><th>お問い合わせ</th><td><a href="#contact">お問い合わせフォーム</a>よりご連絡ください</td></tr>
+      </tbody>
+    </table>
+    <p class="company-note reveal">※「準備中」の項目は確定後に掲載いたします。</p>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-lead reveal">
+        <span class="eyebrow">CONTACT</span>
+        <h2 class="h2">お問い合わせ</h2>
+        <p class="lead">求職者の方、アドバイザー登録をご希望の方、提携・取材のご相談まで。下記フォームよりお気軽にご連絡ください。</p>
+        <div class="contact-aside">
+          <div class="ca-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>審査制プラットフォーム。お問い合わせ内容に応じて担当より折り返します。</span></div>
+          <div class="ca-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg><span>ご記入いただいた情報は、お問い合わせ対応の目的のみに利用します。</span></div>
+        </div>
+      </div>
+
+      <!-- DEMO FORM: バリデーションのみ。送信先APIは未接続（デモ実装）。 -->
+      <form class="contact-form reveal d1" id="contactForm" novalidate>
+        <div class="field" id="f-type">
+          <label for="cf-type">お問い合わせ種別 <span class="req">必須</span></label>
+          <select id="cf-type" name="type" required>
+            <option value="" disabled selected>選択してください</option>
+            <option>求職者として相談したい</option>
+            <option>アドバイザー登録を申請したい</option>
+            <option>提携・協業について</option>
+            <option>採用について</option>
+            <option>取材・メディア</option>
+            <option>その他</option>
+          </select>
+          <p class="err">お問い合わせ種別を選択してください。</p>
+        </div>
+        <div class="field-row">
+          <div class="field" id="f-name">
+            <label for="cf-name">お名前 <span class="req">必須</span></label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required placeholder="山田 太郎" />
+            <p class="err">お名前をご入力ください。</p>
+          </div>
+          <div class="field">
+            <label for="cf-company">会社名 / ご所属 <span class="opt">任意</span></label>
+            <input type="text" id="cf-company" name="company" autocomplete="organization" placeholder="株式会社〇〇" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field" id="f-email">
+            <label for="cf-email">メールアドレス <span class="req">必須</span></label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required placeholder="you@example.com" />
+            <p class="err">正しいメールアドレスをご入力ください。</p>
+          </div>
+          <div class="field">
+            <label for="cf-phone">電話番号 <span class="opt">任意</span></label>
+            <input type="tel" id="cf-phone" name="phone" autocomplete="tel" placeholder="03-0000-0000" />
+          </div>
+        </div>
+        <div class="field" id="f-message">
+          <label for="cf-message">お問い合わせ内容 <span class="req">必須</span></label>
+          <textarea id="cf-message" name="message" rows="5" required placeholder="ご相談内容をご記入ください"></textarea>
+          <p class="err">お問い合わせ内容をご入力ください。</p>
+        </div>
+        <label class="check" id="f-agree">
+          <input type="checkbox" id="cf-agree" name="agree" required />
+          <span><a href="#" onclick="return false">プライバシーポリシー</a>に同意します <span class="req" style="vertical-align:middle">必須</span></span>
+        </label>
+        <button type="submit" class="btn btn--block">送信する
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+        </button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        <div class="form-success" id="formSuccess">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+          <span>お問い合わせありがとうございます。担当者より折り返しご連絡いたします。</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="fb-top">
+        <span class="brand-mark">
+          <svg viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
+            <path d="M6 35 V14 L20 5 L34 14 V35" fill="none" stroke="#9DB0FF" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M14 35 V20 a6 6 0 0 1 12 0 V35" fill="none" stroke="#9DB0FF" stroke-width="2.2" stroke-linejoin="round"/>
+            <line x1="3" y1="35" x2="37" y2="35" stroke="#9DB0FF" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-name">MarkGate</span>
+      </div>
+      <p class="footer-tagline">トップアドバイザーだけが、開ける扉。</p>
+    </div>
+    <nav class="footer-nav" aria-label="フッターナビゲーション">
+      <a href="#problem">課題</a>
+      <a href="#mechanism">仕組み</a>
+      <a href="#strength">強み</a>
+      <a href="#candidate">求職者の方</a>
+      <a href="#advisor">アドバイザーの方</a>
+      <a href="#flow">ご利用の流れ</a>
+      <a href="#company">会社概要</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; <span id="year">2026</span> MarkGate Inc. All rights reserved.</p>
+      <a href="../index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        3パターン一覧へ
+      </a>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="ページ上部へ戻る">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Year ---------- */
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  /* ---------- Sticky header shadow/blur on scroll ---------- */
+  var header = document.getElementById('siteHeader');
+  var toTop = document.getElementById('toTop');
+  function onScroll(){
+    var s = window.pageYOffset || document.documentElement.scrollTop;
+    if (header) header.classList.toggle('scrolled', s > 8);
+    if (toTop) toTop.classList.toggle('show', s > 600);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---------- Mobile nav ---------- */
+  var toggle = document.getElementById('navToggle');
+  var panel = document.getElementById('mobileNav');
+  var scrim = document.getElementById('scrim');
+  function openNav(){
+    panel.classList.add('open');
+    scrim.hidden = false;
+    requestAnimationFrame(function(){ scrim.classList.add('show'); });
+    toggle.setAttribute('aria-expanded','true');
+    toggle.setAttribute('aria-label','メニューを閉じる');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav(){
+    panel.classList.remove('open');
+    scrim.classList.remove('show');
+    toggle.setAttribute('aria-expanded','false');
+    toggle.setAttribute('aria-label','メニューを開く');
+    document.body.style.overflow = '';
+    window.setTimeout(function(){ if(!panel.classList.contains('open')) scrim.hidden = true; }, 320);
+  }
+  if (toggle){
+    toggle.addEventListener('click', function(){
+      if (panel.classList.contains('open')) closeNav(); else openNav();
+    });
+  }
+  if (scrim) scrim.addEventListener('click', closeNav);
+  if (panel){
+    panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeNav); });
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && panel.classList.contains('open')) closeNav();
+  });
+
+  /* ---------- Smooth scroll for anchor links (offset for sticky header) ---------- */
+  var headerH = 72;
+  document.querySelectorAll('a[href^="#"]').forEach(function(link){
+    link.addEventListener('click', function(e){
+      var id = link.getAttribute('href');
+      if (id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + (window.pageYOffset||0) - headerH + 1;
+      window.scrollTo({ top: top, behavior: prefersReduced ? 'auto' : 'smooth' });
+    });
+  });
+
+  /* ---------- Scroll reveal (IntersectionObserver) ---------- */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if (prefersReduced || !('IntersectionObserver' in window)){
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---------- Stats / figures count-up ---------- */
+  var counters = Array.prototype.slice.call(document.querySelectorAll('[data-count]'));
+  function formatNum(val, dec){
+    if (dec > 0) return val.toFixed(dec);
+    return Math.round(val).toLocaleString('en-US');
+  }
+  function runCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+    if (isNaN(target)){ return; }
+    if (prefersReduced){ el.textContent = formatNum(target, dec); return; }
+    var dur = 1400, start = null;
+    function step(ts){
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3); /* easeOutCubic */
+      el.textContent = formatNum(target * eased, dec);
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = formatNum(target, dec);
+    }
+    requestAnimationFrame(step);
+  }
+  if (prefersReduced || !('IntersectionObserver' in window)){
+    counters.forEach(runCount);
+  } else {
+    var co = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          runCount(entry.target);
+          co.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function(el){ co.observe(el); });
+  }
+
+  /* ---------- Contact form: demo validation (no backend connected) ---------- */
+  var form = document.getElementById('contactForm');
+  var status = document.getElementById('formStatus');
+  var success = document.getElementById('formSuccess');
+  function setInvalid(fieldEl, invalid){
+    if (fieldEl) fieldEl.classList.toggle('invalid', invalid);
+  }
+  function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  if (form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var ok = true, firstBad = null;
+
+      var typeEl = document.getElementById('cf-type');
+      var nameEl = document.getElementById('cf-name');
+      var emailEl = document.getElementById('cf-email');
+      var msgEl = document.getElementById('cf-message');
+      var agreeEl = document.getElementById('cf-agree');
+
+      var badType = !typeEl.value;
+      setInvalid(document.getElementById('f-type'), badType);
+      if (badType){ ok = false; firstBad = firstBad || typeEl; }
+
+      var badName = !nameEl.value.trim();
+      setInvalid(document.getElementById('f-name'), badName);
+      if (badName){ ok = false; firstBad = firstBad || nameEl; }
+
+      var badEmail = !isEmail(emailEl.value.trim());
+      setInvalid(document.getElementById('f-email'), badEmail);
+      if (badEmail){ ok = false; firstBad = firstBad || emailEl; }
+
+      var badMsg = !msgEl.value.trim();
+      setInvalid(document.getElementById('f-message'), badMsg);
+      if (badMsg){ ok = false; firstBad = firstBad || msgEl; }
+
+      var badAgree = !agreeEl.checked;
+      setInvalid(document.getElementById('f-agree'), badAgree);
+      if (badAgree){ ok = false; firstBad = firstBad || agreeEl; }
+
+      if (!ok){
+        success.classList.remove('show');
+        status.textContent = '入力内容をご確認ください。';
+        status.className = 'form-status ng';
+        if (firstBad && firstBad.focus) firstBad.focus();
+        return;
+      }
+
+      /* === DEMO: 実APIは未接続。送信成功として扱い、フォームをリセットします。 === */
+      status.textContent = '';
+      status.className = 'form-status';
+      success.classList.add('show');
+      form.reset();
+      if (!prefersReduced){
+        success.scrollIntoView({ behavior:'smooth', block:'center' });
+      }
+    });
+
+    /* clear error state on input */
+    form.querySelectorAll('input, select, textarea').forEach(function(el){
+      var ev = (el.tagName === 'SELECT' || el.type === 'checkbox') ? 'change' : 'input';
+      el.addEventListener(ev, function(){
+        var f = el.closest('.field') || el.closest('.check');
+        if (f) f.classList.remove('invalid');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

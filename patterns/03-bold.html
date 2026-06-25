@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MarkGate株式会社 ｜ ハイクラス転職プラットフォーム ─ トップアドバイザーだけが、開ける扉。｜ Bold Disruptor</title>
+<meta name="description" content="MarkGate（マークゲート）は、各人材紹介エージェントの実績トップクラスのCAだけが登録できる、ハイクラス求職者専用の品質保証型マッチングプラットフォーム。量のスカウトではなく、あなたが実績で“指名”する転職を。" />
+<meta name="theme-color" content="#08090C" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MarkGate株式会社" />
+<meta property="og:title" content="MarkGate ｜ トップアドバイザーだけが、開ける扉。" />
+<meta property="og:description" content="量のスカウトで壊れた転職市場を、あなたが実績でCAを“指名”する質の競争へ。トップCAだけが集う、ハイクラス品質保証型プラットフォーム。" />
+<meta property="og:locale" content="ja_JP" />
+
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   MarkGate — Pattern 3 : Bold Disruptor / 先進・ダーク
+   Near-black fintech-premium look, emerald→teal glow accents.
+   ============================================================ */
+
+:root{
+  --bg:        #08090C;
+  --panel:     #0C0E13;
+  --panel-2:   #11141B;
+  --line:      rgba(255,255,255,.08);
+  --line-soft: rgba(255,255,255,.05);
+
+  --text:      #ECEFF4;
+  --muted:     #98A0AE;
+  --faint:     #6B7280;
+
+  --emerald:   #34D399;
+  --green:     #10B981;
+  --teal:      #2DD4BF;
+  --violet:    #8B5CF6;
+  --cyan:      #22D3EE;
+  --danger:    #F87171;
+
+  --glass:     rgba(255,255,255,.04);
+  --glass-hi:  rgba(255,255,255,.07);
+
+  --grad-accent: linear-gradient(100deg,#34D399 0%,#10B981 100%);
+  --grad-mix:    linear-gradient(110deg,#34D399 0%,#22D3EE 55%,#8B5CF6 110%);
+
+  --maxw: 1200px;
+  --radius: 18px;
+  --radius-lg: 26px;
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --font-display: "Space Grotesk", "Noto Sans JP", system-ui, sans-serif;
+  --font-body: "Noto Sans JP", "Space Grotesk", system-ui, sans-serif;
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+html, body{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-weight:400;
+  line-height:1.9;
+  letter-spacing:.01em;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* page-wide ambient glow field */
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(620px 520px at 12% -4%, rgba(52,211,153,.10), transparent 60%),
+    radial-gradient(720px 620px at 92% 8%, rgba(139,92,246,.10), transparent 62%),
+    radial-gradient(900px 760px at 50% 118%, rgba(34,211,238,.07), transparent 60%);
+}
+
+img,svg{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+ul,ol{ margin:0; padding:0; list-style:none; }
+button{ font-family:inherit; cursor:pointer; }
+
+::selection{ background:rgba(52,211,153,.30); color:#fff; }
+
+:focus-visible{
+  outline:2px solid var(--emerald);
+  outline-offset:3px;
+  border-radius:6px;
+}
+
+.container{
+  width:100%;
+  max-width:var(--maxw);
+  margin-inline:auto;
+  padding-inline:clamp(20px,5vw,56px);
+  position:relative;
+  z-index:1;
+}
+
+/* ---------- shared display type ---------- */
+.eyebrow{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:.72rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--emerald);
+  display:inline-flex;
+  align-items:center;
+  gap:.6em;
+}
+.eyebrow::before{
+  content:"//";
+  color:var(--teal);
+  font-weight:700;
+  letter-spacing:0;
+  opacity:.9;
+}
+
+.grad-text{
+  background:var(--grad-accent);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.grad-text.mix{ background:var(--grad-mix); -webkit-background-clip:text; background-clip:text; }
+
+.h2{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(2rem,4.6vw,3.3rem);
+  line-height:1.18;
+  letter-spacing:-.02em;
+  margin:0;
+}
+.lead{
+  color:var(--muted);
+  font-size:clamp(1rem,1.5vw,1.16rem);
+  line-height:2;
+  max-width:60ch;
+}
+
+/* section scaffold */
+.section{ position:relative; padding:clamp(76px,11vw,140px) 0; }
+.section-head{
+  display:flex;
+  align-items:baseline;
+  gap:clamp(16px,3vw,32px);
+  margin-bottom:clamp(28px,5vw,52px);
+  flex-wrap:wrap;
+}
+.section-num{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(2.4rem,6vw,4.4rem);
+  line-height:.9;
+  letter-spacing:-.04em;
+  color:transparent;
+  -webkit-text-stroke:1.4px rgba(255,255,255,.16);
+  user-select:none;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.55em;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.98rem;
+  letter-spacing:.01em;
+  padding:1rem 1.8rem;
+  border-radius:999px;
+  border:1px solid transparent;
+  position:relative;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .3s, border-color .3s, color .3s;
+  will-change:transform;
+}
+.btn .arr{ transition:transform .35s var(--ease); }
+.btn:hover .arr{ transform:translateX(4px); }
+
+.btn-primary{
+  background:var(--grad-accent);
+  color:#04140C;
+  box-shadow:0 10px 30px -10px rgba(16,185,129,.6), inset 0 0 0 1px rgba(255,255,255,.18);
+}
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 18px 46px -12px rgba(52,211,153,.75), inset 0 0 0 1px rgba(255,255,255,.28);
+}
+.btn-ghost{
+  background:var(--glass);
+  color:var(--text);
+  border-color:var(--line);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.btn-ghost:hover{
+  transform:translateY(-3px);
+  border-color:rgba(52,211,153,.55);
+  box-shadow:0 14px 36px -16px rgba(52,211,153,.5);
+  background:var(--glass-hi);
+}
+.btn-block{ width:100%; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:100;
+  transition:background .4s var(--ease), backdrop-filter .4s, border-color .4s, box-shadow .4s;
+  border-bottom:1px solid transparent;
+}
+.site-header.scrolled{
+  background:rgba(8,9,12,.72);
+  backdrop-filter:blur(16px) saturate(1.2);
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);
+  border-bottom-color:var(--line);
+  box-shadow:0 8px 30px -18px rgba(0,0,0,.9);
+}
+.header-inner{
+  max-width:var(--maxw);
+  margin-inline:auto;
+  padding:14px clamp(20px,5vw,56px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.brand{ display:inline-flex; align-items:center; gap:11px; }
+.brand-mark{
+  display:grid; place-items:center;
+  width:42px; height:42px;
+  border-radius:12px;
+  background:linear-gradient(150deg, rgba(52,211,153,.16), rgba(139,92,246,.12));
+  border:1px solid var(--line);
+  box-shadow:inset 0 0 16px rgba(52,211,153,.18);
+}
+.brand-text{ display:flex; flex-direction:column; line-height:1.05; }
+.brand-name{ font-family:var(--font-display); font-weight:700; font-size:1.18rem; letter-spacing:.01em; }
+.brand-sub{ font-size:.62rem; letter-spacing:.34em; color:var(--muted); text-transform:uppercase; }
+
+.site-nav{ display:flex; align-items:center; gap:clamp(8px,1.6vw,22px); }
+.site-nav a{
+  font-size:.9rem;
+  color:var(--muted);
+  padding:.4em .2em;
+  position:relative;
+  transition:color .3s;
+  white-space:nowrap;
+}
+.site-nav a::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:.05em;
+  height:1.5px;
+  background:var(--grad-accent);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .35s var(--ease);
+}
+.site-nav a:hover{ color:var(--text); }
+.site-nav a:hover::after{ transform:scaleX(1); }
+.site-nav a.nav-cta{
+  color:#04140C;
+  background:var(--grad-accent);
+  padding:.62em 1.25em;
+  border-radius:999px;
+  font-family:var(--font-display);
+  font-weight:600;
+  box-shadow:0 8px 22px -10px rgba(16,185,129,.6);
+  transition:transform .3s var(--ease), box-shadow .3s;
+}
+.site-nav a.nav-cta::after{ display:none; }
+.site-nav a.nav-cta:hover{ transform:translateY(-2px); box-shadow:0 12px 30px -10px rgba(52,211,153,.7); }
+
+.nav-toggle{
+  display:none;
+  width:46px; height:46px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--glass);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  position:relative;
+}
+.nav-toggle span{
+  position:absolute; left:50%; top:50%;
+  width:20px; height:2px; border-radius:2px;
+  background:var(--text);
+  transform:translate(-50%,-50%);
+  transition:transform .35s var(--ease), opacity .25s;
+}
+.nav-toggle span:nth-child(1){ transform:translate(-50%,-7px); }
+.nav-toggle span:nth-child(3){ transform:translate(-50%,5px); }
+.nav-toggle[aria-expanded="true"] span:nth-child(1){ transform:translate(-50%,-50%) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3){ transform:translate(-50%,-50%) rotate(-45deg); }
+
+/* mobile panel */
+.mobile-panel{
+  position:fixed; inset:0;
+  z-index:90;
+  background:rgba(6,7,10,.94);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  display:flex; flex-direction:column;
+  justify-content:center;
+  gap:8px;
+  padding:clamp(28px,8vw,64px);
+  opacity:0; visibility:hidden;
+  transform:translateY(-10px);
+  transition:opacity .4s var(--ease), transform .4s var(--ease), visibility .4s;
+}
+.mobile-panel.open{ opacity:1; visibility:visible; transform:translateY(0); }
+.mobile-panel a{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.5rem;
+  letter-spacing:.01em;
+  padding:.55em 0;
+  border-bottom:1px solid var(--line-soft);
+  color:var(--text);
+  display:flex; align-items:center; gap:.6em;
+}
+.mobile-panel a span{ font-size:.7rem; color:var(--emerald); font-weight:500; letter-spacing:.2em; }
+.mobile-panel a.is-cta{ color:var(--emerald); border-bottom:none; margin-top:.4em; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  padding:140px 0 90px;
+  overflow:hidden;
+}
+.hero-bg{ position:absolute; inset:0; z-index:0; pointer-events:none; }
+.orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(70px);
+  opacity:.55;
+  will-change:transform;
+}
+.orb-1{ width:46vw; height:46vw; max-width:620px; max-height:620px; top:-10%; left:-8%;
+  background:radial-gradient(circle at 30% 30%, rgba(52,211,153,.85), rgba(16,185,129,0) 70%);
+  animation:float1 16s ease-in-out infinite; }
+.orb-2{ width:40vw; height:40vw; max-width:560px; max-height:560px; top:6%; right:-10%;
+  background:radial-gradient(circle at 60% 40%, rgba(139,92,246,.7), rgba(139,92,246,0) 70%);
+  animation:float2 19s ease-in-out infinite; }
+.orb-3{ width:38vw; height:38vw; max-width:520px; max-height:520px; bottom:-18%; left:34%;
+  background:radial-gradient(circle at 50% 50%, rgba(34,211,238,.5), rgba(34,211,238,0) 70%);
+  animation:float3 22s ease-in-out infinite; }
+@keyframes float1{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(34px,42px); } }
+@keyframes float2{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(-40px,30px); } }
+@keyframes float3{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(22px,-34px); } }
+
+.hero-grid{
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(70% 60% at 50% 42%, #000 0%, transparent 78%);
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 42%, #000 0%, transparent 78%);
+}
+
+.hero-inner{ position:relative; z-index:2; max-width:980px; }
+.hero-eyebrow{ margin:0 0 26px; }
+.hero-title{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(2.7rem,8.4vw,5.5rem);
+  line-height:1.05;
+  letter-spacing:-.035em;
+  margin:0 0 28px;
+}
+.hero-title em{
+  font-style:normal;
+  background:var(--grad-mix);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  position:relative;
+}
+.hero-lead{
+  color:var(--muted);
+  font-size:clamp(1.02rem,1.7vw,1.28rem);
+  line-height:1.95;
+  max-width:62ch;
+  margin:0 0 40px;
+}
+.hero-actions{ display:flex; flex-wrap:wrap; gap:14px; }
+
+.hero-scroll{
+  position:absolute;
+  left:clamp(20px,5vw,56px); bottom:34px;
+  z-index:2;
+  display:inline-flex; align-items:center; gap:12px;
+  font-family:var(--font-display);
+  font-size:.66rem; letter-spacing:.34em; text-transform:uppercase;
+  color:var(--muted);
+}
+.hero-scroll i{
+  width:54px; height:1px; background:linear-gradient(90deg,var(--emerald),transparent);
+  position:relative; overflow:hidden;
+}
+.hero-scroll i::after{
+  content:""; position:absolute; top:0; left:-40%;
+  width:40%; height:100%; background:var(--emerald);
+  animation:scrollLine 2.4s var(--ease) infinite;
+}
+@keyframes scrollLine{ 0%{ left:-40%; } 60%,100%{ left:120%; } }
+
+/* ============================================================
+   TRUST STRIP
+   ============================================================ */
+.trust{
+  position:relative; z-index:1;
+  border-block:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.02), transparent);
+}
+.trust-inner{
+  max-width:var(--maxw);
+  margin-inline:auto;
+  padding:22px clamp(20px,5vw,56px);
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:14px 22px;
+  font-family:var(--font-display);
+  font-size:.84rem;
+  letter-spacing:.06em;
+  color:var(--text);
+}
+.trust-inner i{ color:var(--emerald); opacity:.55; }
+.trust-inner b{ font-weight:500; }
+
+/* ============================================================
+   PROBLEM (01)
+   ============================================================ */
+.problem-intro{ margin:0 0 clamp(36px,6vw,60px); max-width:64ch; }
+.problem-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  gap:18px;
+}
+.pcard{
+  position:relative;
+  padding:30px 28px;
+  border-radius:var(--radius);
+  background:var(--glass);
+  border:1px solid var(--line);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  overflow:hidden;
+  transition:transform .4s var(--ease), border-color .4s, background .4s;
+}
+.pcard::before{
+  content:"";
+  position:absolute; inset:0;
+  border-radius:inherit;
+  padding:1px;
+  background:linear-gradient(140deg, rgba(248,113,113,.5), transparent 55%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  opacity:0; transition:opacity .4s;
+}
+.pcard:hover{ transform:translateY(-6px); background:var(--glass-hi); border-color:rgba(248,113,113,.3); }
+.pcard:hover::before{ opacity:1; }
+.pcard-n{
+  font-family:var(--font-display); font-weight:700; font-size:.8rem;
+  letter-spacing:.2em; color:var(--danger); opacity:.9; margin-bottom:14px;
+  display:block;
+}
+.pcard h3{ font-size:1.12rem; font-weight:700; margin:0 0 10px; line-height:1.5; }
+.pcard p{ margin:0; color:var(--muted); font-size:.94rem; line-height:1.85; }
+.pcard strong{ color:var(--text); font-weight:700; }
+.problem-kicker{
+  margin:clamp(34px,5vw,52px) 0 0;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(1.3rem,3vw,2rem);
+  line-height:1.5;
+  letter-spacing:-.01em;
+  max-width:26ch;
+}
+.problem-kicker .grad-text{ background:var(--grad-mix); -webkit-background-clip:text; background-clip:text; }
+
+/* ============================================================
+   CONCEPT (02)
+   ============================================================ */
+.concept-grid{
+  display:grid;
+  grid-template-columns:.95fr 1.05fr;
+  gap:clamp(32px,5vw,72px);
+  align-items:start;
+}
+.concept-body p{ color:var(--muted); margin:0 0 1.3em; line-height:2; font-size:1.02rem; }
+.concept-body p:last-child{ margin-bottom:0; }
+.concept-body strong{ color:var(--text); font-weight:700; }
+.concept-body .accent{ color:var(--emerald); font-weight:700; }
+
+/* 量 → 質 statement */
+.shift{
+  margin:clamp(48px,7vw,84px) 0 clamp(40px,6vw,64px);
+  display:flex; align-items:center; justify-content:center;
+  gap:clamp(18px,4vw,52px);
+  text-align:center;
+  flex-wrap:wrap;
+}
+.shift .word{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(3.2rem,12vw,8rem);
+  line-height:.9;
+  letter-spacing:-.03em;
+}
+.shift .from{ color:transparent; -webkit-text-stroke:1.6px rgba(255,255,255,.22); }
+.shift .to{ background:var(--grad-mix); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.shift .arrow{
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(2.6rem,8vw,5rem);
+  background:var(--grad-accent); -webkit-background-clip:text; background-clip:text; color:transparent;
+  line-height:1;
+}
+
+/* before / after comparison */
+.compare{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.col{
+  border-radius:var(--radius-lg);
+  padding:clamp(24px,3.4vw,38px);
+  border:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+}
+.col-before{
+  background:linear-gradient(180deg, rgba(248,113,113,.07), rgba(255,255,255,.015));
+}
+.col-before::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(420px 200px at 50% -10%, rgba(248,113,113,.12), transparent 70%);
+  pointer-events:none;
+}
+.col-after{
+  background:linear-gradient(180deg, rgba(52,211,153,.10), rgba(255,255,255,.015));
+  border-color:rgba(52,211,153,.28);
+  box-shadow:0 30px 80px -50px rgba(16,185,129,.6);
+}
+.col-after::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(460px 240px at 50% -12%, rgba(52,211,153,.2), transparent 70%);
+  pointer-events:none;
+}
+.col-head{
+  position:relative; z-index:1;
+  font-family:var(--font-display); font-weight:600;
+  font-size:.74rem; letter-spacing:.24em; text-transform:uppercase;
+  margin:0 0 6px;
+}
+.col-before .col-head{ color:var(--danger); }
+.col-after .col-head{ color:var(--emerald); }
+.col-title{
+  position:relative; z-index:1;
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(1.2rem,2.4vw,1.5rem);
+  margin:0 0 20px; letter-spacing:-.01em;
+}
+.col-before .col-title{ color:var(--muted); }
+.col-list{ position:relative; z-index:1; display:flex; flex-direction:column; gap:13px; }
+.col-list li{
+  display:flex; gap:12px; align-items:flex-start;
+  font-size:.96rem; line-height:1.7;
+}
+.col-list .ic{ flex:none; margin-top:.28em; }
+.col-before .col-list li{ color:var(--muted); }
+.col-after .col-list li{ color:var(--text); }
+
+.tick{ width:18px; height:18px; }
+.cross{ width:16px; height:16px; opacity:.8; }
+
+/* ============================================================
+   MECHANISM (03)
+   ============================================================ */
+.mech-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(255px,1fr));
+  gap:18px;
+}
+.mcard{
+  position:relative;
+  padding:clamp(26px,3vw,36px) clamp(24px,2.6vw,32px);
+  border-radius:var(--radius-lg);
+  background:var(--glass);
+  border:1px solid var(--line);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  overflow:hidden;
+  transition:transform .45s var(--ease), background .4s, border-color .4s, box-shadow .45s var(--ease);
+}
+.mcard::before{
+  content:"";
+  position:absolute; inset:0; border-radius:inherit; padding:1px;
+  background:linear-gradient(140deg, rgba(52,211,153,.6), rgba(139,92,246,.3) 60%, transparent);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  opacity:0; transition:opacity .45s;
+}
+.mcard:hover{
+  transform:translateY(-8px);
+  background:var(--glass-hi);
+  box-shadow:0 30px 70px -40px rgba(52,211,153,.55);
+}
+.mcard:hover::before{ opacity:1; }
+.mcard-n{
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(2.6rem,5vw,3.6rem);
+  line-height:1;
+  letter-spacing:-.03em;
+  background:var(--grad-accent); -webkit-background-clip:text; background-clip:text; color:transparent;
+  margin-bottom:18px;
+  display:flex; align-items:center; gap:10px;
+}
+.mcard-n .flow{ font-size:1rem; color:var(--faint); -webkit-text-fill-color:var(--faint); }
+.mcard h3{ font-size:1.18rem; font-weight:700; margin:0 0 12px; line-height:1.5; letter-spacing:-.01em; }
+.mcard p{ margin:0; color:var(--muted); font-size:.95rem; line-height:1.85; }
+.mcard strong{ color:var(--text); font-weight:700; }
+
+/* ============================================================
+   STRENGTH (04)
+   ============================================================ */
+.strength-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:18px;
+}
+.scard{
+  position:relative;
+  padding:clamp(30px,3.4vw,42px);
+  border-radius:var(--radius-lg);
+  background:linear-gradient(180deg, var(--panel-2), var(--panel));
+  border:1px solid var(--line);
+  overflow:hidden;
+  transition:transform .45s var(--ease), border-color .4s, box-shadow .45s var(--ease);
+}
+.scard::after{
+  content:""; position:absolute; top:-40%; right:-30%;
+  width:60%; height:80%;
+  background:radial-gradient(circle, rgba(52,211,153,.16), transparent 70%);
+  opacity:0; transition:opacity .5s; pointer-events:none;
+}
+.scard:hover{ transform:translateY(-8px); border-color:rgba(52,211,153,.32); box-shadow:0 30px 70px -42px rgba(52,211,153,.5); }
+.scard:hover::after{ opacity:1; }
+.scard-n{
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(2.8rem,5vw,3.6rem); line-height:1; letter-spacing:-.04em;
+  color:transparent; -webkit-text-stroke:1.4px rgba(52,211,153,.55);
+  margin-bottom:22px; display:block;
+}
+.scard h3{ font-size:clamp(1.18rem,2vw,1.4rem); font-weight:700; margin:0 0 14px; line-height:1.45; letter-spacing:-.01em; }
+.scard p{ margin:0; color:var(--muted); font-size:.97rem; line-height:1.9; }
+
+/* ============================================================
+   AUDIENCE (05 / 06)
+   ============================================================ */
+.aud-head{ max-width:64ch; margin-bottom:clamp(34px,5vw,54px); }
+.aud-head .h2{ margin:18px 0 16px; }
+.feature-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+}
+.feature-item{
+  background:var(--panel);
+  padding:clamp(26px,3vw,36px);
+  position:relative;
+  transition:background .35s;
+}
+.feature-item:hover{ background:var(--panel-2); }
+.feature-item h3{
+  display:flex; gap:12px; align-items:flex-start;
+  font-size:1.1rem; font-weight:700; margin:0 0 12px; line-height:1.5; letter-spacing:-.005em;
+}
+.feature-item h3 .dot{
+  flex:none; margin-top:.5em;
+  width:8px; height:8px; border-radius:50%;
+  background:var(--grad-accent);
+  box-shadow:0 0 12px rgba(52,211,153,.8);
+}
+.feature-item p{ margin:0; color:var(--muted); font-size:.95rem; line-height:1.9; padding-left:20px; }
+.aud-cta{ margin-top:clamp(32px,4vw,48px); }
+
+/* ============================================================
+   FLOW (07)
+   ============================================================ */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+  gap:18px;
+  counter-reset:step;
+}
+.step{
+  position:relative;
+  padding:clamp(26px,3vw,34px) clamp(22px,2.4vw,28px);
+  border-radius:var(--radius);
+  background:var(--glass);
+  border:1px solid var(--line);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  transition:transform .4s var(--ease), border-color .4s, background .4s;
+}
+.step:hover{ transform:translateY(-6px); border-color:rgba(52,211,153,.3); background:var(--glass-hi); }
+.step-n{
+  font-family:var(--font-display); font-weight:600;
+  font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--emerald);
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:16px;
+}
+.step-n b{
+  font-size:1.9rem; font-weight:700; letter-spacing:-.02em;
+  color:transparent; -webkit-text-stroke:1.2px rgba(52,211,153,.5);
+}
+.step h3{ font-size:1.12rem; font-weight:700; margin:0 0 10px; line-height:1.5; }
+.step p{ margin:0; color:var(--muted); font-size:.93rem; line-height:1.8; }
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats{ position:relative; padding:clamp(72px,10vw,128px) 0; }
+.stats-band{
+  position:relative;
+  border-radius:var(--radius-lg);
+  border:1px solid var(--line);
+  background:
+    radial-gradient(700px 300px at 18% 0%, rgba(52,211,153,.12), transparent 65%),
+    radial-gradient(700px 320px at 84% 100%, rgba(139,92,246,.12), transparent 65%),
+    linear-gradient(180deg, var(--panel-2), var(--panel));
+  padding:clamp(40px,6vw,72px) clamp(28px,4vw,56px);
+  overflow:hidden;
+}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:clamp(28px,4vw,48px);
+  text-align:center;
+}
+.stat{ position:relative; }
+.stat:not(:last-child)::after{
+  content:""; position:absolute; right:calc(clamp(28px,4vw,48px)/-2); top:14%; bottom:14%;
+  width:1px; background:var(--line);
+}
+.stat-num{
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(3rem,8vw,5rem); line-height:1; letter-spacing:-.04em;
+  display:inline-flex; align-items:baseline; justify-content:center; gap:.06em;
+  background:var(--grad-mix); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.stat-num em{ font-style:normal; font-size:.42em; font-weight:600; -webkit-text-fill-color:var(--text); color:var(--text); }
+.stat-num em.pre{ margin-right:.1em; }
+.stat-label{ display:block; margin-top:14px; color:var(--muted); font-size:.95rem; letter-spacing:.02em; }
+.stats-note{ margin:clamp(28px,4vw,40px) 0 0; text-align:center; color:var(--faint); font-size:.82rem; }
+
+/* ============================================================
+   COMPANY (08)
+   ============================================================ */
+.company-table{
+  width:100%;
+  border-collapse:collapse;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.company-table tr{ border-bottom:1px solid var(--line-soft); }
+.company-table tr:last-child{ border-bottom:none; }
+.company-table th, .company-table td{
+  text-align:left; padding:18px clamp(18px,2.4vw,28px); vertical-align:top;
+  font-size:.97rem; line-height:1.8;
+}
+.company-table th{
+  width:clamp(120px,22%,220px);
+  font-family:var(--font-display); font-weight:600;
+  color:var(--text);
+  background:rgba(255,255,255,.03);
+  letter-spacing:.04em;
+}
+.company-table td{ color:var(--muted); }
+.company-table td a{ color:var(--emerald); border-bottom:1px solid rgba(52,211,153,.4); transition:border-color .3s; }
+.company-table td a:hover{ border-color:var(--emerald); }
+.company-note{ margin:18px 0 0; color:var(--faint); font-size:.82rem; }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-grid{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:clamp(34px,5vw,72px);
+  align-items:start;
+}
+.contact-lead .h2{ margin:18px 0 18px; }
+.contact-lead .lead{ margin:0; }
+.contact-card{
+  border-radius:var(--radius-lg);
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, var(--panel-2), var(--panel));
+  padding:clamp(26px,3.4vw,40px);
+  box-shadow:0 40px 90px -60px rgba(0,0,0,.9);
+}
+.field{ margin-bottom:18px; }
+.field-row{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.field label{
+  display:block; margin-bottom:9px;
+  font-size:.86rem; font-weight:500; color:var(--text); letter-spacing:.02em;
+}
+.field label span{
+  font-size:.66rem; color:var(--emerald);
+  border:1px solid rgba(52,211,153,.45); border-radius:5px;
+  padding:.05em .5em; margin-left:.5em; vertical-align:.12em; font-weight:600;
+}
+.field input, .field select, .field textarea{
+  width:100%;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  border-radius:12px;
+  color:var(--text);
+  font-family:inherit; font-size:.96rem;
+  padding:.85rem 1rem;
+  transition:border-color .3s, box-shadow .3s, background .3s;
+  -webkit-appearance:none; appearance:none;
+}
+.field textarea{ resize:vertical; min-height:128px; line-height:1.8; }
+.field select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%2398A0AE' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 1rem center;
+  padding-right:2.6rem;
+}
+.field input::placeholder, .field textarea::placeholder{ color:var(--faint); }
+.field input:focus, .field select:focus, .field textarea:focus{
+  outline:none;
+  border-color:var(--emerald);
+  background:rgba(52,211,153,.05);
+  box-shadow:0 0 0 3px rgba(52,211,153,.16);
+}
+.field.invalid input, .field.invalid select, .field.invalid textarea{
+  border-color:var(--danger);
+  box-shadow:0 0 0 3px rgba(248,113,113,.15);
+}
+.field .err{
+  display:none;
+  margin:7px 0 0; font-size:.78rem; color:var(--danger);
+}
+.field.invalid .err{ display:block; }
+
+.check{
+  display:flex; align-items:flex-start; gap:11px;
+  font-size:.9rem; color:var(--muted); cursor:pointer;
+  margin:4px 0 22px; line-height:1.7;
+}
+.check input{
+  flex:none; appearance:none; -webkit-appearance:none;
+  width:20px; height:20px; margin-top:.12em;
+  border:1px solid var(--line); border-radius:6px;
+  background:rgba(255,255,255,.03);
+  position:relative; transition:background .25s, border-color .25s;
+}
+.check input:checked{ background:var(--grad-accent); border-color:transparent; }
+.check input:checked::after{
+  content:""; position:absolute; left:6px; top:2.5px;
+  width:5px; height:9px; border:solid #04140C; border-width:0 2px 2px 0; transform:rotate(45deg);
+}
+.check.invalid input{ border-color:var(--danger); box-shadow:0 0 0 3px rgba(248,113,113,.15); }
+.check a{ color:var(--emerald); border-bottom:1px solid rgba(52,211,153,.4); }
+
+.form-status{
+  margin:18px 0 0; padding:0; font-size:.92rem; line-height:1.7;
+  border-radius:12px; opacity:0; max-height:0; overflow:hidden;
+  transition:opacity .4s, max-height .4s, padding .4s, margin .4s;
+}
+.form-status.show{
+  opacity:1; max-height:140px; padding:14px 16px; margin-top:18px;
+}
+.form-status.ok{
+  color:var(--emerald);
+  background:rgba(52,211,153,.08);
+  border:1px solid rgba(52,211,153,.35);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{
+  position:relative; z-index:1;
+  border-top:1px solid var(--line);
+  background:linear-gradient(180deg, transparent, rgba(255,255,255,.015));
+  padding:clamp(56px,8vw,88px) 0 0;
+}
+.footer-inner{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:clamp(32px,5vw,64px);
+  align-items:start;
+  padding-bottom:clamp(40px,6vw,64px);
+}
+.footer-brand .brand{ margin-bottom:16px; }
+.footer-tagline{
+  margin:0; color:var(--muted); font-size:.96rem; max-width:36ch; line-height:1.8;
+}
+.footer-nav{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px 24px;
+}
+.footer-nav a{ color:var(--muted); font-size:.92rem; transition:color .3s; width:max-content; }
+.footer-nav a:hover{ color:var(--emerald); }
+.footer-bottom{
+  border-top:1px solid var(--line-soft);
+}
+.footer-bottom .container{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+  gap:14px; padding-block:24px;
+}
+.footer-bottom p{ margin:0; color:var(--faint); font-size:.82rem; }
+.back-link{
+  display:inline-flex; align-items:center; gap:.5em;
+  font-family:var(--font-display); font-size:.84rem; font-weight:500;
+  color:var(--muted); transition:color .3s, gap .3s;
+}
+.back-link:hover{ color:var(--emerald); gap:.8em; }
+
+/* ============================================================
+   TO-TOP
+   ============================================================ */
+.to-top{
+  position:fixed; right:clamp(16px,3vw,32px); bottom:clamp(16px,3vw,32px);
+  z-index:80;
+  width:50px; height:50px; border-radius:14px;
+  display:grid; place-items:center;
+  background:var(--glass); border:1px solid var(--line);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  color:var(--text); font-size:1.2rem;
+  opacity:0; visibility:hidden; transform:translateY(12px);
+  transition:opacity .4s var(--ease), transform .4s var(--ease), visibility .4s, border-color .3s, box-shadow .3s;
+}
+.to-top.show{ opacity:1; visibility:visible; transform:translateY(0); }
+.to-top:hover{ border-color:rgba(52,211,153,.5); box-shadow:0 10px 30px -12px rgba(52,211,153,.6); }
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.in{ opacity:1; transform:none; }
+.reveal.d1{ transition-delay:.08s; }
+.reveal.d2{ transition-delay:.16s; }
+.reveal.d3{ transition-delay:.24s; }
+.reveal.d4{ transition-delay:.32s; }
+
+.pc-only{ display:inline; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:980px){
+  .concept-grid, .contact-grid{ grid-template-columns:1fr; }
+  .footer-inner{ grid-template-columns:1fr; }
+}
+@media (max-width:768px){
+  .site-nav{ display:none; }
+  .nav-toggle{ display:block; }
+  .compare{ grid-template-columns:1fr; }
+  .stats-grid{ grid-template-columns:1fr; }
+  .stat:not(:last-child)::after{ display:none; }
+  .stat:not(:last-child){ padding-bottom:28px; border-bottom:1px solid var(--line); }
+  .pc-only{ display:none; }
+}
+@media (max-width:600px){
+  .field-row{ grid-template-columns:1fr; }
+  .footer-bottom .container{ flex-direction:column; align-items:flex-start; }
+  .hero-scroll{ display:none; }
+}
+@media (max-width:520px){
+  .footer-nav{ grid-template-columns:1fr; }
+  .btn{ width:100%; }
+  .hero-actions{ flex-direction:column; align-items:stretch; }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *, *::before, *::after{
+    animation:none !important;
+    transition-duration:.001ms !important;
+  }
+  .orb{ animation:none !important; }
+  .reveal{ opacity:1 !important; transform:none !important; }
+  .hero-scroll i::after{ animation:none !important; }
+  .btn:hover, .pcard:hover, .mcard:hover, .scard:hover, .step:hover, .to-top:hover{ transform:none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#hero" class="brand" aria-label="MarkGate ホームへ">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="26" height="26" role="img">
+          <defs>
+            <linearGradient id="gMark" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#34D399"/>
+              <stop offset="1" stop-color="#10B981"/>
+            </linearGradient>
+          </defs>
+          <path d="M6 35 V14 L20 5 L34 14 V35" fill="none" stroke="url(#gMark)" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M14 35 V20 a6 6 0 0 1 12 0 V35" fill="none" stroke="url(#gMark)" stroke-width="2.2" stroke-linejoin="round"/>
+          <line x1="3" y1="35" x2="37" y2="35" stroke="url(#gMark)" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">MarkGate</span>
+        <span class="brand-sub">マークゲート</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="グローバルナビゲーション">
+      <a href="#problem">課題</a>
+      <a href="#mechanism">仕組み</a>
+      <a href="#strength">強み</a>
+      <a href="#candidate">求職者の方</a>
+      <a href="#advisor">アドバイザーの方</a>
+      <a href="#company">会社概要</a>
+      <a href="#contact" class="nav-cta">お問い合わせ</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ MOBILE PANEL ============ -->
+<div class="mobile-panel" id="mobilePanel" aria-hidden="true">
+  <a href="#problem"><span>01</span>課題</a>
+  <a href="#concept"><span>02</span>コンセプト</a>
+  <a href="#mechanism"><span>03</span>仕組み</a>
+  <a href="#strength"><span>04</span>強み</a>
+  <a href="#candidate"><span>05</span>求職者の方</a>
+  <a href="#advisor"><span>06</span>アドバイザーの方</a>
+  <a href="#company"><span>08</span>会社概要</a>
+  <a href="#contact" class="is-cta">お問い合わせ →</a>
+</div>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="container">
+    <div class="hero-inner">
+      <p class="hero-eyebrow eyebrow reveal">EXECUTIVE CAREER PLATFORM</p>
+      <h1 class="hero-title reveal d1">
+        トップアドバイザーだけが、<br />
+        <em>開ける扉。</em>
+      </h1>
+      <p class="hero-lead reveal d2">
+        各エージェントの実績トップクラスのキャリアアドバイザー（CA）だけが集う、ハイクラス層のための“品質保証型”転職プラットフォーム。スカウトの「量」ではなく、あなたが実績で伴走者を選ぶ「質」へ。
+      </p>
+      <div class="hero-actions reveal d3">
+        <a href="#candidate" class="btn btn-primary">求職者の方へ <span class="arr" aria-hidden="true">→</span></a>
+        <a href="#advisor" class="btn btn-ghost">アドバイザー（CA）の方へ</a>
+      </div>
+    </div>
+  </div>
+  <a href="#problem" class="hero-scroll" aria-label="下へスクロール"><span>SCROLL</span><i></i></a>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="trust" aria-label="MarkGate の特徴">
+  <div class="trust-inner">
+    <b>審査制</b><i aria-hidden="true">/</i>
+    <b>トップCA限定</b><i aria-hidden="true">/</i>
+    <b>ハイクラス・エグゼクティブ特化</b><i aria-hidden="true">/</i>
+    <b>指名型（双方向）</b>
+  </div>
+</section>
+
+<!-- ============ PROBLEM (01) ============ -->
+<section class="section" id="problem">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">01</span>
+      <span class="eyebrow">PROBLEM</span>
+    </div>
+    <h2 class="h2 reveal">「量の競争」が、<br /><span class="grad-text mix">最良の出会い</span>を埋もれさせる。</h2>
+    <p class="problem-intro lead reveal d1" style="margin-top:22px;">
+      ビズリーチに代表されるスカウト型の転職サービスは、いま構造疲労に達しています。
+    </p>
+
+    <div class="problem-grid">
+      <article class="pcard reveal">
+        <span class="pcard-n">01</span>
+        <h3>同一DBへの殺到</h3>
+        <p>導入企業 <strong>約3.8万社</strong> ＋ 登録アドバイザー <strong>9,000人超</strong> が、同じデータベースの優秀層へ一斉にアプローチ。</p>
+      </article>
+      <article class="pcard reveal d1">
+        <span class="pcard-n">02</span>
+        <h3>受信箱の飽和</h3>
+        <p>優秀な人材ほどスカウトが集中。登録からわずか<strong>1ヶ月で100通超</strong>に達することも。</p>
+      </article>
+      <article class="pcard reveal d2">
+        <span class="pcard-n">03</span>
+        <h3>返信率は数%</h3>
+        <p>「浴びせる」量の競争の結果、求職者の返信率は<strong>わずか数%</strong>まで低下。</p>
+      </article>
+      <article class="pcard reveal d1">
+        <span class="pcard-n">04</span>
+        <h3>担当者ガチャ</h3>
+        <p>どの経験レベルのCAが担当になるか、求職者は<strong>事前に判別できない</strong>。</p>
+      </article>
+      <article class="pcard reveal d2">
+        <span class="pcard-n">05</span>
+        <h3>多重登録の強制</h3>
+        <p>ハズレを避けるため、<strong>複数エージェントへの登録</strong>を強いられ、負担が増える。</p>
+      </article>
+    </div>
+
+    <p class="problem-kicker reveal d1">
+      量を競うほど、本当に出会うべき「人」と「機会」が、<span class="grad-text">ノイズに埋もれていく。</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============ CONCEPT (02) ============ -->
+<section class="section" id="concept">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">02</span>
+      <span class="eyebrow">CONCEPT</span>
+    </div>
+
+    <div class="concept-grid">
+      <div class="reveal">
+        <h2 class="h2">市場を、<br />「量」から<span class="grad-text">「質」</span>へ反転させる。</h2>
+      </div>
+      <div class="concept-body reveal d1">
+        <p>ハイクラス転職で結果を左右するのは、求人やスカウトの“量”ではありません。あなたの市場価値を正しく見極め、非公開ポジションを引き出し、交渉まで導く——CA（キャリアアドバイザー）の<span class="accent">“実力”</span>です。</p>
+        <p>MarkGateは、送り手が殺到する「量の競争」を終わらせ、求職者が実績でCAを<strong>“指名”</strong>する「質の競争」へと市場を反転させます。</p>
+        <p>“Mark（一流の証）”を持つCAだけが立つ、キャリアの“Gate（門）”。それが<strong>MarkGate</strong>です。</p>
+      </div>
+    </div>
+
+    <!-- 量 → 質 statement -->
+    <div class="shift reveal d1" aria-label="量から質へ">
+      <span class="word from" aria-hidden="true">量</span>
+      <span class="arrow" aria-hidden="true">→</span>
+      <span class="word to" aria-hidden="true">質</span>
+    </div>
+
+    <!-- before / after -->
+    <div class="compare">
+      <div class="col col-before reveal">
+        <p class="col-head">Before</p>
+        <h3 class="col-title">量の競争（従来のスカウト型）</h3>
+        <ul class="col-list">
+          <li><svg class="ic cross" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="#F87171" stroke-width="2" stroke-linecap="round"/></svg>送り手が同一DBに殺到</li>
+          <li><svg class="ic cross" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="#F87171" stroke-width="2" stroke-linecap="round"/></svg>受信箱が飽和・返信率は数%</li>
+          <li><svg class="ic cross" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="#F87171" stroke-width="2" stroke-linecap="round"/></svg>担当者は運次第（担当者ガチャ）</li>
+          <li><svg class="ic cross" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="#F87171" stroke-width="2" stroke-linecap="round"/></svg>ハズレ回避のため多重登録</li>
+          <li><svg class="ic cross" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="#F87171" stroke-width="2" stroke-linecap="round"/></svg>経験レベルがばらつく</li>
+        </ul>
+      </div>
+      <div class="col col-after reveal d1">
+        <p class="col-head">After ── MarkGate</p>
+        <h3 class="col-title">質の競争（MarkGate）</h3>
+        <ul class="col-list">
+          <li><svg class="ic tick" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9.5l4 4 8-9" stroke="#34D399" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>審査を通過したトップCAのみが在籍</li>
+          <li><svg class="ic tick" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9.5l4 4 8-9" stroke="#34D399" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>上限付きスカウトで返信率を担保</li>
+          <li><svg class="ic tick" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9.5l4 4 8-9" stroke="#34D399" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>求職者が実績でCAを“指名”</li>
+          <li><svg class="ic tick" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9.5l4 4 8-9" stroke="#34D399" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>一人の最良の伴走者に集中</li>
+          <li><svg class="ic tick" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9.5l4 4 8-9" stroke="#34D399" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>各社トップクラスの実力を継続保証</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MECHANISM (03) ============ -->
+<section class="section" id="mechanism">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">03</span>
+      <span class="eyebrow">HOW IT WORKS</span>
+    </div>
+    <h2 class="h2 reveal" style="margin-bottom:clamp(28px,5vw,52px);">品質を<span class="grad-text">“保証”</span>する、4つの仕組み。</h2>
+
+    <div class="mech-grid">
+      <article class="mcard reveal">
+        <div class="mcard-n">01 <span class="flow" aria-hidden="true">→</span></div>
+        <h3>入会審査（トップCAのみ）</h3>
+        <p>各エージェントの実績トップクラスのCAだけが、独自の審査を通過して登録できる。</p>
+      </article>
+      <article class="mcard reveal d1">
+        <div class="mcard-n">02 <span class="flow" aria-hidden="true">→</span></div>
+        <h3>継続モニタリング</h3>
+        <p>登録後も実績を継続的にモニタリング。結果が出ないCAは登録を解除し、<strong>品質水準を維持</strong>する。</p>
+      </article>
+      <article class="mcard reveal d2">
+        <div class="mcard-n">03 <span class="flow" aria-hidden="true">→</span></div>
+        <h3>ハイクラス限定の好循環</h3>
+        <p>求職者もハイクラス帯に限定。成約単価が上がり、トップCAが登録し続ける<strong>強いインセンティブ</strong>が生まれる。</p>
+      </article>
+      <article class="mcard reveal d3">
+        <div class="mcard-n">04 <span class="flow" aria-hidden="true">↺</span></div>
+        <h3>双方向 × 上限付きスカウト</h3>
+        <p>①求職者がCAを実績で“指名”、②CAが求職者へスカウト。スカウトは返信率を担保する上限付きで、<strong>「浴びせる」構造を作らない</strong>。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRENGTH (04) ============ -->
+<section class="section" id="strength">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">04</span>
+      <span class="eyebrow">STRENGTH</span>
+    </div>
+    <h2 class="h2 reveal" style="margin-bottom:clamp(28px,5vw,52px);">MarkGate <span class="grad-text">３つの強み</span></h2>
+
+    <div class="strength-cards">
+      <article class="scard reveal">
+        <span class="scard-n">01</span>
+        <h3>トップアドバイザーのみが登録できる審査制</h3>
+        <p>各エージェントの実績上位者のみが、経歴・成約実績・専門性を基準とした審査を通過して登録。一定水準のプロだけが集う環境を担保します。</p>
+      </article>
+      <article class="scard reveal d1">
+        <span class="scard-n">02</span>
+        <h3>ハイクラス・エグゼクティブ領域に特化</h3>
+        <p>経営幹部・管理職・高度専門職、年収800万円以上に特化。各業界に精通したCAが、表に出ない上位ポジションへつなぎます。</p>
+      </article>
+      <article class="scard reveal d2">
+        <span class="scard-n">03</span>
+        <h3>アドバイザーを“選べる・指名できる”</h3>
+        <p>CAの専門領域・実績・スタンスを比較し、自分に最適な伴走者を指名。“出会う相手を選ぶ”新しい転職体験を提供します。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOR CANDIDATES (05) ============ -->
+<section class="section" id="candidate">
+  <div class="container">
+    <div class="aud-head reveal">
+      <span class="eyebrow">FOR CANDIDATES <span aria-hidden="true" style="color:var(--faint);">/ 05</span></span>
+      <h2 class="h2">求職者の方へ</h2>
+      <p class="lead">実力あるCAを、あなた自身の目で選ぶ。ハイクラスのキャリアにふさわしい、最良の出会いを。</p>
+    </div>
+    <div class="feature-list">
+      <div class="feature-item reveal">
+        <h3><span class="dot" aria-hidden="true"></span>厳選されたCAだけと出会える</h3>
+        <p>担当者の質に左右されない。審査を通過したプロが、あなたのキャリアに本気で向き合います。</p>
+      </div>
+      <div class="feature-item reveal d1">
+        <h3><span class="dot" aria-hidden="true"></span>非公開・上位ポジションへのアクセス</h3>
+        <p>一般に流通しない経営層・幹部クラスの求人を、各領域に強いCA経由でご紹介。</p>
+      </div>
+      <div class="feature-item reveal">
+        <h3><span class="dot" aria-hidden="true"></span>プロフィールを見て“指名”できる</h3>
+        <p>得意業界・職種、支援実績、経歴を確認し、納得した上で相談相手を選べます。</p>
+      </div>
+      <div class="feature-item reveal d1">
+        <h3><span class="dot" aria-hidden="true"></span>登録・ご利用は無料</h3>
+        <p>ご登録および転職支援のご利用は無料。まずは市場価値を知ることから。</p>
+      </div>
+    </div>
+    <div class="aud-cta reveal">
+      <a href="#contact" class="btn btn-primary">無料で会員登録（審査制） <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOR ADVISORS (06) ============ -->
+<section class="section" id="advisor">
+  <div class="container">
+    <div class="aud-head reveal">
+      <span class="eyebrow">FOR ADVISORS <span aria-hidden="true" style="color:var(--faint);">/ 06</span></span>
+      <h2 class="h2">アドバイザー（CA）の方へ</h2>
+      <p class="lead">実績あるトップCAのための、選ばれる舞台。質の高い出会いが、あなたの成果を最大化します。</p>
+    </div>
+    <div class="feature-list">
+      <div class="feature-item reveal">
+        <h3><span class="dot" aria-hidden="true"></span>ハイクラス層の求職者と直接つながる</h3>
+        <p>意欲と市場価値の高い層に、専門性を直接届けられます。</p>
+      </div>
+      <div class="feature-item reveal d1">
+        <h3><span class="dot" aria-hidden="true"></span>“選ばれる”プロフィール掲載</h3>
+        <p>実績や専門領域を提示し、求職者から指名される。実力がそのまま機会に。</p>
+      </div>
+      <div class="feature-item reveal">
+        <h3><span class="dot" aria-hidden="true"></span>上限付きスカウトで高い返信率</h3>
+        <p>「浴びせない」設計。質の高いアプローチが、高い返信率につながります。</p>
+      </div>
+      <div class="feature-item reveal d1">
+        <h3><span class="dot" aria-hidden="true"></span>登録には審査があります</h3>
+        <p>成約実績・専門性・経歴を基準とした審査制。品質を、ともに守ります。</p>
+      </div>
+    </div>
+    <div class="aud-cta reveal">
+      <a href="#contact" class="btn btn-primary">アドバイザー登録を申請する <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLOW (07) ============ -->
+<section class="section" id="flow">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">07</span>
+      <span class="eyebrow">FLOW</span>
+    </div>
+    <h2 class="h2 reveal">ご利用の流れ</h2>
+    <p class="lead reveal d1" style="margin:18px 0 clamp(34px,5vw,52px);">求職者の方が入社に至るまでの基本的な流れです。</p>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step-n"><b>01</b> STEP</span>
+        <h3>会員登録（審査制）</h3>
+        <p>経歴・ご希望を登録。ハイクラス特化のため簡単な審査を行います。</p>
+      </li>
+      <li class="step reveal d1">
+        <span class="step-n"><b>02</b> STEP</span>
+        <h3>CAを探す・指名</h3>
+        <p>専門領域や実績を比較し、最適なCAを指名します。</p>
+      </li>
+      <li class="step reveal d2">
+        <span class="step-n"><b>03</b> STEP</span>
+        <h3>面談・求人提案</h3>
+        <p>キャリアの棚卸しと市場価値の見極めを行い、最適な求人をご提案。</p>
+      </li>
+      <li class="step reveal d3">
+        <span class="step-n"><b>04</b> STEP</span>
+        <h3>選考・内定・入社</h3>
+        <p>書類添削から面接対策、条件交渉、入社後フォローまで一貫伴走。</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats" id="stats" aria-label="数値で見る MarkGate">
+  <div class="container">
+    <div class="stats-band reveal">
+      <div class="stats-grid">
+        <div class="stat">
+          <span class="stat-num"><span data-count="800">0</span><em>万円+</em></span>
+          <span class="stat-label">想定年収レンジ</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num"><em class="pre">審査</em><span data-count="100">0</span><em>%</em></span>
+          <span class="stat-label">登録CAの審査通過</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num"><span data-count="1">0</span><em>名</em></span>
+          <span class="stat-label">あなたが選ぶ、専属の伴走者</span>
+        </div>
+      </div>
+      <p class="stats-note">※ 数値はサービスコンセプトを示すものであり、実績値は順次公開予定です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPANY (08) ============ -->
+<section class="section" id="company">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">08</span>
+      <span class="eyebrow">COMPANY</span>
+    </div>
+    <h2 class="h2 reveal" style="margin-bottom:clamp(28px,5vw,48px);">会社概要</h2>
+
+    <div class="reveal d1">
+      <table class="company-table">
+        <tbody>
+          <tr><th>会社名</th><td>MarkGate株式会社（マークゲート）</td></tr>
+          <tr><th>事業内容</th><td>ハイクラス層向け「品質保証型」人材紹介プラットフォームの企画・運営／有料職業紹介事業</td></tr>
+          <tr><th>設立</th><td>準備中</td></tr>
+          <tr><th>代表者</th><td>準備中</td></tr>
+          <tr><th>所在地</th><td>準備中</td></tr>
+          <tr><th>資本金</th><td>準備中</td></tr>
+          <tr><th>許可番号</th><td>有料職業紹介事業許可番号：申請準備中</td></tr>
+          <tr><th>お問い合わせ</th><td><a href="#contact">お問い合わせフォーム</a>よりご連絡ください</td></tr>
+        </tbody>
+      </table>
+      <p class="company-note">※「準備中」の項目は確定後に掲載いたします。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-lead reveal">
+        <span class="eyebrow">CONTACT</span>
+        <h2 class="h2">お問い合わせ</h2>
+        <p class="lead">求職者の方、アドバイザー登録をご希望の方、提携・取材のご相談まで。下記フォームよりお気軽にご連絡ください。</p>
+      </div>
+
+      <!-- NOTE: デモ実装。送信先APIは未接続です（バリデーションのみ動作）。 -->
+      <form class="contact-card reveal d1" id="contactForm" novalidate>
+        <div class="field" data-field>
+          <label for="cf-type">お問い合わせ種別 <span>必須</span></label>
+          <select id="cf-type" name="type" required>
+            <option value="" disabled selected>選択してください</option>
+            <option>求職者として相談したい</option>
+            <option>アドバイザー登録を申請したい</option>
+            <option>提携・協業について</option>
+            <option>採用について</option>
+            <option>取材・メディア</option>
+            <option>その他</option>
+          </select>
+          <p class="err">お問い合わせ種別を選択してください。</p>
+        </div>
+        <div class="field-row">
+          <div class="field" data-field>
+            <label for="cf-name">お名前 <span>必須</span></label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required placeholder="山田 太郎" />
+            <p class="err">お名前をご入力ください。</p>
+          </div>
+          <div class="field">
+            <label for="cf-company">会社名・ご所属</label>
+            <input type="text" id="cf-company" name="company" autocomplete="organization" placeholder="任意" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field" data-field>
+            <label for="cf-email">メールアドレス <span>必須</span></label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required placeholder="you@example.com" />
+            <p class="err">正しいメールアドレスをご入力ください。</p>
+          </div>
+          <div class="field">
+            <label for="cf-phone">電話番号</label>
+            <input type="tel" id="cf-phone" name="phone" autocomplete="tel" placeholder="任意" />
+          </div>
+        </div>
+        <div class="field" data-field>
+          <label for="cf-message">お問い合わせ内容 <span>必須</span></label>
+          <textarea id="cf-message" name="message" rows="5" required placeholder="ご相談内容をご記入ください"></textarea>
+          <p class="err">お問い合わせ内容をご入力ください。</p>
+        </div>
+        <label class="check" id="agreeWrap">
+          <input type="checkbox" id="cf-agree" required />
+          <span><a href="#" onclick="return false;">プライバシーポリシー</a>に同意します <span style="color:var(--emerald);">（必須）</span></span>
+        </label>
+        <button type="submit" class="btn btn-primary btn-block">送信する <span class="arr" aria-hidden="true">→</span></button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="#hero" class="brand" aria-label="MarkGate ホームへ">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="26" height="26" role="img">
+            <defs>
+              <linearGradient id="gFoot" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#34D399"/>
+                <stop offset="1" stop-color="#10B981"/>
+              </linearGradient>
+            </defs>
+            <path d="M6 35 V14 L20 5 L34 14 V35" fill="none" stroke="url(#gFoot)" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M14 35 V20 a6 6 0 0 1 12 0 V35" fill="none" stroke="url(#gFoot)" stroke-width="2.2" stroke-linejoin="round"/>
+            <line x1="3" y1="35" x2="37" y2="35" stroke="url(#gFoot)" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">MarkGate</span>
+          <span class="brand-sub">マークゲート</span>
+        </span>
+      </a>
+      <p class="footer-tagline">トップアドバイザーだけが、開ける扉。</p>
+    </div>
+    <nav class="footer-nav" aria-label="フッターナビゲーション">
+      <a href="#problem">課題</a>
+      <a href="#concept">コンセプト</a>
+      <a href="#mechanism">仕組み</a>
+      <a href="#strength">強み</a>
+      <a href="#candidate">求職者の方へ</a>
+      <a href="#advisor">アドバイザーの方へ</a>
+      <a href="#flow">ご利用の流れ</a>
+      <a href="#company">会社概要</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; <span id="year">2026</span> MarkGate Inc. All rights reserved.</p>
+      <a href="../index.html" class="back-link"><span aria-hidden="true">←</span> 3パターン一覧へ</a>
+    </div>
+  </div>
+</footer>
+
+<a href="#hero" class="to-top" id="toTop" aria-label="ページ上部へ戻る">↑</a>
+
+<script>
+(function(){
+  "use strict";
+  var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- year ---------- */
+  var y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+
+  /* ---------- sticky header darken/blur ---------- */
+  var header = document.getElementById("siteHeader");
+  var toTop = document.getElementById("toTop");
+  function onScroll(){
+    var s = window.pageYOffset || document.documentElement.scrollTop;
+    if (header) header.classList.toggle("scrolled", s > 24);
+    if (toTop) toTop.classList.toggle("show", s > 640);
+  }
+  window.addEventListener("scroll", onScroll, { passive:true });
+  onScroll();
+
+  /* ---------- mobile nav ---------- */
+  var toggle = document.getElementById("navToggle");
+  var panel = document.getElementById("mobilePanel");
+  function setMenu(open){
+    if (!toggle || !panel) return;
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+    panel.classList.toggle("open", open);
+    panel.setAttribute("aria-hidden", open ? "false" : "true");
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+  if (toggle && panel){
+    toggle.addEventListener("click", function(){
+      setMenu(toggle.getAttribute("aria-expanded") !== "true");
+    });
+    panel.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(){ setMenu(false); });
+    });
+    document.addEventListener("keydown", function(e){
+      if (e.key === "Escape" && panel.classList.contains("open")) setMenu(false);
+    });
+  }
+
+  /* ---------- smooth scroll w/ header offset ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function(link){
+    link.addEventListener("click", function(e){
+      var id = link.getAttribute("href");
+      if (id === "#" || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.pageYOffset - 72;
+      window.scrollTo({ top: top, behavior: prefersReduced ? "auto" : "smooth" });
+    });
+  });
+
+  /* ---------- scroll reveal ---------- */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  if (prefersReduced || !("IntersectionObserver" in window)){
+    revealEls.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---------- stats count-up ---------- */
+  var counters = Array.prototype.slice.call(document.querySelectorAll("[data-count]"));
+  function countUp(el){
+    var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+    if (prefersReduced){ el.textContent = String(target); return; }
+    var dur = 1500, start = null;
+    function tick(ts){
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = String(Math.round(eased * target));
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = String(target);
+    }
+    requestAnimationFrame(tick);
+  }
+  if (counters.length){
+    if (prefersReduced || !("IntersectionObserver" in window)){
+      counters.forEach(countUp);
+    } else {
+      var statObs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            countUp(entry.target);
+            statObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.6 });
+      counters.forEach(function(el){ statObs.observe(el); });
+    }
+  }
+
+  /* ---------- contact form (demo — no API connected) ---------- */
+  var form = document.getElementById("contactForm");
+  var status = document.getElementById("formStatus");
+  if (form){
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function fieldOf(input){ return input.closest("[data-field]"); }
+
+    function validateInput(input){
+      var wrap = fieldOf(input);
+      if (!wrap) return true;
+      var ok = true;
+      if (input.type === "email"){
+        ok = emailRe.test(input.value.trim());
+      } else {
+        ok = input.value.trim() !== "";
+      }
+      wrap.classList.toggle("invalid", !ok);
+      return ok;
+    }
+
+    form.querySelectorAll("[data-field] input, [data-field] select, [data-field] textarea").forEach(function(input){
+      input.addEventListener("input", function(){
+        if (fieldOf(input) && fieldOf(input).classList.contains("invalid")) validateInput(input);
+      });
+      input.addEventListener("change", function(){ validateInput(input); });
+    });
+
+    var agree = document.getElementById("cf-agree");
+    var agreeWrap = document.getElementById("agreeWrap");
+    if (agree && agreeWrap){
+      agree.addEventListener("change", function(){
+        agreeWrap.classList.toggle("invalid", !agree.checked);
+      });
+    }
+
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var valid = true;
+      form.querySelectorAll("[data-field] input, [data-field] select, [data-field] textarea").forEach(function(input){
+        if (input.hasAttribute("required") && !validateInput(input)) valid = false;
+      });
+      if (agree && !agree.checked){
+        if (agreeWrap) agreeWrap.classList.add("invalid");
+        valid = false;
+      }
+
+      if (!valid){
+        if (status){
+          status.textContent = "未入力の項目があります。赤く表示された項目をご確認ください。";
+          status.className = "form-status show";
+          status.style.color = "var(--danger)";
+        }
+        var firstInvalid = form.querySelector(".invalid input, .invalid select, .invalid textarea, .check.invalid input");
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      // デモ送信：実APIは未接続。本番では fetch() 等でサーバーへ送信します。
+      if (status){
+        status.style.color = "";
+        status.textContent = "お問い合わせありがとうございます。担当者より折り返しご連絡いたします。";
+        status.className = "form-status show ok";
+      }
+      form.reset();
+      form.querySelectorAll(".invalid").forEach(function(el){ el.classList.remove("invalid"); });
+      if (agreeWrap) agreeWrap.classList.remove("invalid");
+    });
+  }
+})();
+</script>
+</body>
+</html>

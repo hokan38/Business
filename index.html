@@ -3,467 +3,233 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MarkGate株式会社 ｜ ハイクラス転職プラットフォーム ─ トップアドバイザーだけが、開ける扉。</title>
-<meta name="description" content="MarkGate（マークゲート）は、各人材紹介エージェントの実績トップクラスのキャリアアドバイザーだけが登録できる、ハイクラス層・エグゼクティブ特化の転職プラットフォームです。あなたは“最良の伴走者”を、自ら選べる。" />
-<meta name="theme-color" content="#0A0E1A" />
-
-<!-- Open Graph -->
+<title>MarkGate株式会社 ｜ コーポレートサイト デザイン3案</title>
+<meta name="description" content="MarkGate株式会社 コーポレートサイトのデザイン3案（Editorial Luxury / Modern Trust / Bold Disruptor）。同一コンテンツを3つのデザイン方向で比較できます。" />
+<meta name="theme-color" content="#0B0E15" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="MarkGate株式会社" />
-<meta property="og:title" content="MarkGate ｜ トップアドバイザーだけが、開ける扉。" />
-<meta property="og:description" content="各エージェントの実績トップクラスのアドバイザーだけが集う、ハイクラス転職プラットフォーム。" />
+<meta property="og:title" content="MarkGate ｜ コーポレートサイト デザイン3案" />
+<meta property="og:description" content="同一コンテンツを3つのデザイン方向で比較。Editorial Luxury / Modern Trust / Bold Disruptor。" />
 <meta property="og:locale" content="ja_JP" />
-
-<link rel="icon" href="assets/img/favicon.svg?v=2" type="image/svg+xml" />
+<link rel="icon" href="assets/img/favicon.svg?v=3" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/style.css?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0B0E15;--bg2:#0F131D;--card:#141926;--card2:#10141F;
+  --ink:#EDEFF4;--gray:#9AA3B2;--gray-d:#69707E;
+  --gold:#C6A15B;--gold-l:#E2C88A;--line:rgba(255,255,255,.09);--line-g:rgba(198,161,91,.30);
+  --serif:"Shippori Mincho",serif;--disp:"Cormorant Garamond",serif;
+  --sans:"Noto Sans JP",-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;
+  --maxw:1240px;--pad:clamp(20px,5vw,56px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.85;font-weight:300;
+  letter-spacing:.02em;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(120% 70% at 50% -10%,#141a2b 0%,var(--bg) 60%);
+  background-attachment:fixed;min-height:100vh;
+}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+
+/* ---- Header ---- */
+header{padding:54px 0 30px;border-bottom:1px solid var(--line)}
+.head-top{display:flex;align-items:center;gap:14px;justify-content:center}
+.gate{width:40px;height:40px;flex:0 0 auto}
+.brand-name{font-family:var(--disp);font-size:2.1rem;font-weight:600;letter-spacing:.06em;line-height:1}
+.brand-name b{color:var(--gold-l);font-weight:600}
+.brand-sub{display:block;font-size:.58rem;letter-spacing:.42em;color:var(--gold-l);text-align:center;margin-top:6px;text-indent:.4em}
+.head-lead{text-align:center;max-width:680px;margin:22px auto 0;color:var(--gray);font-size:.95rem;line-height:2}
+.kicker{text-align:center;font-family:var(--disp);letter-spacing:.42em;font-size:.8rem;color:var(--gold);margin-bottom:18px;text-indent:.4em}
+
+/* ---- Grid ---- */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;padding:56px 0 30px}
+@media(max-width:1080px){.grid{grid-template-columns:1fr;max-width:560px;margin:0 auto}}
+
+.card{
+  background:linear-gradient(180deg,var(--card),var(--card2));
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .4s,box-shadow .4s;
+}
+.card:hover{transform:translateY(-7px);border-color:var(--line-g);box-shadow:0 34px 70px -38px rgba(0,0,0,.85)}
+
+/* scaled live preview */
+.shot{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;background:#0c0f17;border-bottom:1px solid var(--line)}
+.shot iframe{position:absolute;top:0;left:0;width:1366px;height:854px;border:0;transform-origin:top left;pointer-events:none}
+.shot::after{content:"";position:absolute;inset:0;box-shadow:inset 0 -60px 60px -40px rgba(0,0,0,.5);pointer-events:none}
+.shot .open-flag{
+  position:absolute;left:16px;top:16px;z-index:2;font-family:var(--disp);font-size:.72rem;letter-spacing:.2em;
+  color:#fff;background:rgba(10,13,20,.6);backdrop-filter:blur(6px);border:1px solid var(--line);
+  padding:.4em 1em;border-radius:100px;
+}
+
+.body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
+.swatches{display:flex;gap:7px;margin-bottom:16px}
+.swatches i{width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.14)}
+.no{font-family:var(--disp);font-size:.78rem;letter-spacing:.24em;color:var(--gold);margin-bottom:6px}
+.card h2{font-family:var(--serif);font-weight:600;font-size:1.34rem;line-height:1.45;margin-bottom:4px}
+.card .en{font-family:var(--disp);font-size:1rem;letter-spacing:.08em;color:var(--gray);margin-bottom:14px}
+.card p{color:var(--gray);font-size:.9rem;line-height:1.95;margin-bottom:18px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.tags span{font-size:.74rem;letter-spacing:.05em;color:var(--gray);border:1px solid var(--line);border-radius:100px;padding:.34em .9em}
+.cta{margin-top:auto}
+.open-btn{
+  display:flex;align-items:center;justify-content:center;gap:.6em;width:100%;
+  padding:1em 1.4em;border-radius:6px;font-size:.92rem;font-weight:500;letter-spacing:.06em;
+  background:linear-gradient(135deg,var(--gold-l),var(--gold));color:#1b1206;
+  transition:transform .3s,box-shadow .3s;box-shadow:0 14px 30px -16px rgba(198,161,91,.8);
+}
+.card:hover .open-btn{transform:translateY(-2px);box-shadow:0 18px 34px -14px rgba(198,161,91,.9)}
+
+/* ---- Footer ---- */
+footer{border-top:1px solid var(--line);margin-top:36px;padding:40px 0 64px;text-align:center;color:var(--gray-d)}
+footer .note{font-size:.86rem;color:var(--gray);max-width:640px;margin:0 auto 18px;line-height:1.95}
+footer .legacy{font-size:.82rem}
+footer .legacy a{color:var(--gold-l);border-bottom:1px solid var(--line-g);padding-bottom:1px}
+footer .copy{margin-top:22px;font-size:.76rem;letter-spacing:.05em}
+
+:focus-visible{outline:2px solid var(--gold-l);outline-offset:3px;border-radius:4px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .card,.open-btn{transition:none}
+  body{background-attachment:scroll}
+}
+</style>
 </head>
 <body>
 
-<!-- ============ HEADER ============ -->
-<header class="site-header" id="siteHeader">
-  <div class="header-inner">
-    <a href="#hero" class="brand" aria-label="MarkGate ホームへ">
-      <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 40 40" width="34" height="34" role="img">
-          <defs>
-            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#E2C88A"/>
-              <stop offset="1" stop-color="#B8924A"/>
-            </linearGradient>
-          </defs>
-          <path d="M6 35 V14 L20 5 L34 14 V35" fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linejoin="round"/>
-          <path d="M14 35 V20 a6 6 0 0 1 12 0 V35" fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linejoin="round"/>
-          <line x1="3" y1="35" x2="37" y2="35" stroke="url(#g1)" stroke-width="2.2" stroke-linecap="round"/>
-        </svg>
-      </span>
-      <span class="brand-text">
-        <span class="brand-name">MarkGate</span>
-        <span class="brand-sub">マークゲート</span>
-      </span>
-    </a>
-
-    <nav class="site-nav" id="siteNav" aria-label="グローバルナビゲーション">
-      <a href="#concept">コンセプト</a>
-      <a href="#strength">3つの強み</a>
-      <a href="#candidate">求職者の方へ</a>
-      <a href="#advisor">アドバイザーの方へ</a>
-      <a href="#flow">ご利用の流れ</a>
-      <a href="#company">会社概要</a>
-      <a href="#contact" class="nav-cta">お問い合わせ</a>
-    </nav>
-
-    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+<header>
+  <div class="wrap">
+    <div class="head-top">
+      <svg class="gate" viewBox="0 0 40 40" role="img" aria-label="MarkGate ロゴ">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#E2C88A"/><stop offset="1" stop-color="#B8924A"/>
+        </linearGradient></defs>
+        <path d="M6 35 V14 L20 5 L34 14 V35" fill="none" stroke="url(#g)" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M14 35 V20 a6 6 0 0 1 12 0 V35" fill="none" stroke="url(#g)" stroke-width="2.2" stroke-linejoin="round"/>
+        <line x1="3" y1="35" x2="37" y2="35" stroke="url(#g)" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-name">Mark<b>Gate</b></span>
+    </div>
+    <span class="brand-sub">MARKGATE INC.</span>
+    <p class="head-lead">
+      ハイクラス求職者専用・品質保証型マッチングプラットフォーム「MarkGate」の
+      コーポレートサイト・デザイン<strong style="color:var(--ink);font-weight:500">3案</strong>です。<br />
+      掲載内容はすべて共通。お好みのデザイン方向をお選びください。
+    </p>
   </div>
 </header>
 
-<main>
+<main class="wrap">
+  <p class="kicker" style="padding-top:40px">CHOOSE A DESIGN DIRECTION</p>
+  <div class="grid">
 
-<!-- ============ HERO ============ -->
-<section class="hero" id="hero">
-  <div class="hero-bg" aria-hidden="true">
-    <div class="hero-glow"></div>
-    <div class="hero-lines"></div>
-  </div>
-  <div class="hero-inner">
-    <p class="hero-eyebrow">EXECUTIVE CAREER PLATFORM</p>
-    <h1 class="hero-title">
-      トップアドバイザーだけが、<br />
-      <em>開ける扉。</em>
-    </h1>
-    <p class="hero-lead">
-      各エージェントの実績トップクラスのキャリアアドバイザーだけが集う、<br class="pc-only" />
-      ハイクラス層のための転職プラットフォーム。<br />
-      あなたは“最良の伴走者”を、自ら選べる。
-    </p>
-    <div class="hero-actions">
-      <a href="#candidate" class="btn btn-gold">求職者の方へ</a>
-      <a href="#advisor" class="btn btn-outline">アドバイザーの方へ</a>
-    </div>
-  </div>
-  <a href="#concept" class="hero-scroll" aria-label="下へスクロール">
-    <span>SCROLL</span><i></i>
-  </a>
-</section>
-
-<!-- ============ MARQUEE / TRUST ============ -->
-<section class="trust">
-  <div class="trust-inner">
-    <p class="trust-text">
-      <span>審査制</span><i>/</i>
-      <span>トップアドバイザー限定</span><i>/</i>
-      <span>ハイクラス・エグゼクティブ特化</span><i>/</i>
-      <span>アドバイザーを“選べる”</span>
-    </p>
-  </div>
-</section>
-
-<!-- ============ CONCEPT ============ -->
-<section class="concept section" id="concept">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-num">01</span>
-      <p class="section-label">CONCEPT</p>
-    </div>
-    <div class="concept-grid">
-      <div class="concept-lead">
-        <h2 class="h2">
-          キャリアの質は、<br />
-          “誰と出会うか”で決まる。
-        </h2>
-      </div>
-      <div class="concept-body">
-        <p>
-          ハイクラス転職において、結果を左右するのは求人数ではありません。
-          あなたの市場価値を正しく見極め、非公開のポジションを引き出し、
-          交渉まで導く——その<strong>アドバイザーの実力</strong>です。
-        </p>
-        <p>
-          しかし従来の人材紹介では、どのアドバイザーが担当になるかは“運次第”。
-          実力にばらつきがあり、本来出会えたはずの機会を逃してしまうことも少なくありません。
-        </p>
-        <p>
-          <strong>MarkGate</strong> は、各エージェントの実績上位アドバイザーだけを審査制で迎え入れ、
-          ハイクラス層の求職者が、常にトップクラスの専門家と出会える環境をつくります。
-          “Mark（一流の証）”を持つ者だけが立つ、キャリアの“Gate（門）”。
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROBLEM ============ -->
-<section class="problem section section-dark" id="problem">
-  <div class="container">
-    <div class="section-head section-head-light">
-      <span class="section-num">02</span>
-      <p class="section-label">WHY MARKGATE</p>
-    </div>
-    <h2 class="h2 h2-center light">
-      “担当者ガチャ”を、終わらせる。
-    </h2>
-    <p class="section-intro light center">
-      ハイクラス層が転職で本当に求めているのは、膨大な求人ではなく、<br class="pc-only" />
-      自分の価値を最大化してくれる、ただ一人の伴走者です。
-    </p>
-    <div class="problem-grid">
-      <div class="problem-col">
-        <p class="problem-tag problem-tag-old">従来の人材紹介</p>
-        <ul class="problem-list">
-          <li>担当アドバイザーは選べず、実力は運次第</li>
-          <li>経験の浅い担当に当たり、提案の質が低い</li>
-          <li>求人の“量”は多いが、自分に合うものが埋もれる</li>
-          <li>市場価値や条件交渉を任せきれない</li>
-        </ul>
-      </div>
-      <div class="problem-arrow" aria-hidden="true">→</div>
-      <div class="problem-col problem-col-new">
-        <p class="problem-tag problem-tag-new">MarkGate</p>
-        <ul class="problem-list">
-          <li>審査を通過したトップアドバイザーのみが在籍</li>
-          <li>実績・専門領域を見て、自分で指名できる</li>
-          <li>“量”ではなく“質”。非公開の上位ポジションを提案</li>
-          <li>市場価値の見極めから交渉まで、一気通貫で伴走</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ STRENGTH ============ -->
-<section class="strength section" id="strength">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-num">03</span>
-      <p class="section-label">STRENGTH</p>
-    </div>
-    <h2 class="h2 h2-center">MarkGate ３つの強み</h2>
-
-    <div class="cards">
-      <article class="card">
-        <span class="card-num">01</span>
-        <h3 class="card-title">トップアドバイザーのみ<br />が登録できる審査制</h3>
-        <p class="card-text">
-          各人材紹介エージェントの実績上位者のみが、独自の審査を通過して登録。
-          経歴・成約実績・専門性を基準に厳選し、一定水準のアドバイザーだけが集う環境を担保します。
-        </p>
-      </article>
-      <article class="card">
-        <span class="card-num">02</span>
-        <h3 class="card-title">ハイクラス・エグゼクティブ<br />領域に特化</h3>
-        <p class="card-text">
-          経営幹部・管理職・高度専門職、年収800万円以上のハイクラス層に特化。
-          各業界に精通したアドバイザーが、表に出ない上位ポジションへとつなぎます。
-        </p>
-      </article>
-      <article class="card">
-        <span class="card-num">03</span>
-        <h3 class="card-title">アドバイザーを<br />“選べる・指名できる”</h3>
-        <p class="card-text">
-          アドバイザーの専門領域・実績・スタンスを比較し、自分に最適な伴走者を指名。
-          “出会う相手を選ぶ”という、これまでにない転職体験を提供します。
-        </p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOR CANDIDATES ============ -->
-<section class="audience section" id="candidate">
-  <div class="container">
-    <div class="audience-head">
-      <span class="section-num">04</span>
-      <p class="section-label">FOR CANDIDATES</p>
-      <h2 class="h2">求職者の方へ</h2>
-      <p class="section-intro">
-        実力あるアドバイザーを、あなた自身の目で選ぶ。<br class="pc-only" />
-        ハイクラスのキャリアにふさわしい、最良の出会いを。
-      </p>
-    </div>
-    <div class="feature-list">
-      <div class="feature-item">
-        <h3 class="feature-title">厳選されたアドバイザーだけと出会える</h3>
-        <p>担当者の質に左右されない。審査を通過したプロフェッショナルが、あなたのキャリアに本気で向き合います。</p>
-      </div>
-      <div class="feature-item">
-        <h3 class="feature-title">非公開・上位ポジションへのアクセス</h3>
-        <p>一般には流通しない経営層・幹部クラスの求人を、各領域に強いアドバイザー経由でご紹介します。</p>
-      </div>
-      <div class="feature-item">
-        <h3 class="feature-title">プロフィールを見て“指名”できる</h3>
-        <p>得意業界・職種、支援実績、これまでの経歴を確認し、納得した上で相談相手を選べます。</p>
-      </div>
-      <div class="feature-item">
-        <h3 class="feature-title">登録・ご利用は無料</h3>
-        <p>ご登録および転職支援のご利用は無料です。まずはあなたの市場価値を知ることから始められます。</p>
-      </div>
-    </div>
-    <div class="audience-cta">
-      <a href="#contact" class="btn btn-dark">無料で会員登録（審査制）</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOR ADVISORS ============ -->
-<section class="audience section section-dark" id="advisor">
-  <div class="container">
-    <div class="audience-head">
-      <span class="section-num">05</span>
-      <p class="section-label">FOR ADVISORS</p>
-      <h2 class="h2 light">アドバイザーの方へ</h2>
-      <p class="section-intro light">
-        実績あるトップアドバイザーのための、選ばれる舞台。<br class="pc-only" />
-        質の高い出会いが、あなたの成果を最大化します。
-      </p>
-    </div>
-    <div class="feature-list feature-list-dark">
-      <div class="feature-item">
-        <h3 class="feature-title">ハイクラス層の求職者と直接つながる</h3>
-        <p>意欲と市場価値の高いハイクラス層に、あなたの専門性を直接届けられます。</p>
-      </div>
-      <div class="feature-item">
-        <h3 class="feature-title">“選ばれる”プロフィール掲載</h3>
-        <p>実績や専門領域を提示し、求職者から指名される。あなたの実力が、そのまま機会につながります。</p>
-      </div>
-      <div class="feature-item">
-        <h3 class="feature-title">トップ同士のコミュニティ</h3>
-        <p>審査を通過した各社のトップアドバイザーのみが集う、質の高いネットワーク。</p>
-      </div>
-      <div class="feature-item">
-        <h3 class="feature-title">登録には審査があります</h3>
-        <p>成約実績・専門性・経歴を基準とした審査制。プラットフォームの品質を、ともに守ります。</p>
-      </div>
-    </div>
-    <div class="audience-cta">
-      <a href="#contact" class="btn btn-gold">アドバイザー登録を申請する</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FLOW ============ -->
-<section class="flow section" id="flow">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-num">06</span>
-      <p class="section-label">FLOW</p>
-    </div>
-    <h2 class="h2 h2-center">ご利用の流れ</h2>
-    <p class="section-intro center">求職者の方が、入社に至るまでの基本的な流れです。</p>
-    <ol class="steps">
-      <li class="step">
-        <span class="step-num">STEP 01</span>
-        <h3 class="step-title">会員登録（審査制）</h3>
-        <p>経歴・ご希望を登録。ハイクラス特化のため、簡単な審査を行います。</p>
-      </li>
-      <li class="step">
-        <span class="step-num">STEP 02</span>
-        <h3 class="step-title">アドバイザーを探す・指名</h3>
-        <p>専門領域や実績を比較し、あなたに最適なアドバイザーを指名します。</p>
-      </li>
-      <li class="step">
-        <span class="step-num">STEP 03</span>
-        <h3 class="step-title">面談・求人提案</h3>
-        <p>キャリアの棚卸しと市場価値の見極めを行い、最適な求人をご提案します。</p>
-      </li>
-      <li class="step">
-        <span class="step-num">STEP 04</span>
-        <h3 class="step-title">選考・内定・入社</h3>
-        <p>書類添削から面接対策、条件交渉、入社後のフォローまで一貫して伴走します。</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ============ STATS ============ -->
-<section class="stats section-dark" id="stats">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat">
-        <span class="stat-num"><span data-count="800">0</span><em>万円+</em></span>
-        <span class="stat-label">想定年収レンジ</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num"><em>審査</em><span data-count="100">0</span><em>%</em></span>
-        <span class="stat-label">登録アドバイザーの審査通過</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num"><span data-count="1">0</span><em>名</em></span>
-        <span class="stat-label">あなたが選ぶ、専属の伴走者</span>
-      </div>
-    </div>
-    <p class="stats-note">※ 数値はサービスコンセプトを示すものであり、実績値は順次公開予定です。</p>
-  </div>
-</section>
-
-<!-- ============ COMPANY ============ -->
-<section class="company section" id="company">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-num">07</span>
-      <p class="section-label">COMPANY</p>
-    </div>
-    <h2 class="h2 h2-center">会社概要</h2>
-    <table class="company-table">
-      <tbody>
-        <tr><th>会社名</th><td>MarkGate株式会社（マークゲート）</td></tr>
-        <tr><th>事業内容</th><td>ハイクラス層向け人材紹介プラットフォームの企画・運営<br />有料職業紹介事業</td></tr>
-        <tr><th>設立</th><td>準備中</td></tr>
-        <tr><th>代表者</th><td>準備中</td></tr>
-        <tr><th>所在地</th><td>準備中</td></tr>
-        <tr><th>資本金</th><td>準備中</td></tr>
-        <tr><th>許可番号</th><td>有料職業紹介事業許可番号：申請準備中</td></tr>
-        <tr><th>お問い合わせ</th><td><a href="#contact">お問い合わせフォーム</a>よりご連絡ください</td></tr>
-      </tbody>
-    </table>
-    <p class="company-note">※「準備中」の項目は確定後に掲載いたします。</p>
-  </div>
-</section>
-
-<!-- ============ CONTACT ============ -->
-<section class="contact section-dark" id="contact">
-  <div class="container">
-    <div class="contact-grid">
-      <div class="contact-lead">
-        <p class="section-label">CONTACT</p>
-        <h2 class="h2 light">お問い合わせ</h2>
-        <p class="contact-text light">
-          求職者の方、アドバイザー登録をご希望の方、<br class="pc-only" />
-          採用・提携・取材のご相談まで。<br />
-          下記フォームよりお気軽にご連絡ください。
-        </p>
-      </div>
-
-      <form class="contact-form" id="contactForm" novalidate>
-        <div class="field">
-          <label for="cf-type">お問い合わせ種別 <span>必須</span></label>
-          <select id="cf-type" name="type" required>
-            <option value="" disabled selected>選択してください</option>
-            <option>求職者として相談したい</option>
-            <option>アドバイザー登録を申請したい</option>
-            <option>提携・協業について</option>
-            <option>採用について</option>
-            <option>取材・メディア</option>
-            <option>その他</option>
-          </select>
+    <!-- Pattern 1 -->
+    <article class="card">
+      <a class="shot" href="patterns/01-luxury.html" aria-label="パターン1 Editorial Luxury を開く">
+        <span class="open-flag">PREVIEW ↗</span>
+        <iframe data-src="patterns/01-luxury.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true" title="Pattern 1 preview"></iframe>
+      </a>
+      <div class="body">
+        <div class="swatches" aria-hidden="true">
+          <i style="background:#0A0E1A"></i><i style="background:#C6A15B"></i><i style="background:#F8F6F1"></i>
         </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="cf-name">お名前 <span>必須</span></label>
-            <input type="text" id="cf-name" name="name" autocomplete="name" required placeholder="山田 太郎" />
-          </div>
-          <div class="field">
-            <label for="cf-company">会社名 / ご所属</label>
-            <input type="text" id="cf-company" name="company" autocomplete="organization" placeholder="任意" />
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="cf-email">メールアドレス <span>必須</span></label>
-            <input type="email" id="cf-email" name="email" autocomplete="email" required placeholder="you@example.com" />
-          </div>
-          <div class="field">
-            <label for="cf-phone">電話番号</label>
-            <input type="tel" id="cf-phone" name="phone" autocomplete="tel" placeholder="任意" />
-          </div>
-        </div>
-        <div class="field">
-          <label for="cf-message">お問い合わせ内容 <span>必須</span></label>
-          <textarea id="cf-message" name="message" rows="5" required placeholder="ご相談内容をご記入ください"></textarea>
-        </div>
-        <label class="check">
-          <input type="checkbox" id="cf-agree" required />
-          <span><a href="#" class="ul">プライバシーポリシー</a>に同意します</span>
-        </label>
-        <button type="submit" class="btn btn-gold btn-block">送信する</button>
-        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-  </div>
-</section>
+        <span class="no">PATTERN 01</span>
+        <h2>品格と信頼</h2>
+        <span class="en">Editorial Luxury</span>
+        <p>ディープネイビー×ゴールド、明朝体の見出し。会員制クラブのような上質さと余白で“ハイクラス”を最も強く表現する王道プレミアム。</p>
+        <div class="tags"><span>Navy × Gold</span><span>明朝（Shippori）</span><span>高級・編集的</span></div>
+        <div class="cta"><a class="open-btn" href="patterns/01-luxury.html">このパターンを開く →</a></div>
+      </div>
+    </article>
 
+    <!-- Pattern 2 -->
+    <article class="card">
+      <a class="shot" href="patterns/02-clarity.html" aria-label="パターン2 Modern Trust を開く">
+        <span class="open-flag">PREVIEW ↗</span>
+        <iframe data-src="patterns/02-clarity.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true" title="Pattern 2 preview"></iframe>
+      </a>
+      <div class="body">
+        <div class="swatches" aria-hidden="true">
+          <i style="background:#FFFFFF"></i><i style="background:#3A56E4"></i><i style="background:#1E2A78"></i><i style="background:#E2603F"></i>
+        </div>
+        <span class="no">PATTERN 02</span>
+        <h2>明快な信頼</h2>
+        <span class="en">Modern Trust</span>
+        <p>白×インディゴの明るくクリーンなSaaS調。比較表とステップ図で「量→質」の転換を最も分かりやすく説明する、信頼重視のレイアウト。</p>
+        <div class="tags"><span>White × Indigo</span><span>ゴシック太字</span><span>明快・B2B2C</span></div>
+        <div class="cta"><a class="open-btn" href="patterns/02-clarity.html">このパターンを開く →</a></div>
+      </div>
+    </article>
+
+    <!-- Pattern 3 -->
+    <article class="card">
+      <a class="shot" href="patterns/03-bold.html" aria-label="パターン3 Bold Disruptor を開く">
+        <span class="open-flag">PREVIEW ↗</span>
+        <iframe data-src="patterns/03-bold.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true" title="Pattern 3 preview"></iframe>
+      </a>
+      <div class="body">
+        <div class="swatches" aria-hidden="true">
+          <i style="background:#08090C"></i><i style="background:#10B981"></i><i style="background:#22D3EE"></i><i style="background:#8B5CF6"></i>
+        </div>
+        <span class="no">PATTERN 03</span>
+        <h2>先進・ダーク</h2>
+        <span class="en">Bold Disruptor</span>
+        <p>漆黒×エメラルドの大胆なダークテック。大型タイポとグロー表現で「壊れた市場を変える」挑戦的・先進的なブランド姿勢を打ち出す。</p>
+        <div class="tags"><span>Black × Emerald</span><span>大型ディスプレイ</span><span>先進・挑戦的</span></div>
+        <div class="cta"><a class="open-btn" href="patterns/03-bold.html">このパターンを開く →</a></div>
+      </div>
+    </article>
+
+  </div>
 </main>
 
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 40 40" width="30" height="30">
-          <defs>
-            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#E2C88A"/>
-              <stop offset="1" stop-color="#B8924A"/>
-            </linearGradient>
-          </defs>
-          <path d="M6 35 V14 L20 5 L34 14 V35" fill="none" stroke="url(#g2)" stroke-width="2.2" stroke-linejoin="round"/>
-          <path d="M14 35 V20 a6 6 0 0 1 12 0 V35" fill="none" stroke="url(#g2)" stroke-width="2.2" stroke-linejoin="round"/>
-          <line x1="3" y1="35" x2="37" y2="35" stroke="url(#g2)" stroke-width="2.2" stroke-linecap="round"/>
-        </svg>
-      </span>
-      <span class="brand-name">MarkGate</span>
-      <p class="footer-tagline">トップアドバイザーだけが、開ける扉。</p>
-    </div>
-    <nav class="footer-nav" aria-label="フッターナビゲーション">
-      <a href="#concept">コンセプト</a>
-      <a href="#strength">3つの強み</a>
-      <a href="#candidate">求職者の方へ</a>
-      <a href="#advisor">アドバイザーの方へ</a>
-      <a href="#flow">ご利用の流れ</a>
-      <a href="#company">会社概要</a>
-      <a href="#contact">お問い合わせ</a>
-    </nav>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; <span id="year">2026</span> MarkGate Inc. All rights reserved.</p>
+<footer>
+  <div class="wrap">
+    <p class="note">3案は配色・書体・レイアウト・動きのみが異なり、ヒーロー／課題（量の競争）／コンセプト（質への転換）／品質保証の4つの仕組み／3つの強み／求職者・アドバイザー向け／ご利用の流れ／会社概要／お問い合わせの全セクションを共通で収録しています。</p>
+    <p class="legacy">参考：初期のラフ案（5パターン）は <a href="previews/index.html">previews/ ギャラリー</a> でご覧いただけます。</p>
+    <p class="copy">&copy; 2026 MarkGate Inc. ｜ Corporate Site Design Gallery</p>
   </div>
 </footer>
 
-<a href="#hero" class="to-top" id="toTop" aria-label="ページ上部へ戻る">↑</a>
+<script>
+(function(){
+  // Responsive scaled live previews
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.shot'));
+  var DESIGN_W = 1366;
 
-<script src="assets/js/main.js?v=2" defer></script>
+  function sizeShot(shot){
+    var f = shot.querySelector('iframe');
+    if(!f) return;
+    var scale = shot.clientWidth / DESIGN_W;
+    f.style.transform = 'scale(' + scale + ')';
+  }
+  function sizeAll(){ shots.forEach(sizeShot); }
+
+  // Lazy-load each preview iframe when near viewport (keeps initial load light)
+  function load(shot){
+    var f = shot.querySelector('iframe');
+    if(f && !f.src && f.dataset.src){ f.src = f.dataset.src; sizeShot(shot); }
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ load(e.target); io.unobserve(e.target); } });
+    }, {rootMargin:'200px'});
+    shots.forEach(function(s){ io.observe(s); });
+  } else {
+    shots.forEach(load);
+  }
+
+  sizeAll();
+  var t;
+  window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(sizeAll, 120); }, {passive:true});
+})();
+</script>
 </body>
 </html>
