@@ -4,6 +4,9 @@
 記事テンプレートは `templates/interview-template.html`、スタイルは `assets/css/article.css` の
 `.case-summary / .interview-profile / .qa / .faq` を使用します。
 
+> **そのまま取材に持ち込める詳細な質問票は [`docs/interview-questions.md`](./interview-questions.md) にあります。**
+> 本ファイルはシリーズ設計・建付け・運用ルールをまとめた設計書です。
+
 ## 建付け（最初に必ず確認）
 
 - 会社は**準備中**のため、扱うのは「**他社サービス利用時を含む、過去の転職体験**」の第三者取材です。
