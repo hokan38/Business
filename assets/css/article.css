@@ -225,3 +225,79 @@
   .article-meta{gap:.3em .9em}
   .pullquote{padding-left:22px}
 }
+
+/* =========================================================
+   Interview / CASE series parts
+   ========================================================= */
+
+/* Sample banner (only on unpublished 構成サンプル pages) */
+.sample-banner{
+  background:repeating-linear-gradient(135deg,rgba(198,161,91,.14),rgba(198,161,91,.14) 12px,rgba(198,161,91,.06) 12px,rgba(198,161,91,.06) 24px);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  color:var(--ink);text-align:center;padding:12px 20px;font-size:.86rem;letter-spacing:.03em;
+}
+.sample-banner strong{color:var(--gold-dark)}
+
+/* Conclusion-first summary box */
+.case-summary{
+  margin:0 0 clamp(36px,5vw,52px);padding:26px 30px;border-radius:6px;
+  background:rgba(198,161,91,.07);border:1px solid var(--line);
+}
+.case-summary .cs-label{
+  font-family:var(--display);letter-spacing:.3em;font-size:.72rem;text-indent:.3em;
+  color:var(--gold-dark);margin-bottom:14px;
+}
+.case-summary ul{list-style:none}
+.case-summary li{position:relative;padding-left:24px;margin-bottom:10px;line-height:1.85;font-size:.98rem;color:var(--ink-soft)}
+.case-summary li:last-child{margin-bottom:0}
+.case-summary li::before{content:"";position:absolute;left:4px;top:.7em;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+
+/* Interviewee profile card */
+.interview-profile{
+  display:flex;flex-wrap:wrap;gap:10px 30px;align-items:baseline;
+  margin:0 0 clamp(36px,5vw,52px);padding:22px 26px;border-radius:6px;
+  background:linear-gradient(180deg,#fff,var(--cream));border:1px solid var(--line-soft);
+}
+.interview-profile .ip-name{font-family:var(--serif);font-weight:600;font-size:1.1rem;color:var(--ink)}
+.interview-profile dl{display:flex;flex-wrap:wrap;gap:6px 26px;margin:0}
+.interview-profile dt{font-size:.72rem;letter-spacing:.14em;color:var(--gold-dark);font-family:var(--display)}
+.interview-profile dd{font-size:.92rem;color:var(--ink-soft);margin:0 0 0 .5em}
+.interview-profile .ip-pair{display:flex;align-items:baseline;gap:.5em}
+
+/* Q&A blocks */
+.qa{margin:clamp(30px,4vw,42px) 0}
+.qa .q{
+  position:relative;padding-left:40px;margin-bottom:14px;
+  font-family:var(--serif);font-weight:600;font-size:clamp(1.08rem,2vw,1.28rem);
+  line-height:1.6;color:var(--ink);
+}
+.qa .q::before{
+  content:"Q";position:absolute;left:0;top:-.05em;
+  font-family:var(--display);font-size:1.5rem;font-weight:600;color:var(--gold);line-height:1;
+}
+.qa .a{position:relative;padding-left:40px}
+.qa .a::before{
+  content:"A";position:absolute;left:0;top:-.05em;
+  font-family:var(--display);font-size:1.5rem;font-weight:600;color:var(--ink-soft);line-height:1;
+}
+.qa .a p{margin:0 0 1.2em}
+.qa .a p:last-child{margin-bottom:0}
+@media(max-width:520px){
+  .qa .q,.qa .a{padding-left:30px}
+  .qa .q::before,.qa .a::before{font-size:1.2rem}
+}
+
+/* FAQ (long-tail capture) */
+.faq{margin:clamp(44px,6vw,64px) 0 0}
+.faq .faq-title{
+  font-family:var(--display);letter-spacing:.3em;font-size:.76rem;text-indent:.3em;
+  color:var(--gold-dark);margin-bottom:20px;
+}
+.faq-item{border-top:1px solid var(--line-soft);padding:20px 0}
+.faq-item:last-child{border-bottom:1px solid var(--line-soft)}
+.faq-q{
+  font-family:var(--serif);font-weight:600;font-size:1.05rem;line-height:1.6;color:var(--ink);
+  margin-bottom:10px;position:relative;padding-left:22px;
+}
+.faq-q::before{content:"Q.";position:absolute;left:0;top:0;color:var(--gold-dark);font-family:var(--display);font-weight:600}
+.faq-a{font-size:.96rem;line-height:1.9;color:var(--ink-soft);padding-left:22px}

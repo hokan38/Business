@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!--
+  MarkGate — THE GATE JOURNAL / 門記  ▸ インタビュー(CASE)テンプレート（参照用ひな型）
+  取材後の記事化手順:
+   1) このファイルを media/<slug>.html にコピー（slug 例: case-agent-failure）
+   2) {{...}} を置換し、Q&A・要点・プロフィール・FAQ を取材内容で埋める
+   3) noindex 行と .sample-banner を削除（＝公開可能状態にする）
+   4) media/index.html に CASE カードを追加 / sitemap.xml に1行 / OG画像を生成
+   5) 関連する既存ノウハウ記事の末尾に「実例」として相互リンクを追加
+  建付け・コンプラ（厳守）:
+   - 他社サービス利用時を含む「過去の転職体験」の第三者取材として扱う（MarkGate成功事例と誤認させない）
+   - 実名NGなら属性表記（例：45歳・IT・経営企画）。企業名は伏せる。掲載前に本人確認。撤回可を明記
+   - 数値は本人申告に基づく旨を注記。ステマ規制・景表法・本人同意に配慮
+  技術ルール（記事テンプレと同じ）:
+   - chrome/アセットは全て root-absolute。main.js は読まない（article.js のみ）。本文に .reveal を付けない
+   - 本番公開時は https://markgate.co.jp を実ドメインへ一括置換
+  ※このファイル自体は noindex・どこからもリンクしない・sitemap から除外。
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" /><!-- 公開時に削除 -->
+<title>{{TITLE}}｜ MarkGate ジャーナル</title>
+<meta name="description" content="{{DESCRIPTION}}" />
+<meta name="theme-color" content="#0A0E1A" />
+<link rel="canonical" href="https://markgate.co.jp/media/{{SLUG}}" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="MarkGate株式会社" />
+<meta property="og:title" content="{{TITLE}}｜ MarkGate ジャーナル" />
+<meta property="og:description" content="{{DESCRIPTION}}" />
+<meta property="og:url" content="https://markgate.co.jp/media/{{SLUG}}" />
+<meta property="og:image" content="https://markgate.co.jp/assets/img/media/og-{{SLUG}}.png" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="article:published_time" content="{{PUBLISHED_ISO}}" />
+<meta property="article:publisher" content="MarkGate株式会社" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{TITLE}}｜ MarkGate ジャーナル" />
+<meta name="twitter:description" content="{{DESCRIPTION}}" />
+<meta name="twitter:image" content="https://markgate.co.jp/assets/img/media/og-{{SLUG}}.png" />
+
+<link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/style.css?v=2" />
+<link rel="stylesheet" href="/assets/css/article.css?v=1" />
+
+<!-- Structured data: Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{TITLE}}",
+  "description": "{{DESCRIPTION}}",
+  "inLanguage": "ja",
+  "image": "https://markgate.co.jp/assets/img/media/og-{{SLUG}}.png",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://markgate.co.jp/media/{{SLUG}}" },
+  "datePublished": "{{PUBLISHED_ISO}}",
+  "dateModified": "{{PUBLISHED_ISO}}",
+  "author": { "@type": "Organization", "name": "MarkGate編集部", "url": "https://markgate.co.jp/media" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MarkGate株式会社",
+    "logo": { "@type": "ImageObject", "url": "https://markgate.co.jp/assets/img/favicon.svg" }
+  }
+}
+</script>
+<!-- Structured data: FAQPage (質問は本文の FAQ と一致させる) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "{{FAQ_Q1}}", "acceptedAnswer": { "@type": "Answer", "text": "{{FAQ_A1}}" } },
+    { "@type": "Question", "name": "{{FAQ_Q2}}", "acceptedAnswer": { "@type": "Answer", "text": "{{FAQ_A2}}" } }
+  ]
+}
+</script>
+<!-- Structured data: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://markgate.co.jp/" },
+    { "@type": "ListItem", "position": 2, "name": "THE GATE JOURNAL", "item": "https://markgate.co.jp/media" },
+    { "@type": "ListItem", "position": 3, "name": "{{TITLE}}", "item": "https://markgate.co.jp/media/{{SLUG}}" }
+  ]
+}
+</script>
+</head>
+<body class="article-page">
+
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<!-- ============ HEADER (root-absolute links) ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="MarkGate ホームへ">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="34" height="34" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#E2C88A"/>
+              <stop offset="1" stop-color="#B8924A"/>
+            </linearGradient>
+          </defs>
+          <path d="M6 35 V14 L20 5 L34 14 V35" fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M14 35 V20 a6 6 0 0 1 12 0 V35" fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linejoin="round"/>
+          <line x1="3" y1="35" x2="37" y2="35" stroke="url(#g1)" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">MarkGate</span>
+        <span class="brand-sub">マークゲート</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" id="siteNav" aria-label="グローバルナビゲーション">
+      <a href="/#concept">コンセプト</a>
+      <a href="/#strength">3つの強み</a>
+      <a href="/#candidate">求職者の方へ</a>
+      <a href="/#advisor">アドバイザーの方へ</a>
+      <a href="/media">メディア</a>
+      <a href="/#contact" class="nav-cta">お問い合わせ</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+<article>
+
+  <!-- ============ ARTICLE HERO ============ -->
+  <header class="article-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <ol>
+          <li><a href="/">ホーム</a></li>
+          <li><a href="/media">THE GATE JOURNAL</a></li>
+          <li aria-current="page">{{BREADCRUMB_SHORT}}</li>
+        </ol>
+      </nav>
+      <p class="article-category">CASE ／ 体験談</p>
+      <h1 class="article-title">{{TITLE}}</h1>
+      <div class="article-meta">
+        <time datetime="{{PUBLISHED_ISO}}">{{PUBLISHED_JP}}</time>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="author">取材・構成：MarkGate編集部</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span>読了目安 {{READ_MIN}}分</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 公開時に削除：構成サンプルであることの明示（公開記事では出さない） -->
+  <div class="sample-banner"><strong>※ 構成サンプル</strong>　本記事は取材前のレイアウト見本です。公開時は実際の取材内容に差し替えます（この帯と noindex を削除）。</div>
+
+  <!-- ============ BODY ============ -->
+  <div class="article-wrap">
+    <div class="container">
+      <div class="article-body">
+
+        <!-- 結論先出し（離脱防止） -->
+        <div class="case-summary">
+          <p class="cs-label">この記事の要点</p>
+          <ul>
+            <li>{{要点1}}</li>
+            <li>{{要点2}}</li>
+            <li>{{要点3}}</li>
+          </ul>
+        </div>
+
+        <!-- 話し手プロフィール（匿名・属性表記） -->
+        <div class="interview-profile">
+          <span class="ip-name">{{仮名 or 「Aさん」}}</span>
+          <dl>
+            <div class="ip-pair"><dt>年代</dt><dd>{{40代後半}}</dd></div>
+            <div class="ip-pair"><dt>職種</dt><dd>{{経営企画・部長}}</dd></div>
+            <div class="ip-pair"><dt>業界</dt><dd>{{IT}}</dd></div>
+            <div class="ip-pair"><dt>転職時期</dt><dd>{{20XX年}}</dd></div>
+          </dl>
+        </div>
+
+        <p class="article-lead">{{リード：常体・箴言的。この人に何が起きたかを一撃で。サービス名は出さない。}}</p>
+
+        <!-- Q&A（取材の一問一答） -->
+        <div class="qa">
+          <p class="q">{{質問1（例：転職を考え始めたきっかけは？）}}</p>
+          <div class="a"><p>{{回答}}</p></div>
+        </div>
+
+        <div class="qa">
+          <p class="q">{{質問2（例：担当アドバイザーとの関係はどうでしたか？）}}</p>
+          <div class="a"><p>{{回答。ここで既存ノウハウ記事へ内部リンク：<a href="/media/advisor-gacha">担当者の当たり外れの構造</a>}}</p></div>
+        </div>
+
+        <p class="pullquote">{{本人の最も鋭い一言を抜き出す}}</p>
+
+        <div class="qa">
+          <p class="q">{{質問3}}</p>
+          <div class="a"><p>{{回答}}</p></div>
+        </div>
+
+        <!-- まとめ＋静かな接続（末尾手前・一度だけ） -->
+        <h2 id="wrapup"><span class="insight-tag">EDITOR'S NOTE</span>この体験が示すこと</h2>
+        <p>{{編集部による短い総括。論の帰結として MarkGate の該当する強みへ静かに着地。}}</p>
+
+        <!-- FAQ（長尾回収・上の FAQPage JSON-LD と一致させる） -->
+        <div class="faq">
+          <p class="faq-title">FAQ ／ よくある質問</p>
+          <div class="faq-item">
+            <p class="faq-q">{{FAQ_Q1}}</p>
+            <p class="faq-a">{{FAQ_A1}}</p>
+          </div>
+          <div class="faq-item">
+            <p class="faq-q">{{FAQ_Q2}}</p>
+            <p class="faq-a">{{FAQ_A2}}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CTA ============ -->
+  <section class="article-cta" aria-label="ご案内">
+    <div class="container">
+      <p class="cta-eyebrow">THE GATE JOURNAL</p>
+      <h2>{{CTA見出し（煽らない）}}</h2>
+      <p>{{CTA補足文。審査制であることを事実として添える。}}</p>
+      <a href="{{CTA_HREF}}" class="btn btn-gold">{{CTA_LABEL}}</a>
+      <p class="article-disclosure">※ 本記事は、他社サービス利用時を含む過去の転職体験について取材した内容を、本人の同意のもと編集・構成したものです（個人が特定されないよう配慮しています）。記載の年収・数値等は本人申告に基づきます。MarkGateは現在準備中であり、本記事は特定の転職その他の行動を勧誘するものではありません。</p>
+    </div>
+  </section>
+
+</article>
+
+<!-- ============ RELATED ============ -->
+<section class="article-related" aria-label="関連記事">
+  <div class="container">
+    <span class="section-label">RELATED</span>
+    <h2 class="h2 h2-center">あわせて読みたい</h2>
+    <div class="article-grid">
+      <a class="article-card" href="/media/{{REL_SLUG}}">
+        <span class="card-cat">{{REL_CAT}}</span>
+        <span class="card-title">{{REL_TITLE}}</span>
+        <span class="card-excerpt">{{REL_EXCERPT}}</span>
+        <span class="card-more">続きを読む →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER (root-absolute links) ============ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="30" height="30">
+          <defs>
+            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#E2C88A"/>
+              <stop offset="1" stop-color="#B8924A"/>
+            </linearGradient>
+          </defs>
+          <path d="M6 35 V14 L20 5 L34 14 V35" fill="none" stroke="url(#g2)" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M14 35 V20 a6 6 0 0 1 12 0 V35" fill="none" stroke="url(#g2)" stroke-width="2.2" stroke-linejoin="round"/>
+          <line x1="3" y1="35" x2="37" y2="35" stroke="url(#g2)" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand-name">MarkGate</span>
+      <p class="footer-tagline">トップアドバイザーだけが、開ける扉。</p>
+    </div>
+    <nav class="footer-nav" aria-label="フッターナビゲーション">
+      <a href="/#concept">コンセプト</a>
+      <a href="/#strength">3つの強み</a>
+      <a href="/#candidate">求職者の方へ</a>
+      <a href="/#advisor">アドバイザーの方へ</a>
+      <a href="/media">メディア</a>
+      <a href="/#company">会社概要</a>
+      <a href="/#contact">お問い合わせ</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; <span id="year">2026</span> MarkGate Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+<a href="#main" class="to-top" id="toTop" aria-label="ページ上部へ戻る">↑</a>
+
+<script src="/assets/js/article.js?v=1" defer></script>
+</body>
+</html>
