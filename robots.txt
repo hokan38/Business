@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /templates/
+
+# 本番公開時は実ドメインへ置換
+Sitemap: https://markgate.co.jp/sitemap.xml

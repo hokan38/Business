@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ページが見つかりません（404）｜ MarkGate</title>
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#0A0E1A" />
+<link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/style.css?v=2" />
+<link rel="stylesheet" href="/assets/css/article.css?v=1" />
+<style>
+  .err-wrap{min-height:100svh;display:grid;place-items:center;text-align:center;
+    background:radial-gradient(120% 100% at 50% 0%,#101a36 0%,var(--navy-900) 55%,#070a14 100%);color:#fff;padding:40px 24px}
+  .err-code{font-family:var(--display);font-size:clamp(4rem,16vw,9rem);font-weight:600;line-height:1;
+    background:linear-gradient(120deg,var(--gold-light),var(--gold) 55%,var(--gold-dark));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:18px}
+  .err-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.3rem,3vw,1.9rem);letter-spacing:.04em;margin-bottom:18px}
+  .err-text{color:rgba(255,255,255,.72);line-height:2;font-weight:300;margin-bottom:38px;max-width:520px}
+  .err-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+</style>
+</head>
+<body>
+  <main class="err-wrap">
+    <div>
+      <span class="brand-mark" aria-hidden="true" style="display:inline-grid;margin-bottom:22px">
+        <svg viewBox="0 0 40 40" width="44" height="44" role="img" aria-label="MarkGate">
+          <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E2C88A"/><stop offset="1" stop-color="#B8924A"/></linearGradient></defs>
+          <path d="M6 35 V14 L20 5 L34 14 V35" fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M14 35 V20 a6 6 0 0 1 12 0 V35" fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linejoin="round"/>
+          <line x1="3" y1="35" x2="37" y2="35" stroke="url(#g1)" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <div class="err-code">404</div>
+      <h1 class="err-title">その扉は、見つかりませんでした。</h1>
+      <p class="err-text">お探しのページは移動または削除されたか、URL が正しくない可能性があります。</p>
+      <div class="err-actions">
+        <a href="/" class="btn btn-gold">トップへ戻る</a>
+        <a href="/media" class="btn btn-outline">メディアを見る</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
