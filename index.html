@@ -291,7 +291,7 @@
       </div>
     </div>
     <div class="audience-cta">
-      <a href="#contact" class="btn btn-gold">アドバイザー登録を申請する</a>
+      <a href="/join" class="btn btn-gold">アドバイザー登録を申請する</a>
     </div>
   </div>
 </section>
@@ -389,7 +389,7 @@
         </p>
       </div>
 
-      <form class="contact-form" id="contactForm" novalidate>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-formspree data-success="お問い合わせありがとうございます。担当者より折り返しご連絡いたします。" novalidate>
         <div class="field">
           <label for="cf-type">お問い合わせ種別 <span>必須</span></label>
           <select id="cf-type" name="type" required>
@@ -478,5 +478,6 @@
 <a href="#hero" class="to-top" id="toTop" aria-label="ページ上部へ戻る">↑</a>
 
 <script src="assets/js/main.js?v=2" defer></script>
+<script src="assets/js/form.js?v=1" defer></script>
 </body>
 </html>

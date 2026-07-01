@@ -164,35 +164,6 @@
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ----- Contact form (front-end demo handler) ----- */
-  const form = document.getElementById("contactForm");
-  const status = document.getElementById("formStatus");
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      status.className = "form-status";
-      const email = form.querySelector("#cf-email");
-      const agree = form.querySelector("#cf-agree");
-      if (!form.checkValidity()) {
-        status.textContent = "未入力の必須項目があります。ご確認ください。";
-        status.classList.add("err");
-        form.reportValidity();
-        return;
-      }
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-        status.textContent = "メールアドレスの形式をご確認ください。";
-        status.classList.add("err");
-        return;
-      }
-      if (agree && !agree.checked) {
-        status.textContent = "プライバシーポリシーへの同意が必要です。";
-        status.classList.add("err");
-        return;
-      }
-      // NOTE: 送信先APIは未接続のデモ実装です。実運用時はここでfetch等に置き換えてください。
-      status.textContent = "お問い合わせありがとうございます。担当者より折り返しご連絡いたします。";
-      status.classList.add("ok");
-      form.reset();
-    });
-  }
+  /* ----- Contact form ----- */
+  // 送信処理は assets/js/form.js（Formspree）に集約。ここでは扱わない。
 })();
