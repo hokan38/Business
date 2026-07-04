@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>MarkGate — 人材紹介エージェント様向け ご案内資料</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dark:#12100C;
+    --dark-2:#171410;
+    --cream:#F6F3EB;
+    --cream-2:#EFEBDF;
+    --gold:#B08A47;
+    --gold-light:#C9A96A;
+    --gold-dim:#8F7442;
+    --ink:#1B1916;
+    --ink-soft:#54504A;
+    --muted:#8A857B;
+    --line-dark:rgba(176,138,71,.55);
+    --line-cream:rgba(27,25,22,.75);
+    --red:#9C3A28;
+    --serif:"Shippori Mincho","Noto Serif JP",serif;
+    --display:"Cormorant Garamond",serif;
+    --sans:"Noto Sans JP",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#2a2a2a}
+  body{font-family:var(--serif);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .slide{
+    width:1280px;height:720px;position:relative;overflow:hidden;
+    background:var(--cream);color:var(--ink);
+    page-break-after:always;break-after:page;
+    margin:0 auto;
+  }
+  @media screen{.slide{margin:24px auto;box-shadow:0 8px 40px rgba(0,0,0,.4)}}
+  @page{size:1280px 720px;margin:0}
+  @media print{
+    html,body{background:none}
+    .slide{margin:0;box-shadow:none}
+  }
+  .slide.dark{background:var(--dark);color:#fff}
+
+  /* ---------- common atoms ---------- */
+  .pad{padding:64px 78px}
+  .eyebrow{
+    font-family:var(--display);font-style:italic;font-weight:500;
+    font-size:19px;letter-spacing:.32em;color:var(--gold);
+  }
+  .eyebrow-rule{width:44px;height:2px;background:var(--gold);margin-top:14px}
+  .headline{
+    font-family:var(--serif);font-weight:600;font-size:46px;
+    letter-spacing:.075em;line-height:1.35;margin-top:34px;color:var(--ink);
+  }
+  .dark .headline{color:#fff}
+  .headline .g{color:var(--gold)}
+  .headline .r{color:var(--red)}
+  .subline{
+    font-family:var(--serif);font-weight:400;font-size:17.5px;
+    letter-spacing:.1em;color:var(--muted);margin-top:22px;line-height:1.9;
+  }
+  .src{
+    position:absolute;left:78px;bottom:26px;right:78px;
+    font-family:var(--sans);font-weight:300;font-size:11.5px;
+    letter-spacing:.06em;color:#A9A499;
+  }
+  .dark .src{color:#6E695F}
+  .bottom-bar{
+    position:absolute;left:78px;right:78px;bottom:52px;
+    background:var(--dark);color:#F3EFE6;
+    font-family:var(--sans);font-weight:500;font-size:16.5px;letter-spacing:.08em;
+    text-align:center;padding:21px 30px;
+  }
+  .bottom-bar b{color:var(--gold-light);font-weight:700}
+
+  .panel-label{
+    font-family:var(--display);font-style:italic;font-weight:500;
+    font-size:15px;letter-spacing:.26em;color:var(--gold-dim);
+  }
+  .panel-label-dark{color:var(--gold-light)}
+
+  .num-it{font-family:var(--display);font-style:italic;font-weight:600;color:var(--gold);}
+
+  /* ---------- cover / contact ---------- */
+  .frame-line{position:absolute;left:78px;right:78px;height:1.5px;background:var(--line-dark)}
+  .cover-label{
+    font-family:var(--serif);font-weight:500;font-size:19px;
+    letter-spacing:.34em;color:var(--gold-light);
+  }
+  .cover-title{
+    font-family:var(--display);font-weight:500;font-size:118px;
+    letter-spacing:.015em;color:#fff;line-height:1.05;margin-top:26px;
+  }
+  .cover-title .dot{color:var(--gold)}
+  .cover-copy{
+    font-family:var(--serif);font-weight:500;font-size:31px;
+    letter-spacing:.18em;color:#F0ECE2;margin-top:38px;
+  }
+  .cover-sub{
+    font-family:var(--serif);font-weight:400;font-size:15.5px;line-height:2.05;
+    letter-spacing:.12em;color:#938E83;margin-top:30px;
+  }
+  .cover-foot{
+    position:absolute;left:78px;right:78px;bottom:38px;
+    display:flex;justify-content:space-between;align-items:baseline;
+  }
+  .cover-conf{font-family:var(--sans);font-weight:300;font-size:12.5px;letter-spacing:.4em;color:#7B766B}
+  .cover-motto{font-family:var(--display);font-style:italic;font-weight:500;font-size:19px;letter-spacing:.06em;color:var(--gold-light)}
+
+  /* ---------- 01 executive: three cards ---------- */
+  .cards3{display:flex;gap:24px;margin-top:44px}
+  .cards3 .card{flex:1;padding:36px 32px 40px;min-height:258px}
+  .card.cream{background:var(--cream-2);border-top:2px solid var(--ink)}
+  .card.dark-c{background:var(--dark);color:#fff}
+  .card.goldtop{background:var(--cream-2);border-top:2px solid var(--gold)}
+  .card .no{font-family:var(--display);font-style:italic;font-weight:600;font-size:34px;color:var(--gold)}
+  .card h3{font-family:var(--serif);font-weight:600;font-size:22.5px;letter-spacing:.1em;margin-top:22px}
+  .card .en{font-family:var(--sans);font-weight:400;font-size:11px;letter-spacing:.3em;color:var(--muted);margin-top:10px}
+  .card.dark-c .en{color:var(--gold-light)}
+  .card p{font-family:var(--sans);font-weight:300;font-size:14.5px;line-height:2;letter-spacing:.04em;color:var(--ink-soft);margin-top:18px}
+  .card.dark-c p{color:#C9C4B8}
+
+  /* ---------- two-panel (problem / nomination) ---------- */
+  .duo{display:flex;gap:0;margin-top:42px;align-items:stretch}
+  .duo .lpanel{flex:1.05;background:var(--cream-2);border-top:2px solid var(--ink);padding:34px 38px}
+  .duo .arrow{width:86px;display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--ink-soft)}
+  .duo .rpanel{flex:1;background:var(--dark);color:#fff;padding:34px 38px}
+  .bignum{font-family:var(--serif);font-weight:500;font-size:64px;letter-spacing:.02em;line-height:1.1}
+  .bignum small{font-size:30px}
+  .numcap{font-family:var(--sans);font-weight:300;font-size:12.5px;letter-spacing:.06em;color:var(--muted);margin-top:10px;line-height:1.8}
+  .rpanel .numcap{color:#A39E92}
+  .gold-rule{height:1.5px;background:var(--gold);margin:26px 0}
+  .rpanel-strong{font-family:var(--sans);font-weight:700;font-size:17.5px;line-height:1.95;letter-spacing:.05em}
+
+  /* ---------- candidates (03) ---------- */
+  .stats2{display:flex;gap:80px;margin-top:40px}
+  .hugenum{font-family:var(--serif);font-weight:500;font-size:104px;line-height:1;letter-spacing:.01em}
+  .hugenum small{font-size:44px}
+  .stats-cap{font-family:var(--sans);font-weight:300;font-size:13.5px;letter-spacing:.05em;color:var(--muted);margin-top:20px;line-height:1.9}
+  .below2{display:flex;gap:40px;margin-top:44px;align-items:stretch}
+  .dislist{flex:1.1;border-top:1.5px solid var(--gold);padding-top:20px}
+  .dislist h4{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:.12em}
+  .dislist ul{list-style:none;margin-top:16px}
+  .dislist li{font-family:var(--sans);font-weight:300;font-size:14px;letter-spacing:.05em;color:var(--ink-soft);line-height:2.15;padding-left:22px;position:relative}
+  .dislist li::before{content:"・";position:absolute;left:2px;color:var(--gold)}
+  .insight{flex:1;background:var(--dark);color:#fff;padding:30px 34px}
+  .insight .tag{font-family:var(--sans);font-weight:400;font-size:12px;letter-spacing:.34em;color:var(--gold-light)}
+  .insight p{font-family:var(--sans);font-weight:700;font-size:16.5px;line-height:2;letter-spacing:.04em;margin-top:16px}
+
+  /* ---------- solution (04, dark 3col) ---------- */
+  .sol-brand{font-family:var(--display);font-weight:500;font-size:30px;color:#fff;margin-top:44px}
+  .sol-brand .dot{color:var(--gold)}
+  .sol-brand span.formula{font-family:var(--serif);font-weight:400;font-size:16.5px;letter-spacing:.16em;color:#A39E92;margin-left:16px}
+  .sol3{display:flex;gap:52px;margin-top:58px}
+  .sol3 .col{flex:1;border-top:1.5px solid var(--gold);padding-top:26px}
+  .sol3 .word{font-family:var(--display);font-style:italic;font-weight:600;font-size:40px;color:var(--gold-light)}
+  .sol3 p{font-family:var(--sans);font-weight:300;font-size:14px;line-height:2.05;letter-spacing:.04em;color:#C9C4B8;margin-top:20px}
+
+  /* ---------- steps (06 how-it-works / structure cols) ---------- */
+  .steps4{display:flex;gap:38px;margin-top:52px}
+  .steps4 .st{flex:1;border-top:1.5px solid var(--gold);padding-top:24px}
+  .steps4 .st .no{font-family:var(--display);font-style:italic;font-weight:600;font-size:32px;color:var(--gold)}
+  .steps4 .st h4{font-family:var(--serif);font-weight:600;font-size:20.5px;letter-spacing:.1em;margin-top:18px}
+  .steps4 .st p{font-family:var(--sans);font-weight:300;font-size:13.5px;line-height:2;letter-spacing:.03em;color:var(--ink-soft);margin-top:14px}
+
+  /* list-panel (05 nomination left) */
+  .flowlist{list-style:none}
+  .flowlist li{display:flex;gap:20px;align-items:baseline;padding:15px 0}
+  .flowlist .fno{font-family:var(--display);font-style:italic;font-weight:600;font-size:22px;color:var(--gold);min-width:34px}
+  .flowlist .ftx{font-family:var(--sans);font-weight:400;font-size:15.5px;letter-spacing:.05em;line-height:1.9;color:var(--ink)}
+
+  /* ---------- comparison table (10) ---------- */
+  table.cmp{width:100%;border-collapse:collapse;margin-top:36px;font-family:var(--sans)}
+  table.cmp th,table.cmp td{padding:15px 18px;vertical-align:middle;text-align:left}
+  table.cmp thead th{font-weight:500;font-size:14.5px;letter-spacing:.05em;background:#E7E2D4;border-bottom:1.5px solid var(--ink)}
+  table.cmp thead th small{display:block;font-weight:300;font-size:10.5px;color:var(--muted);letter-spacing:.08em;margin-top:4px}
+  table.cmp thead th.mg{background:var(--dark);color:#fff}
+  table.cmp thead th.mg small{color:var(--gold-light)}
+  table.cmp tbody th{font-weight:500;font-size:13.5px;letter-spacing:.04em;color:var(--ink);border-bottom:1px solid rgba(27,25,22,.14);width:16%}
+  table.cmp tbody td{font-weight:300;font-size:13px;line-height:1.75;letter-spacing:.02em;color:var(--ink-soft);border-bottom:1px solid rgba(27,25,22,.14);width:24%}
+  table.cmp tbody td.mg{background:var(--dark);color:#F0ECE2;font-weight:500;border-bottom:1px solid rgba(246,243,235,.16)}
+  .x{color:var(--red);font-weight:500;margin-right:6px}
+  .tri{color:var(--gold-dim);font-weight:500;margin-right:6px}
+  .ok{color:var(--gold-light);font-weight:600;margin-right:7px}
+
+  /* ---------- economics (11) ---------- */
+  .formula-row{display:flex;gap:0;align-items:stretch;margin-top:38px}
+  .f-item{padding:24px 0}
+  .f-item .lab{font-family:var(--sans);font-weight:300;font-size:13px;letter-spacing:.08em;color:var(--muted)}
+  .f-item .val{font-family:var(--serif);font-weight:500;font-size:58px;letter-spacing:.01em;margin-top:8px}
+  .f-item .val small{font-size:27px}
+  .f-op{display:flex;align-items:center;font-size:26px;color:var(--ink-soft);padding:0 38px}
+  .f-res{background:var(--dark);color:#fff;padding:24px 40px;margin-left:16px}
+  .f-res .lab{color:var(--gold-light);font-family:var(--sans);font-weight:400;font-size:13px;letter-spacing:.08em}
+  .f-res .val{font-family:var(--serif);font-weight:500;font-size:58px;margin-top:8px}
+  .f-res .val small{font-size:27px}
+  .split-lab{font-family:var(--sans);font-weight:300;font-size:13px;letter-spacing:.1em;color:var(--muted);margin-top:36px}
+  .splitbar{display:flex;margin-top:12px;height:64px}
+  .splitbar .yours{flex:8;background:var(--dark);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-weight:700;font-size:19px;letter-spacing:.06em}
+  .splitbar .ours{flex:2;background:var(--gold);color:var(--dark);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-weight:700;font-size:17px}
+  .split-note{text-align:right;font-family:var(--sans);font-weight:300;font-size:11.5px;color:var(--muted);letter-spacing:.06em;margin-top:8px}
+  .eco-foot{display:flex;gap:28px;margin-top:26px;align-items:stretch}
+  .eco-foot .l{flex:1.1;font-family:var(--sans);font-weight:300;font-size:13.5px;line-height:1.95;letter-spacing:.03em;color:var(--ink-soft)}
+  .eco-foot .l b{font-weight:700;color:var(--ink)}
+  .eco-foot .r{flex:1;background:var(--dark);padding:18px 26px;font-family:var(--sans);font-weight:700;font-size:15px;line-height:1.95;letter-spacing:.04em;color:#F0ECE2}
+  .eco-foot .r b{color:var(--gold-light)}
+
+  /* ---------- brand (12) / screening (07) split layout ---------- */
+  .split-main{display:flex;gap:52px;margin-top:40px;align-items:stretch}
+  .split-main .lcol{flex:1.15}
+  .split-main .rcol{flex:.85;background:var(--dark);color:#fff;padding:34px 36px}
+  .ruleitem{border-top:2px solid var(--gold);padding:20px 4px 26px}
+  .ruleitem h4{font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:.1em}
+  .ruleitem p{font-family:var(--sans);font-weight:300;font-size:13.5px;line-height:1.95;letter-spacing:.04em;color:var(--ink-soft);margin-top:12px}
+  .rcol .q{font-family:var(--display);font-style:italic;font-weight:600;font-size:26px;color:var(--gold-light)}
+  .rcol .qtx{font-family:var(--sans);font-weight:700;font-size:15.5px;line-height:1.95;letter-spacing:.04em;margin-top:12px}
+  .rcol .atx{font-family:var(--sans);font-weight:300;font-size:13.5px;line-height:2;letter-spacing:.04em;color:#C9C4B8;margin-top:12px}
+  .rcol .note{font-family:var(--sans);font-weight:300;font-size:11px;letter-spacing:.06em;color:#8A857B;margin-top:20px}
+  .rcol ul.checks{list-style:none;margin-top:18px}
+  .rcol ul.checks li{font-family:var(--sans);font-weight:400;font-size:14px;line-height:1.9;letter-spacing:.04em;color:#DDD8CC;padding:10px 0 10px 26px;position:relative;border-bottom:1px solid rgba(246,243,235,.12)}
+  .rcol ul.checks li:last-child{border-bottom:none}
+  .rcol ul.checks li::before{content:"◎";position:absolute;left:0;color:var(--gold-light)}
+
+  /* ---------- FAQ (13) ---------- */
+  .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px 56px;margin-top:40px}
+  .faq{border-top:1.5px solid var(--ink);padding-top:18px}
+  .faq .q{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:.06em}
+  .faq .q i{font-family:var(--display);font-style:italic;font-weight:600;color:var(--gold);margin-right:10px;font-size:21px}
+  .faq .a{font-family:var(--sans);font-weight:300;font-size:13px;line-height:1.95;letter-spacing:.03em;color:var(--ink-soft);margin-top:12px}
+  .faq .a b{font-weight:700;color:var(--ink)}
+
+  /* ---------- pricing (14) ---------- */
+  .price-wrap{display:flex;gap:30px;margin-top:42px;align-items:stretch}
+  .price-main{flex:1;background:var(--dark);color:#fff;padding:40px 44px}
+  .price-main .tag{font-family:var(--sans);font-weight:400;font-size:12.5px;letter-spacing:.3em;color:var(--gold-light)}
+  .price-main .val{font-family:var(--serif);font-weight:500;font-size:96px;line-height:1;margin-top:24px}
+  .price-main .val small{font-size:42px;color:var(--gold-light)}
+  .price-main .cap{font-family:var(--sans);font-weight:300;font-size:14px;letter-spacing:.06em;color:#A39E92;margin-top:16px}
+  .price-main .share{border-top:1px solid rgba(246,243,235,.2);margin-top:28px;padding-top:20px;font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:.1em}
+  .price-main .share b{color:var(--gold-light)}
+  .price-side{flex:1.15;display:flex;flex-direction:column;gap:22px}
+  .price-box{background:var(--cream-2);border-top:2px solid var(--ink);padding:26px 32px;flex:1}
+  .price-box.gold{border-top-color:var(--gold)}
+  .price-box .yr{font-family:var(--sans);font-weight:400;font-size:12px;letter-spacing:.3em;color:var(--muted)}
+  .price-box .amt{font-family:var(--serif);font-weight:500;font-size:40px;margin-top:12px}
+  .price-box .amt span{font-family:var(--sans);font-weight:400;font-size:15px;letter-spacing:.08em;margin-left:12px;color:var(--ink-soft)}
+  .price-box p{font-family:var(--sans);font-weight:300;font-size:12.5px;line-height:1.85;letter-spacing:.03em;color:var(--ink-soft);margin-top:12px}
+
+  /* ---------- launch partner (15) ---------- */
+  .lp-wrap{display:flex;gap:58px;margin-top:42px;align-items:stretch}
+  .lp-steps{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:6px 0}
+  .lp-step{position:relative;padding-left:34px;padding-bottom:34px}
+  .lp-step::before{content:"";position:absolute;left:5px;top:10px;width:9px;height:9px;border-radius:50%;background:var(--gold)}
+  .lp-step::after{content:"";position:absolute;left:9px;top:26px;bottom:2px;width:1px;background:rgba(176,138,71,.45)}
+  .lp-step:last-child::after{display:none}
+  .lp-step h4{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.08em}
+  .lp-step p{font-family:var(--sans);font-weight:300;font-size:13px;line-height:1.9;letter-spacing:.04em;color:var(--ink-soft);margin-top:8px}
+  .lp-right{flex:1.05;background:var(--dark);color:#fff;padding:36px 40px}
+  .lp-right h3{font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:.12em;color:#fff}
+  .lp-right .mer{display:flex;gap:20px;margin-top:26px;align-items:baseline}
+  .lp-right .mer .no{font-family:var(--display);font-style:italic;font-weight:600;font-size:24px;color:var(--gold-light);min-width:36px}
+  .lp-right .mer h5{font-family:var(--sans);font-weight:700;font-size:15.5px;letter-spacing:.06em}
+  .lp-right .mer p{font-family:var(--sans);font-weight:300;font-size:12.5px;line-height:1.85;letter-spacing:.03em;color:#B8B3A6;margin-top:6px}
+
+  /* compact variant (dense split slides) */
+  .slide.compact .headline{margin-top:24px;font-size:44px}
+  .slide.compact .subline{margin-top:12px}
+  .slide.compact .split-main{margin-top:18px}
+  .slide.compact .ruleitem{padding:14px 4px 16px}
+  .slide.compact .ruleitem h4{font-size:19.5px}
+  .slide.compact .ruleitem p{font-size:12.5px;line-height:1.8;margin-top:8px}
+  .slide.compact .rcol{padding:26px 30px}
+  .slide.compact .rcol .atx{font-size:12.5px;line-height:1.85;margin-top:10px}
+
+  /* contact */
+  .ct-copy{font-family:var(--serif);font-weight:600;font-size:52px;letter-spacing:.1em;line-height:1.6;color:#fff}
+  .ct-copy .g{color:var(--gold-light)}
+  .ct-sub{font-family:var(--serif);font-weight:400;font-size:17px;letter-spacing:.1em;color:#A39E92;margin-top:34px;line-height:2}
+  .ct-assure{
+    display:inline-block;margin-top:26px;padding:13px 26px;
+    border:1px solid var(--line-dark);
+    font-family:var(--sans);font-weight:500;font-size:14.5px;letter-spacing:.1em;color:var(--gold-light);
+  }
+  .ct-foot{position:absolute;left:78px;right:78px;bottom:96px;display:flex;justify-content:space-between;align-items:flex-end;border-top:1.5px solid var(--line-dark);padding-top:30px}
+  .ct-brand{font-family:var(--display);font-weight:500;font-size:40px;color:#fff}
+  .ct-brand .dot{color:var(--gold)}
+  .ct-brand-sub{font-family:var(--sans);font-weight:300;font-size:11px;letter-spacing:.4em;color:#7B766B;margin-top:10px}
+  .ct-info{text-align:right;font-family:var(--sans);font-weight:300;font-size:13.5px;line-height:2.1;letter-spacing:.06em;color:#C9C4B8}
+  .ct-info b{font-weight:500;color:#fff}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SLIDE 1 · COVER ═══════════ -->
+<section class="slide dark">
+  <div class="frame-line" style="top:56px"></div>
+  <div class="frame-line" style="bottom:88px"></div>
+  <div class="pad" style="padding-top:150px">
+    <div class="cover-label">人材紹介エージェント様向け ご案内資料</div>
+    <div class="cover-title">MarkGate<span class="dot">.</span></div>
+    <div class="cover-copy">絞るから、届く。スカウトと指名のハイクラス転職。</div>
+    <div class="cover-sub">「量の競争」で飽和した転職スカウト市場を、送り手を絞る「質の競争」へ。<br>実績トップクラスのキャリアアドバイザーだけが参加できる、品質保証型マッチングプラットフォーム。</div>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-conf">CONFIDENTIAL&nbsp;&nbsp;·&nbsp;&nbsp;2026</div>
+    <div class="cover-motto">— Quality over Quantity —</div>
+  </div>
+</section>
+
+<!-- ═══════════ SLIDE 2 · 01 EXECUTIVE SUMMARY ═══════════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="eyebrow">01 / EXECUTIVE SUMMARY</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline">絞るから、<span class="g">届く</span>。</div>
+    <div class="subline">トップクラスのCAだけが参加できる、スカウトと指名の双方向マッチングです。</div>
+    <div class="cards3">
+      <div class="card cream">
+        <div class="no">01</div>
+        <h3>届くスカウト</h3>
+        <div class="en">SCOUTS THAT LAND</div>
+        <p>送り手をトップクラスのCAに限定。総量が絞られ、1通が読まれる。</p>
+      </div>
+      <div class="card dark-c">
+        <div class="no">02</div>
+        <h3>指名も届く</h3>
+        <div class="en">NAMED BY CANDIDATES</div>
+        <p>求職者がプロフィールを見て指名。受け身でも温度の高い面談が届く。</p>
+      </div>
+      <div class="card goldtop">
+        <div class="no">03</div>
+        <h3>成約まで費用ゼロ</h3>
+        <div class="en">SUCCESS FEE ONLY</div>
+        <p>初年度利用料0円。費用は成約時に、紹介手数料の20%だけ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SLIDE 3 · 02 PROBLEM ═══════════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="eyebrow">02 / PROBLEM</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline">スカウトは、もう<span class="r">読まれていない</span>。</div>
+    <div class="subline">同じデータベースに送り手が殺到し、優秀層の受信箱は飽和しています。</div>
+    <div class="duo">
+      <div class="lpanel">
+        <div class="panel-label">SENDERS &nbsp;—&nbsp; 送り手</div>
+        <div style="margin-top:22px">
+          <div class="bignum">41,800<small>社</small></div>
+          <div class="numcap">ビズリーチ 累計導入企業数(2026年1月末・公表値)</div>
+        </div>
+        <div class="gold-rule"></div>
+        <div>
+          <div class="bignum" style="font-size:52px">9,700<small>名+</small></div>
+          <div class="numcap">同・登録ヘッドハンター数</div>
+        </div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="rpanel">
+        <div class="panel-label panel-label-dark">RECEIVERS &nbsp;—&nbsp; 受け手(優秀層)</div>
+        <div style="margin-top:22px">
+          <div class="bignum">2−10<small>%</small></div>
+          <div class="numcap">スカウト返信率の業界レンジ(平均は約5%)</div>
+        </div>
+        <div class="gold-rule"></div>
+        <div class="rpanel-strong">面談5件の確保に、<br>約100通の送信が必要な計算。</div>
+      </div>
+    </div>
+  </div>
+  <div class="src">出典: ビズリーチ公式サイト公表値(2026年1月末時点) / VOLLECT・buddy-data・miidas スカウト返信率調査(2025〜2026年)</div>
+</section>
+
+<!-- ═══════════ SLIDE 4 · 03 CANDIDATES ═══════════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="eyebrow">03 / CANDIDATES</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline">求職者は、<span class="g">“担当者”</span>で選びたい。</div>
+    <div class="stats2">
+      <div style="flex:1">
+        <div class="hugenum">36<small>%</small></div>
+        <div style="width:100%;height:1.5px;background:var(--gold);margin-top:24px"></div>
+        <div class="stats-cap">転職エージェントを「信用できない」と回答(利用経験者調査)</div>
+      </div>
+      <div style="flex:1">
+        <div class="hugenum">4.2<small>社</small></div>
+        <div style="width:100%;height:1.5px;background:var(--gold);margin-top:24px"></div>
+        <div class="stats-cap">転職決定者が登録するエージェント数(利用者全体の平均は約2.1社)</div>
+      </div>
+    </div>
+    <div class="below2">
+      <div class="dislist">
+        <h4>不満・不信の上位</h4>
+        <ul>
+          <li>担当者の企業・業界知識の不足</li>
+          <li>転職を急かす強引な提案</li>
+          <li>希望と合わない求人ばかりの紹介</li>
+        </ul>
+      </div>
+      <div class="insight">
+        <div class="tag">— INSIGHT —</div>
+        <p>複数登録は「担当者ガチャ」へのヘッジ行動。実績あるCAを自分で選べる場には、求職者側の明確な需要がある。</p>
+      </div>
+    </div>
+  </div>
+  <div class="src">出典: マイナビスカウティング調査(2024年, n=101) / hape 転職エージェント利用者調査(2025年, n=320) / リクナビNEXT調べ</div>
+</section>
+
+<!-- ═══════════ SLIDE 5 · 04 SOLUTION ═══════════ -->
+<section class="slide dark">
+  <div class="frame-line" style="top:52px"></div>
+  <div class="frame-line" style="bottom:52px"></div>
+  <div class="pad" style="padding-top:96px">
+    <div class="eyebrow">04 / SOLUTION</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline" style="font-size:50px">送り手を絞ることで、<br>“<span class="g">届く</span>”を取り戻す。</div>
+    <div class="sol-brand">MarkGate<span class="dot">.</span><span class="formula">— 審査制 × 届くスカウト × 指名</span></div>
+    <div class="sol3">
+      <div class="col">
+        <div class="word">Quality</div>
+        <p>実績・専門性・支援品質で審査。トップクラスのCAだけが参加できる。</p>
+      </div>
+      <div class="col">
+        <div class="word">Reach</div>
+        <p>送信総量が絞られるから、1通が埋もれない。返信率を構造で高める設計。</p>
+      </div>
+      <div class="col">
+        <div class="word">Choice</div>
+        <p>求職者からの指名も届く。攻めと受け、双方向のマッチング。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SLIDE 6 · 05 NOMINATION ═══════════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="eyebrow">05 / NOMINATION</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline">求職者が、CAを<span class="g">“指名”</span>する。</div>
+    <div class="subline">“会社宛の問い合わせ”ではなく、“あなた宛の相談”が届きます。</div>
+    <div class="duo" style="margin-top:34px">
+      <div class="lpanel" style="padding:28px 36px">
+        <div class="panel-label">CANDIDATE &nbsp;—&nbsp; 求職者の体験</div>
+        <ul class="flowlist" style="margin-top:14px">
+          <li><span class="fno">01</span><span class="ftx">審査を通過したCAだけの一覧を見る</span></li>
+          <li><span class="fno">02</span><span class="ftx">実績・専門領域・支援スタイルで比較する</span></li>
+          <li><span class="fno">03</span><span class="ftx">「この人に相談したい」— 指名する</span></li>
+        </ul>
+      </div>
+      <div class="arrow">→</div>
+      <div class="rpanel" style="padding:28px 36px">
+        <div class="panel-label panel-label-dark">YOUR CA &nbsp;—&nbsp; 貴社CAの受信箱</div>
+        <div class="rpanel-strong" style="margin-top:20px;font-size:19px">「あなたに相談したい」という<br>指名リクエストが、直接届く。</div>
+        <div class="gold-rule" style="margin:22px 0"></div>
+        <p style="font-family:var(--sans);font-weight:300;font-size:13px;line-height:1.95;letter-spacing:.04em;color:#B8B3A6">自らCAを選んだ求職者だから、面談への温度が最初から高い。辞退や音信不通が起きにくい構造です。</p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar" style="bottom:44px">プロフィールは貴社の資産 — <b>エースの実績が、24時間はたらく集客装置になる。</b></div>
+</section>
+
+<!-- ═══════════ SLIDE 7 · 06 HOW IT WORKS ═══════════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="eyebrow">06 / HOW IT WORKS</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline">仕組み — 貴社の業務は、<span class="g">これまで通り</span>。</div>
+    <div class="steps4">
+      <div class="st">
+        <div class="no">01</div>
+        <h4>審査・登録</h4>
+        <p>貴社アドバイザーが実績・専門性の審査にエントリー。</p>
+      </div>
+      <div class="st">
+        <div class="no">02</div>
+        <h4>プロフィール公開</h4>
+        <p>得意領域・実績・人柄をプラットフォームに掲載。</p>
+      </div>
+      <div class="st">
+        <div class="no">03</div>
+        <h4>スカウト & 指名</h4>
+        <p>CAからのスカウトも、求職者からの指名も。双方向でつながる。</p>
+      </div>
+      <div class="st">
+        <div class="no">04</div>
+        <h4>面談・成約</h4>
+        <p>以降は通常の紹介業務。成約時に初めて費用が発生します。</p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar">送り手が絞られているから、1通のスカウトが競争に埋もれない。<b>母集団形成はプラットフォームの仕事です。</b></div>
+</section>
+
+<!-- ═══════════ SLIDE 8 · 07 SCREENING (NEW) ═══════════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="eyebrow">07 / SCREENING</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline">審査は、狭き門ほど、<span class="g">価値</span>になる。</div>
+    <div class="subline">「誰でも登録できる場」にしないこと自体が、貴社のスカウトが届く理由です。</div>
+    <div class="split-main" style="margin-top:30px">
+      <div class="lcol">
+        <div class="ruleitem">
+          <h4>実績 <span style="font-family:var(--sans);font-weight:300;font-size:12px;letter-spacing:.2em;color:var(--muted);margin-left:12px">TRACK RECORD</span></h4>
+          <p>支援領域での決定実績・経験を、事実ベースで確認します。</p>
+        </div>
+        <div class="ruleitem">
+          <h4>専門性 <span style="font-family:var(--sans);font-weight:300;font-size:12px;letter-spacing:.2em;color:var(--muted);margin-left:12px">EXPERTISE</span></h4>
+          <p>業界・職種への理解の深さと、得意領域の明確さを審査します。</p>
+        </div>
+        <div class="ruleitem">
+          <h4>支援品質 <span style="font-family:var(--sans);font-weight:300;font-size:12px;letter-spacing:.2em;color:var(--muted);margin-left:12px">QUALITY</span></h4>
+          <p>求職者本位の支援姿勢。参画後も求職者評価で継続的に確認します。</p>
+        </div>
+      </div>
+      <div class="rcol">
+        <div class="q">Entry</div>
+        <div class="qtx">安心してエントリーいただくために</div>
+        <ul class="checks">
+          <li>審査の結果は、外部に一切公開されません</li>
+          <li>不通過の場合も、実績を積んでの再エントリーが可能です</li>
+          <li>審査通過後、掲載するかどうかは貴社が決められます</li>
+        </ul>
+        <div class="note">※審査基準の詳細は、説明会でご確認いただけます。</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar" style="bottom:40px">審査があるから — <b>「掲載されている」こと自体が、貴社アドバイザーの証明になる。</b></div>
+</section>
+
+<!-- ═══════════ SLIDE 9 · 08 PRODUCTIVITY (REVISED) ═══════════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="eyebrow">08 / PRODUCTIVITY</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline">“送る仕事”を、減らす<span class="g">構造</span>。</div>
+    <div class="subline">数値ではなく、工数が減る「仕組み」でご説明します。理由は3つあります。</div>
+    <div class="steps4" style="margin-top:46px;gap:48px">
+      <div class="st">
+        <div class="no">01</div>
+        <h4>大量送信が、前提でなくなる</h4>
+        <p>送り手が絞られた場では、埋もれ対策の“数打ち”が要らない。読まれる前提で、1通に時間を使えます。</p>
+      </div>
+      <div class="st">
+        <div class="no">02</div>
+        <h4>指名は、送信ゼロで届く</h4>
+        <p>プロフィールを見た求職者から、面談リクエストが届く。待っている間の母集団形成は、当社の仕事です。</p>
+      </div>
+      <div class="st">
+        <div class="no">03</div>
+        <h4>追いかける時間が、減る</h4>
+        <p>自らCAを選んだ求職者は、面談への温度が高い。音信不通や日程再調整に費やす工数が構造的に小さい。</p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar">送信に使っていた時間を、面談と支援へ。<b>削減幅は、説明会で貴社の運用に合わせて一緒に試算します。</b></div>
+</section>
+
+<!-- ═══════════ SLIDE 10 · 09 AUDIENCE (NEW) ═══════════ -->
+<section class="slide compact">
+  <div class="pad" style="padding-top:56px">
+    <div class="eyebrow">09 / AUDIENCE</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline">母集団は、「CAを<span class="g">選びたい人</span>」から。</div>
+    <div class="subline">貴社に集客をお願いすることはありません。母集団形成は、当社の責任です。</div>
+    <div class="split-main">
+      <div class="lcol">
+        <div class="ruleitem">
+          <h4>不満の、受け皿になる</h4>
+          <p>スカウト過多と「担当者ガチャ」への不満はすでに定量化されています(→ 03)。「担当者を自分で選べる」体験そのものが、移る動機になります。</p>
+        </div>
+        <div class="ruleitem">
+          <h4>プロフィールが、入り口になる</h4>
+          <p>審査通過CAの公開プロフィールが、検索と比較の受け皿に。掲載が増えるほど、母集団の入り口も増える構造です。</p>
+        </div>
+        <div class="ruleitem">
+          <h4>広く浅くは、やらない</h4>
+          <p>初期はハイクラス×主要領域に絞り、LP・SNS・PRを集中投下。審査制という切り口自体が、発信の素材になります。</p>
+        </div>
+      </div>
+      <div class="rcol">
+        <div class="q">Balance</div>
+        <div class="qtx">需給バランスの管理</div>
+        <div class="atx">初期は参加CA数を意図的に絞り、求職者数とのバランスを見ながら段階的に拡大します。「登録したのに、指名が来ない」を避けるための設計です。</div>
+        <div class="gold-rule" style="margin:18px 0 14px"></div>
+        <div class="atx" style="color:#DDD8CC;font-weight:400">だから完全成果報酬 — 集客投資のリスクは、貴社ではなく当社が負います。</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar" style="bottom:36px">求職者が集まらなければ、当社の売上もゼロ — <b>母集団形成に本気である理由は、料金体系そのものです。</b></div>
+</section>
+
+<!-- ═══════════ SLIDE 11 · 10 DIFFERENTIATION ═══════════ -->
+<section class="slide">
+  <div class="pad" style="padding-top:56px">
+    <div class="eyebrow">10 / DIFFERENTIATION</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline" style="font-size:42px;margin-top:26px">既存チャネルとの、<span class="g">違い</span>。</div>
+    <div class="subline" style="margin-top:14px">置き換えではなく、リスクゼロで併用できる「第3のチャネル」です。</div>
+    <table class="cmp">
+      <thead>
+        <tr>
+          <th style="width:16%">比較軸</th>
+          <th>スカウト型DB<small>ビズリーチ等</small></th>
+          <th>送客型サービス<small>面談課金・リスト課金</small></th>
+          <th class="mg">MarkGate<small>審査制×双方向マッチング</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>スカウトの競争環境</th>
+          <td><span class="x">✕</span>誰でも登録可。送信過多で受信箱が飽和</td>
+          <td>— スカウト機能なし</td>
+          <td class="mg"><span class="ok">◎</span>審査制で送り手を限定</td>
+        </tr>
+        <tr>
+          <th>求職者からの指名</th>
+          <td><span class="x">✕</span>不可</td>
+          <td><span class="x">✕</span>不可</td>
+          <td class="mg"><span class="ok">◎</span>指名が届く</td>
+        </tr>
+        <tr>
+          <th>成約前の費用</th>
+          <td><span class="x">✕</span>基本料金60万円/6か月〜 +通数課金</td>
+          <td><span class="x">✕</span>面談1件 1.4万〜3.5万円</td>
+          <td class="mg"><span class="ok">◎</span>0円(初年度は利用料も無料)</td>
+        </tr>
+        <tr>
+          <th>成功報酬</th>
+          <td><span class="x">✕</span>手数料の30%(初回契約の例)</td>
+          <td><span class="tri">△</span>面談購入費が別途先行</td>
+          <td class="mg"><span class="ok">◎</span>手数料の20%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="src">※各サービスの内容・料金は公開情報に基づく一般的な整理であり、個別の契約条件により異なります。</div>
+</section>
+
+<!-- ═══════════ SLIDE 12 · 11 ECONOMICS ═══════════ -->
+<section class="slide">
+  <div class="pad" style="padding-top:56px">
+    <div class="eyebrow">11 / ECONOMICS</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline" style="font-size:42px;margin-top:26px">同じ1成約で、<span class="g">手残り</span>が変わる。</div>
+    <div class="subline" style="margin-top:12px">理論年収600万円・紹介手数料率35%の場合の試算です。</div>
+    <div class="formula-row">
+      <div class="f-item">
+        <div class="lab">理論年収(例)</div>
+        <div class="val">600<small>万円</small></div>
+      </div>
+      <div class="f-op">×</div>
+      <div class="f-item">
+        <div class="lab">紹介手数料率(例)</div>
+        <div class="val">35<small>%</small></div>
+      </div>
+      <div class="f-op">=</div>
+      <div class="f-res">
+        <div class="lab">成約時に発生する紹介手数料</div>
+        <div class="val">210<small>万円</small></div>
+      </div>
+    </div>
+    <div class="split-lab">手数料の分配</div>
+    <div class="splitbar">
+      <div class="yours">貴社の受取 168万円 (80%)</div>
+      <div class="ours">42万円</div>
+    </div>
+    <div class="split-note">プラットフォーム利用分(20%)</div>
+    <div class="eco-foot">
+      <div class="l"><b>スカウト型DB経由の一例:</b> 成功報酬30%なら63万円+固定費・通数課金。手残りが20万円以上変わる。</div>
+      <div class="r"><b>MarkGate:</b> 成約まで0円。スカウト工数の削減まで含めて、利益率が変わる。</div>
+    </div>
+  </div>
+  <div class="src">※試算は例示です。30%はスカウト型媒体の紹介会社向け初回契約の公開情報の一例。実際の条件は各社の契約によります。</div>
+</section>
+
+<!-- ═══════════ SLIDE 13 · 12 FOR YOUR BRAND ═══════════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="eyebrow">12 / FOR YOUR BRAND</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline">「審査制」は、貴社の<span class="g">ブランド</span>になる。</div>
+    <div class="split-main" style="margin-top:34px">
+      <div class="lcol">
+        <div class="ruleitem">
+          <h4>合格実績が、会社の信用に</h4>
+          <p>「審査通過アドバイザー◯名在籍」は、求職者にも求人企業にも通じる証明になる。</p>
+        </div>
+        <div class="ruleitem">
+          <h4>契約は、法人単位</h4>
+          <p>ご契約・請求・成約売上はすべてエージェント法人に紐づく設計。個人への報酬の直接支払いはありません。</p>
+        </div>
+        <div class="ruleitem">
+          <h4>育成の、ものさしに</h4>
+          <p>審査基準と求職者からの評価が、アドバイザー教育のKPIとして機能する。</p>
+        </div>
+      </div>
+      <div class="rcol">
+        <div class="q">Q.</div>
+        <div class="qtx">エース社員が個人として有名になると、独立や引き抜きが心配…</div>
+        <div class="q" style="margin-top:26px">A.</div>
+        <div class="atx">指名は「貴社所属の◯◯さん」に届きます。プロフィール・実績・評価は会社の資産として蓄積され、採用広報にも活用できます。</div>
+        <div class="note">※公開範囲は貴社ポリシーに合わせ設定可能。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SLIDE 14 · 13 FAQ ═══════════ -->
+<section class="slide">
+  <div class="pad" style="padding-top:56px">
+    <div class="eyebrow">13 / FAQ</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline" style="font-size:42px;margin-top:26px">よくいただく、<span class="g">4つ</span>のご質問。</div>
+    <div class="faq-grid">
+      <div class="faq">
+        <div class="q"><i>Q.</i>求職者は、集まるのか?</div>
+        <div class="a">ローンチ前のため、実績数値はまだありません。だからこそ、料金は<b>完全成果報酬</b> — 成約が生まれるまで費用は一切発生せず、集客投資のリスクは当社が負う設計です。(集め方は 09 / AUDIENCE)</div>
+      </div>
+      <div class="faq">
+        <div class="q"><i>Q.</i>成功報酬20%は、高くないか?</div>
+        <div class="a">スカウト型媒体は成功報酬30%の例に加え、<b>成約ゼロでも固定費・通数課金が発生</b>します。かかる総費用と「手残り」での比較をおすすめします。(→ 11 / ECONOMICS)</div>
+      </div>
+      <div class="faq">
+        <div class="q"><i>Q.</i>既存チャネルと併用できるか?</div>
+        <div class="a"><b>併用が前提の設計です。</b>専任契約や独占をお願いすることはありません。今お使いの媒体を止めずに、費用ゼロの「第3のチャネル」として追加できます。</div>
+      </div>
+      <div class="faq">
+        <div class="q"><i>Q.</i>始めるのに、手間はかからないか?</div>
+        <div class="a">エントリーは法人単位の簡単な書類から。<b>プロフィール制作は当社が伴走</b>するため、貴社アドバイザーの追加負担は最小限です。運用開始後の業務は、これまでの紹介業務と変わりません。</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar" style="bottom:44px">4つに共通する設計 — <b>貴社がリスクを取らずに、試せること。</b>成約まで、1円もかかりません。</div>
+</section>
+
+<!-- ═══════════ SLIDE 15 · 14 PRICING ═══════════ -->
+<section class="slide">
+  <div class="pad" style="padding-top:56px">
+    <div class="eyebrow">14 / PRICING</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline" style="font-size:42px;margin-top:26px">成約まで、<span class="g">費用はかかりません</span>。</div>
+    <div class="price-wrap">
+      <div class="price-main">
+        <div class="tag">SUCCESS FEE&nbsp;&nbsp;·&nbsp;&nbsp;成約時のみ</div>
+        <div class="val">20<small>%</small></div>
+        <div class="cap">成約時の紹介手数料に対して</div>
+        <div class="share">貴社の取り分 <b>80%</b></div>
+      </div>
+      <div class="price-side">
+        <div class="price-box">
+          <div class="yr">YEAR 1</div>
+          <div class="amt">¥0<span>初年度 利用料</span></div>
+          <p>登録・掲載・スカウト・指名の受信・面談まで、すべて無料。</p>
+        </div>
+        <div class="price-box gold">
+          <div class="yr">YEAR 2+</div>
+          <div class="amt">¥50,000<span>月額(2年目以降)</span></div>
+          <p>平均決定単価 約103万円/件の一部で回収できる水準です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="src">スカウト通数課金・広告費・送客費・掲載料は一切なし。&nbsp;&nbsp;※平均決定単価の出典: 厚生労働省「令和6年度職業紹介事業報告書の集計結果」</div>
+</section>
+
+<!-- ═══════════ SLIDE 16 · 15 LAUNCH PARTNER ═══════════ -->
+<section class="slide">
+  <div class="pad" style="padding-top:56px">
+    <div class="eyebrow">15 / LAUNCH PARTNER</div>
+    <div class="eyebrow-rule"></div>
+    <div class="headline" style="font-size:42px;margin-top:26px">ローンチパートナーを、<span class="g">募集します</span>。</div>
+    <div class="lp-wrap">
+      <div class="lp-steps">
+        <div class="lp-step">
+          <h4>先行登録の受付(現在)</h4>
+          <p>法人単位でエントリー。アドバイザー1名からでも可能。</p>
+        </div>
+        <div class="lp-step">
+          <h4>審査・掲載準備</h4>
+          <p>アドバイザー審査と「選ばれるプロフィール」制作を支援。</p>
+        </div>
+        <div class="lp-step">
+          <h4>サービスローンチ(20XX年◯月予定)</h4>
+          <p>先行登録エージェント様から優先的に掲載を開始します。</p>
+        </div>
+      </div>
+      <div class="lp-right">
+        <h3>先行登録 — 3つのメリット</h3>
+        <div class="mer">
+          <div class="no">01</div>
+          <div>
+            <h5>初期ほど、スカウトが効く</h5>
+            <p>参加CAを限定してローンチ。送信競争が最も少ない時期に始められる。</p>
+          </div>
+        </div>
+        <div class="mer">
+          <div class="no">02</div>
+          <div>
+            <h5>露出の優先</h5>
+            <p>検索結果・特集企画で、先行登録アドバイザーを優先表示。</p>
+          </div>
+        </div>
+        <div class="mer">
+          <div class="no">03</div>
+          <div>
+            <h5>サービス設計に参画</h5>
+            <p>審査基準・機能へのご要望をローンチ前に直接反映。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="src">※求職者との需給バランスを保つため、同一領域の先行登録枠には上限を設けています。</div>
+</section>
+
+<!-- ═══════════ SLIDE 17 · 16 CONTACT ═══════════ -->
+<section class="slide dark">
+  <div class="frame-line" style="top:56px"></div>
+  <div class="pad" style="padding-top:120px">
+    <div class="eyebrow">16 / CONTACT</div>
+    <div class="eyebrow-rule"></div>
+    <div class="ct-copy" style="margin-top:40px">絞られた場所でだけ、<br><span class="g">スカウトも指名も</span>、届く。</div>
+    <div class="ct-sub">まずは30分のオンライン説明会で、貴社に合わせた活用シミュレーションをご提案します。</div>
+    <div class="ct-assure">先行登録・説明会は無料 — 掲載の義務や、専任の縛りはありません。</div>
+  </div>
+  <div class="ct-foot">
+    <div>
+      <div class="ct-brand">MarkGate<span class="dot">.</span></div>
+      <div class="ct-brand-sub">QUALITY OVER QUANTITY&nbsp;&nbsp;·&nbsp;&nbsp;2026</div>
+    </div>
+    <div class="ct-info">
+      <b>株式会社◯◯◯◯&nbsp;&nbsp;担当: ◯◯</b><br>
+      MAIL&nbsp;&nbsp;contact@example.co.jp<br>
+      TEL&nbsp;&nbsp;03-0000-0000
+    </div>
+  </div>
+  <div class="src" style="bottom:30px;display:flex;justify-content:space-between"><span>※社名・連絡先はプレースホルダーです。差し替えてご利用ください。</span><span style="font-family:var(--display);font-style:italic;font-size:15px;color:var(--gold-light)">— Thank you. —</span></div>
+</section>
+
+</body>
+</html>
