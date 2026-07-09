@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>アドバイザーを探す｜MarkGate</title>
+<meta name="description" content="業界・職種・対応年収・地域・支援スタンスから、あなたに最適なハイクラス転職のキャリアアドバイザーを探せます。" />
+<meta name="theme-color" content="#0A0E1A" />
+<link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/style.css?v=2" />
+<link rel="stylesheet" href="/platform/assets/css/platform.css" />
+</head>
+<body class="mg-app" data-mg-page="advisors">
+<header data-mg-header></header>
+<main>
+  <section class="mg-pagehead">
+    <div class="mg-container">
+      <p class="mg-pagehead__eyebrow">SEARCH ADVISORS</p>
+      <h1 class="mg-pagehead__title">アドバイザーを探す</h1>
+      <p class="mg-pagehead__lead">業界・職種・対応年収・地域・支援スタンスで絞り込み、あなたのキャリアに伴走する専門アドバイザーを見つけましょう。気になるアドバイザーはそのまま指名できます。</p>
+    </div>
+  </section>
+
+  <div class="mg-container mg-page">
+    <button class="mg-filter-toggle" id="mgFilterToggle" type="button" aria-controls="mgFilters" aria-expanded="false">絞り込み条件</button>
+
+    <div class="mg-layout">
+      <aside class="mg-filters" id="mgFilters" aria-label="絞り込み条件">
+        <div class="mg-filters__head">
+          <h2>絞り込み</h2>
+          <button class="mg-filters__clear" id="mgClear" type="button">クリア</button>
+        </div>
+        <div id="mgFilterGroups"></div>
+        <div class="mg-filters__done">
+          <button class="btn btn-gold" id="mgFiltersDone" type="button">結果を見る</button>
+        </div>
+      </aside>
+
+      <div class="mg-main">
+        <div class="mg-toolbar">
+          <div class="mg-search">
+            <span class="mg-search__icon" aria-hidden="true">🔍</span>
+            <input id="mgSearch" type="search" placeholder="名前・専門・所属で検索" aria-label="キーワード検索" />
+          </div>
+          <div class="mg-toolbar__right">
+            <span class="mg-count" id="mgCount"></span>
+            <div class="mg-sort">
+              <select id="mgSort" aria-label="並び替え">
+                <option value="recommended">おすすめ順</option>
+                <option value="rating">評価が高い順</option>
+                <option value="placements">支援実績が多い順</option>
+                <option value="years">経験年数が長い順</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="mg-activechips" id="mgChips"></div>
+        <div class="mg-results" id="mgResults"></div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer data-mg-footer></footer>
+<script src="/platform/assets/js/data.js"></script>
+<script src="/platform/assets/js/store.js"></script>
+<script src="/platform/assets/js/common.js"></script>
+<script src="/platform/assets/js/advisors.js"></script>
+</body>
+</html>

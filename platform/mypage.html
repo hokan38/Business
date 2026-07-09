@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>マイページ｜MarkGate</title>
+<meta name="description" content="職務経歴・学歴・希望条件を登録し、アドバイザーへの指名に活用できるマイページ。入力内容はお使いのブラウザに保存されます。" />
+<meta name="theme-color" content="#0A0E1A" />
+<link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/style.css?v=2" />
+<link rel="stylesheet" href="/platform/assets/css/platform.css" />
+</head>
+<body class="mg-app" data-mg-page="mypage">
+<header data-mg-header></header>
+<main>
+  <section class="mg-pagehead">
+    <div class="mg-container">
+      <p class="mg-pagehead__eyebrow">MY PAGE</p>
+      <h1 class="mg-pagehead__title">マイページ</h1>
+      <p class="mg-pagehead__lead">職務経歴・学歴・希望条件を登録して、アドバイザーへの指名に活用しましょう。入力内容はお使いのブラウザに保存されます。</p>
+    </div>
+  </section>
+
+  <div class="mg-container mg-page">
+    <div class="mg-mypage">
+      <div class="mg-mypage__side">
+        <div class="mg-progress-card">
+          <h2>プロフィール入力状況</h2>
+          <div class="mg-progress"><div class="mg-progress__bar" id="mgProgressBar" style="width:0%"></div></div>
+          <span class="mg-progress__val" id="mgProgressVal">0%</span>
+        </div>
+        <nav class="mg-sidenav" aria-label="セクション">
+          <a href="#basics">基本情報</a>
+          <a href="#summary">職務要約</a>
+          <a href="#work">職務経歴</a>
+          <a href="#education">学歴</a>
+          <a href="#skills">スキル・資格</a>
+          <a href="#desired">希望条件</a>
+          <a href="#nominations">指名履歴</a>
+        </nav>
+      </div>
+
+      <div class="mg-mypage__main">
+        <form id="mgForm" novalidate>
+          <section class="mg-panel" id="basics">
+            <div class="mg-panel__head">
+              <h2 class="mg-panel__title">基本情報<small>* は指名に必須</small></h2>
+            </div>
+            <div class="mg-grid2">
+              <label class="mg-field"><span>氏名<em>必須</em></span><input type="text" data-basic="name" placeholder="山田 太郎" /></label>
+              <label class="mg-field"><span>フリガナ</span><input type="text" data-basic="kana" placeholder="やまだ たろう" /></label>
+            </div>
+            <div class="mg-grid2">
+              <label class="mg-field"><span>メールアドレス<em>必須</em></span><input type="email" data-basic="email" placeholder="taro@example.com" /></label>
+              <label class="mg-field"><span>電話番号</span><input type="tel" data-basic="phone" placeholder="090-0000-0000" /></label>
+            </div>
+            <div class="mg-grid2">
+              <label class="mg-field"><span>生年（西暦）</span><input type="text" data-basic="birthYear" placeholder="1988" /></label>
+              <label class="mg-field"><span>居住地</span><input type="text" data-basic="location" placeholder="東京都" /></label>
+            </div>
+            <div class="mg-grid2">
+              <label class="mg-field"><span>現在の勤務先</span><input type="text" data-basic="currentCompany" placeholder="株式会社〇〇" /></label>
+              <label class="mg-field"><span>現在の役職</span><input type="text" data-basic="currentTitle" placeholder="事業開発マネージャー" /></label>
+            </div>
+          </section>
+
+          <section class="mg-panel" id="summary">
+            <div class="mg-panel__head">
+              <h2 class="mg-panel__title">職務要約</h2>
+            </div>
+            <label class="mg-field"><span>これまでのキャリアの要約</span><textarea id="mgSummary" rows="5" placeholder="これまでのご経験・実績・強みを簡潔にご記入ください。"></textarea></label>
+          </section>
+
+          <section class="mg-panel" id="work">
+            <div class="mg-panel__head">
+              <h2 class="mg-panel__title">職務経歴</h2>
+              <button type="button" class="mg-add-btn" id="mgAddWork" data-add="work">＋ 職歴を追加</button>
+            </div>
+            <div id="mgWorkList"></div>
+            <button type="button" class="mg-add-btn" data-add="work">＋ 職歴を追加</button>
+          </section>
+
+          <section class="mg-panel" id="education">
+            <div class="mg-panel__head">
+              <h2 class="mg-panel__title">学歴</h2>
+              <button type="button" class="mg-add-btn" id="mgAddEdu" data-add="edu">＋ 学歴を追加</button>
+            </div>
+            <div id="mgEduList"></div>
+            <button type="button" class="mg-add-btn" data-add="edu">＋ 学歴を追加</button>
+          </section>
+
+          <section class="mg-panel" id="skills">
+            <div class="mg-panel__head">
+              <h2 class="mg-panel__title">スキル・資格</h2>
+            </div>
+            <div class="mg-field">
+              <span>スキル</span>
+              <div class="mg-chipsinput" id="mgSkills">
+                <input type="text" placeholder="スキルを入力しEnter" aria-label="スキルを追加" />
+              </div>
+            </div>
+            <div class="mg-field">
+              <span>資格</span>
+              <div class="mg-chipsinput" id="mgCerts">
+                <input type="text" placeholder="資格を入力しEnter" aria-label="資格を追加" />
+              </div>
+            </div>
+          </section>
+
+          <section class="mg-panel" id="desired">
+            <div class="mg-panel__head">
+              <h2 class="mg-panel__title">希望条件</h2>
+            </div>
+            <div class="mg-field">
+              <span id="mgJobTypesLabel">希望職種</span>
+              <div class="mg-pillcheck" id="mgJobTypes" role="group" aria-labelledby="mgJobTypesLabel"></div>
+            </div>
+            <div class="mg-field">
+              <span id="mgIndustriesLabel">希望業界</span>
+              <div class="mg-pillcheck" id="mgIndustries" role="group" aria-labelledby="mgIndustriesLabel"></div>
+            </div>
+            <label class="mg-field"><span>希望年収（万円）</span><input type="number" id="mgSalaryMin" min="0" step="50" placeholder="例：1200" /></label>
+            <div class="mg-field">
+              <span id="mgLocationsLabel">希望勤務地</span>
+              <div class="mg-pillcheck" id="mgLocations" role="group" aria-labelledby="mgLocationsLabel"></div>
+            </div>
+            <label class="mg-field"><span>働き方</span><input type="text" id="mgWorkStyle" placeholder="例：フルリモート希望／ハイブリッド可" /></label>
+            <label class="mg-field"><span>転職希望時期</span>
+              <select id="mgTiming">
+                <option value="">選択してください</option>
+                <option value="すぐにでも">すぐにでも</option>
+                <option value="3ヶ月以内">3ヶ月以内</option>
+                <option value="6ヶ月以内">6ヶ月以内</option>
+                <option value="1年以内">1年以内</option>
+                <option value="良い機会があれば">良い機会があれば</option>
+              </select>
+            </label>
+            <label class="mg-field"><span>その他希望・こだわり</span><textarea id="mgNotes" rows="4" placeholder="働き方や社風、避けたい条件など、ご自由にご記入ください。"></textarea></label>
+          </section>
+
+          <div class="mg-savebar">
+            <span class="mg-savebar__status" id="mgSaveStatus"></span>
+            <div>
+              <button type="button" class="btn btn-outline-dark" id="mgClearBtn">入力をクリア</button>
+              <button type="submit" class="btn btn-gold">保存する</button>
+            </div>
+          </div>
+        </form>
+
+        <section class="mg-panel" id="nominations">
+          <div class="mg-panel__head">
+            <h2 class="mg-panel__title">指名履歴<small>指名するとアドバイザーに連絡が届きます（本デモでは状態は「連絡済み」で表示されます）</small></h2>
+          </div>
+          <div id="mgNomList"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+<footer data-mg-footer></footer>
+<script src="/platform/assets/js/data.js"></script>
+<script src="/platform/assets/js/store.js"></script>
+<script src="/platform/assets/js/common.js"></script>
+<script src="/platform/assets/js/mypage.js"></script>
+</body>
+</html>
