@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" width="1600" height="600" role="img" aria-label="光の門をモチーフにした抽象的なヘッダー">
+  <defs>
+    <radialGradient id="l-bg" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#141B33"/>
+      <stop offset="0.6" stop-color="#0A0E1A"/>
+      <stop offset="1" stop-color="#05070f"/>
+    </radialGradient>
+    <linearGradient id="l-door" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBEFCB" stop-opacity="0.95"/>
+      <stop offset="0.45" stop-color="#E2C88A" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#C6A15B" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="l-edge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4E4B8"/>
+      <stop offset="1" stop-color="#B8924A" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="l-blur"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+
+  <rect width="1600" height="600" fill="url(#l-bg)"/>
+
+  <!-- glow halo -->
+  <path d="M700 560 V300 a100 100 0 0 1 200 0 V560 Z" fill="url(#l-door)" filter="url(#l-blur)" opacity="0.9"/>
+
+  <!-- luminous doorway -->
+  <path d="M712 560 V300 a88 88 0 0 1 176 0 V560 Z" fill="url(#l-door)"/>
+  <path d="M712 560 V300 a88 88 0 0 1 176 0 V560" fill="none" stroke="url(#l-edge)" stroke-width="2.5"/>
+
+  <!-- threshold light on floor -->
+  <ellipse cx="800" cy="560" rx="260" ry="30" fill="#E2C88A" opacity="0.28" filter="url(#l-blur)"/>
+
+  <!-- rising particles -->
+  <g fill="#F4E4B8">
+    <circle cx="760" cy="470" r="2" opacity="0.9"/>
+    <circle cx="840" cy="430" r="1.6" opacity="0.8"/>
+    <circle cx="800" cy="380" r="2.4" opacity="0.95"/>
+    <circle cx="775" cy="330" r="1.4" opacity="0.7"/>
+    <circle cx="828" cy="300" r="1.8" opacity="0.85"/>
+    <circle cx="800" cy="250" r="1.4" opacity="0.6"/>
+    <circle cx="690" cy="410" r="1.4" opacity="0.5"/>
+    <circle cx="912" cy="400" r="1.4" opacity="0.5"/>
+  </g>
+
+  <!-- horizon line -->
+  <line x1="140" y1="560" x2="1460" y2="560" stroke="#E2C88A" stroke-opacity="0.3" stroke-width="1.5"/>
+</svg>

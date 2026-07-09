@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" width="1600" height="600" role="img" aria-label="荘厳なアーチ門をモチーフにしたヘッダー">
+  <defs>
+    <linearGradient id="a-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0E1428"/>
+      <stop offset="1" stop-color="#070a14"/>
+    </linearGradient>
+    <linearGradient id="a-light" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E2C88A" stop-opacity="0.9"/>
+      <stop offset="0.6" stop-color="#C6A15B" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#C6A15B" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="a-stroke" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E2C88A"/>
+      <stop offset="1" stop-color="#9c7b39"/>
+    </linearGradient>
+    <clipPath id="a-clip"><path d="M600 520 V300 a200 200 0 0 1 400 0 V520 Z"/></clipPath>
+  </defs>
+
+  <rect width="1600" height="600" fill="url(#a-sky)"/>
+
+  <!-- light spilling through the opening -->
+  <g clip-path="url(#a-clip)">
+    <rect x="600" y="100" width="400" height="420" fill="url(#a-light)"/>
+    <g stroke="#E2C88A" stroke-opacity="0.25" stroke-width="2">
+      <line x1="800" y1="120" x2="640" y2="520"/>
+      <line x1="800" y1="120" x2="720" y2="520"/>
+      <line x1="800" y1="120" x2="800" y2="520"/>
+      <line x1="800" y1="120" x2="880" y2="520"/>
+      <line x1="800" y1="120" x2="960" y2="520"/>
+    </g>
+  </g>
+
+  <!-- arch structure (fine gold line) -->
+  <g fill="none" stroke="url(#a-stroke)" stroke-width="3" stroke-linecap="round">
+    <path d="M560 520 V300 a240 240 0 0 1 480 0 V520"/>
+    <path d="M600 520 V300 a200 200 0 0 1 400 0 V520"/>
+    <!-- keystone -->
+    <path d="M782 66 h36 l10 40 h-56 z" fill="url(#a-stroke)" stroke="none"/>
+    <!-- piers cap lines -->
+    <line x1="548" y1="300" x2="612" y2="300"/>
+    <line x1="988" y1="300" x2="1052" y2="300"/>
+  </g>
+
+  <!-- floor with reflection -->
+  <line x1="120" y1="520" x2="1480" y2="520" stroke="#E2C88A" stroke-opacity="0.4" stroke-width="1.5"/>
+  <rect x="640" y="522" width="320" height="60" fill="url(#a-light)" opacity="0.3"/>
+</svg>

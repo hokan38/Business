@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" width="1600" height="600" role="img" aria-label="ゲートマークをモチーフにしたミニマルなヘッダー">
+  <defs>
+    <linearGradient id="m-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0A0E1A"/>
+      <stop offset="1" stop-color="#0C1120"/>
+    </linearGradient>
+    <linearGradient id="m-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E2C88A"/>
+      <stop offset="1" stop-color="#B8924A"/>
+    </linearGradient>
+    <radialGradient id="m-glow" cx="50%" cy="46%" r="46%">
+      <stop offset="0" stop-color="#C6A15B" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#C6A15B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="600" fill="url(#m-sky)"/>
+  <rect width="1600" height="600" fill="url(#m-glow)"/>
+
+  <!-- faint grid -->
+  <g stroke="#E2C88A" stroke-opacity="0.06" stroke-width="1">
+    <line x1="0" y1="150" x2="1600" y2="150"/>
+    <line x1="0" y1="300" x2="1600" y2="300"/>
+    <line x1="0" y1="450" x2="1600" y2="450"/>
+    <line x1="400" y1="0" x2="400" y2="600"/>
+    <line x1="800" y1="0" x2="800" y2="600"/>
+    <line x1="1200" y1="0" x2="1200" y2="600"/>
+  </g>
+
+  <!-- concentric portal arches -->
+  <g fill="none" stroke="url(#m-gold)">
+    <path d="M660 470 V250 L800 150 L940 250 V470" stroke-width="4" stroke-opacity="0.25"/>
+    <path d="M700 470 V270 L800 200 L900 270 V470" stroke-width="4" stroke-opacity="0.5"/>
+    <!-- primary gate mark (favicon roofline) -->
+    <path d="M732 470 V286 L800 240 L868 286 V470" stroke-width="6" stroke-linejoin="round"/>
+    <!-- inner doorway (arched) -->
+    <path d="M770 470 V352 a30 30 0 0 1 60 0 V470" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ground -->
+  <line x1="620" y1="470" x2="980" y2="470" stroke="url(#m-gold)" stroke-width="6" stroke-linecap="round"/>
+  <line x1="160" y1="470" x2="600" y2="470" stroke="#E2C88A" stroke-opacity="0.3" stroke-width="1.5"/>
+  <line x1="1000" y1="470" x2="1440" y2="470" stroke="#E2C88A" stroke-opacity="0.3" stroke-width="1.5"/>
+
+  <!-- accent dots -->
+  <circle cx="800" cy="150" r="4" fill="#E2C88A"/>
+</svg>
