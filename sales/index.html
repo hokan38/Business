@@ -30,7 +30,8 @@
   --cream:#F8F6F1;
   --cream-2:#F1EDE3;
   --paper:#FFFFFF;
-  --muted:#6B7280;
+  --muted:#5F6672;
+  --gold-text:#7A6030; /* 小サイズ文字用（明色背景でWCAG AAを満たす暗めのゴールド） */
   --line:rgba(198,161,91,.32);
   --line-soft:rgba(26,29,41,.12);
 
@@ -43,7 +44,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 body{
   font-family:var(--sans);
   color:var(--ink);
@@ -82,14 +83,14 @@ svg{display:block}
 }
 .slide-dark .slide-foot{color:rgba(255,255,255,.45)}
 .slide-foot .f-brand{display:flex;align-items:center;gap:8px}
-.slide-foot .f-brand b{font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.06em;color:var(--gold-dark)}
+.slide-foot .f-brand b{font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.06em;color:var(--gold-text)}
 .slide-dark .slide-foot .f-brand b{color:var(--gold-light)}
 .pageno{font-family:var(--display);font-size:13px;letter-spacing:.1em}
 
 /* ---------- 見出しまわり ---------- */
 .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:10px}
 .sec-num{font-family:var(--display);font-size:30px;font-weight:500;color:var(--gold);line-height:1}
-.sec-label{font-size:11px;letter-spacing:.34em;color:var(--gold-dark);text-transform:uppercase}
+.sec-label{font-size:11px;letter-spacing:.34em;color:var(--gold-text);text-transform:uppercase}
 .slide-dark .sec-label{color:var(--gold-light)}
 .h-title{
   font-family:var(--serif);font-weight:600;
@@ -113,7 +114,7 @@ svg{display:block}
 .slide-dark .note{color:rgba(255,255,255,.5)}
 .tag{
   display:inline-block;padding:.32em 1.1em;border:1px solid var(--line);
-  font-size:11.5px;letter-spacing:.22em;color:var(--gold-dark);border-radius:2px;
+  font-size:11.5px;letter-spacing:.22em;color:var(--gold-text);border-radius:2px;
 }
 .slide-dark .tag{color:var(--gold-light);border-color:rgba(226,200,138,.45)}
 .grow{flex:1;min-height:0}
@@ -188,7 +189,7 @@ svg{display:block}
 }
 .shift-col.new .shift-node{border-color:var(--line)}
 .shift-node.gate{background:var(--navy-900);color:var(--gold-light);border-color:var(--navy-900);font-family:var(--serif)}
-.shift-diagram .a{color:var(--gold-dark);font-size:15px}
+.shift-diagram .a{color:var(--gold-text);font-size:15px}
 .shift-col p.d{font-size:12.5px;line-height:1.85;color:var(--ink-soft)}
 .shift-col ul{margin-top:12px;display:flex;flex-direction:column;gap:7px}
 .shift-col li{position:relative;padding-left:16px;font-size:12.5px;line-height:1.7;color:var(--ink-soft)}
@@ -209,7 +210,7 @@ svg{display:block}
   background:var(--cream-2);
   font-family:var(--serif);font-size:15.5px;line-height:1.9;letter-spacing:.04em;color:var(--ink);
 }
-.brand-story em{color:var(--gold-dark)}
+.brand-story em{color:var(--gold-text)}
 
 /* =========================================================
    仕組み（2レーンフロー）
@@ -218,7 +219,7 @@ svg{display:block}
 .lane + .lane{margin-top:22px}
 .lane-tag{display:inline-block;font-size:11px;letter-spacing:.26em;padding:.35em 1.1em;margin-bottom:12px;border-radius:2px}
 .lane-tag.cand{background:var(--navy-900);color:var(--gold-light)}
-.lane-tag.adv{background:var(--cream-2);color:var(--gold-dark);border:1px solid var(--line)}
+.lane-tag.adv{background:var(--cream-2);color:var(--gold-text);border:1px solid var(--line)}
 .lane-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:stretch}
 .lane-step{position:relative;background:var(--paper);border:1px solid var(--line-soft);border-right:0;padding:16px 16px 14px}
 .lane-step:last-child{border-right:1px solid var(--line-soft)}
@@ -229,7 +230,7 @@ svg{display:block}
 .lane-step:last-child::after{display:none}
 .lane-step.hot{background:linear-gradient(180deg,#fff,#FBF4E6);border-color:var(--gold)}
 .lane-step.hot::after{background:#FBF4E6;border-color:var(--gold)}
-.lane-step .s{font-family:var(--display);font-size:12px;letter-spacing:.12em;color:var(--gold-dark);display:block;margin-bottom:6px}
+.lane-step .s{font-family:var(--display);font-size:12px;letter-spacing:.12em;color:var(--gold-text);display:block;margin-bottom:6px}
 .lane-step h4{font-family:var(--serif);font-size:14.5px;font-weight:600;line-height:1.5;margin-bottom:5px;letter-spacing:.01em}
 .lane-step p{font-size:11px;line-height:1.65;color:var(--ink-soft)}
 .mech-note{margin-top:20px}
@@ -239,7 +240,7 @@ svg{display:block}
    ========================================================= */
 .merit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px 24px;margin-top:4px}
 .merit{background:var(--paper);border:1px solid var(--line-soft);padding:24px 26px;display:flex;gap:18px}
-.merit .n{flex:none;width:44px;height:44px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:18px;color:var(--gold-dark)}
+.merit .n{flex:none;width:44px;height:44px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:18px;color:var(--gold-text)}
 .merit h3{font-family:var(--serif);font-size:17.5px;font-weight:600;letter-spacing:.02em;margin-bottom:8px;line-height:1.5}
 .merit p{font-size:12.8px;line-height:1.85;color:var(--ink-soft)}
 
@@ -248,7 +249,7 @@ svg{display:block}
    ========================================================= */
 .cmp{width:100%;border-collapse:collapse;margin-top:8px;background:var(--paper)}
 .cmp th,.cmp td{border:1px solid var(--line-soft);padding:13px 16px;font-size:12.8px;line-height:1.6;text-align:left;vertical-align:top}
-.cmp thead th{background:var(--navy-900);color:#fff;font-family:var(--serif);font-weight:600;font-size:13.5px;letter-spacing:.05em}
+.cmp thead th,.cmp thead td{background:var(--navy-900);color:#fff;font-family:var(--serif);font-weight:600;font-size:13.5px;letter-spacing:.05em;border-color:var(--navy-900)}
 .cmp thead th.mg{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--navy-900)}
 .cmp tbody th{background:var(--cream-2);font-weight:500;font-size:12.5px;color:var(--ink);white-space:nowrap;width:132px}
 .cmp td.mg{background:#FDF9F0;border-left:1.5px solid var(--gold);border-right:1.5px solid var(--gold);font-weight:500}
@@ -275,7 +276,7 @@ svg{display:block}
 }
 .exam-step h4{font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:3px}
 .exam-step p{font-size:12px;line-height:1.7;color:var(--ink-soft)}
-.exam-side-title{font-size:11px;letter-spacing:.3em;color:var(--gold-dark);margin-bottom:14px}
+.exam-side-title{font-size:11px;letter-spacing:.3em;color:var(--gold-text);margin-bottom:14px}
 
 /* =========================================================
    プロフィール掲載イメージ
@@ -298,7 +299,7 @@ svg{display:block}
 .prof-name{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.03em}
 .prof-role{font-size:11.5px;color:var(--muted);margin-top:3px;letter-spacing:.05em}
 .prof-badges{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
-.prof-badge{font-size:10px;letter-spacing:.1em;border:1px solid var(--line);color:var(--gold-dark);padding:.25em .8em;border-radius:2px}
+.prof-badge{font-size:10px;letter-spacing:.1em;border:1px solid var(--line);color:var(--gold-text);padding:.25em .8em;border-radius:2px}
 .prof-rows{display:flex;flex-direction:column;gap:9px}
 .prof-row{display:flex;gap:14px;font-size:12px;line-height:1.65}
 .prof-row .k{flex:none;width:92px;color:var(--muted);letter-spacing:.04em}
@@ -315,7 +316,7 @@ svg{display:block}
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
 .price-card{background:var(--paper);border:1px solid var(--line-soft);padding:28px 26px;text-align:center;position:relative}
 .price-card.hl{border:1.5px solid var(--gold);background:linear-gradient(180deg,#fff,#FDF9F0)}
-.price-card .t{font-size:12px;letter-spacing:.22em;color:var(--gold-dark);margin-bottom:16px}
+.price-card .t{font-size:12px;letter-spacing:.22em;color:var(--gold-text);margin-bottom:16px}
 .price-card .v{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1.3;letter-spacing:.02em}
 .price-card .v small{font-size:14px;font-weight:500;color:var(--ink-soft)}
 .price-card p{margin-top:12px;font-size:12px;line-height:1.75;color:var(--ink-soft)}
@@ -323,7 +324,7 @@ svg{display:block}
   margin-top:24px;padding:16px 24px;background:var(--cream-2);border:1px dashed var(--gold);
   font-size:12.5px;line-height:1.8;color:var(--ink-soft);
 }
-.price-banner b{color:var(--gold-dark)}
+.price-banner b{color:var(--gold-text)}
 
 /* =========================================================
    導入の流れ
@@ -331,11 +332,11 @@ svg{display:block}
 .onb{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:10px}
 .onb-step{background:var(--paper);border:1px solid var(--line-soft);padding:22px 18px;position:relative}
 .onb-step::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold-light),var(--gold))}
-.onb-step .s{font-family:var(--display);font-size:13px;letter-spacing:.14em;color:var(--gold-dark);display:block;margin-bottom:10px}
+.onb-step .s{font-family:var(--display);font-size:13px;letter-spacing:.14em;color:var(--gold-text);display:block;margin-bottom:10px}
 .onb-step h4{font-family:var(--serif);font-size:15.5px;font-weight:600;line-height:1.55;margin-bottom:8px}
 .onb-step p{font-size:11.5px;line-height:1.7;color:var(--ink-soft)}
 .onb-note{margin-top:22px;display:flex;gap:10px;align-items:baseline}
-.onb-note .t{flex:none;font-size:11px;letter-spacing:.2em;color:var(--gold-dark);border:1px solid var(--line);padding:.3em .9em}
+.onb-note .t{flex:none;font-size:11px;letter-spacing:.2em;color:var(--gold-text);border:1px solid var(--line);padding:.3em .9em}
 
 /* =========================================================
    FAQ
@@ -343,7 +344,7 @@ svg{display:block}
 .faq{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 24px;margin-top:4px}
 .faq-item{background:var(--paper);border:1px solid var(--line-soft);padding:18px 22px}
 .faq-item .q{display:flex;gap:10px;font-family:var(--serif);font-size:14.5px;font-weight:600;line-height:1.55;margin-bottom:8px}
-.faq-item .q i{font-family:var(--display);font-style:normal;color:var(--gold);font-size:16px}
+.faq-item .q i{font-family:var(--display);font-style:normal;color:var(--gold-text);font-size:16px}
 .faq-item .a{display:flex;gap:10px;font-size:12.3px;line-height:1.8;color:var(--ink-soft)}
 .faq-item .a i{font-family:var(--display);font-style:normal;color:var(--muted);font-size:14px}
 
@@ -372,14 +373,15 @@ svg{display:block}
 @media print{
   body{background:#fff}
   .deck{display:block;padding:0;gap:0}
-  .scaler{display:block;width:auto;transform:none !important;height:auto !important}
+  .scaler{display:block;width:auto;height:auto !important}
   .slide{
     box-shadow:none;margin:0;
     width:297mm;height:209.5mm;
+    transform:none !important;
     page-break-after:always;break-after:page;
     page-break-inside:avoid;break-inside:avoid;
   }
-  .slide:last-child{page-break-after:auto;break-after:auto}
+  .deck > .scaler:last-child .slide{page-break-after:auto;break-after:auto}
   .print-hint{display:none}
 }
 @page{size:A4 landscape;margin:0}
@@ -436,22 +438,22 @@ svg{display:block}
 <div class="scaler"><section class="slide">
   <div class="slide-body">
     <div class="sec-head"><span class="sec-num">01</span><p class="sec-label">Executive Summary</p></div>
-    <h2 class="h-title">本日お伝えしたい、３つのこと。</h2>
+    <h2 class="h-title">本日お伝えしたい、3つのこと。</h2>
     <div class="gold-rule"></div>
     <div class="sum-grid">
       <div class="sum-card">
         <span class="k">Ⅰ</span>
-        <h3>MarkGateは<br />「トップCA限定」の<br />指名型プラットフォーム</h3>
+        <h3>MarkGateは<br />トップアドバイザー限定の<br />指名型プラットフォーム</h3>
         <p>各エージェントの実績上位アドバイザーのみが審査制で登録できる、ハイクラス・エグゼクティブ特化の転職プラットフォームです。</p>
       </div>
       <div class="sum-card">
         <span class="k">Ⅱ</span>
-        <h3>ハイクラス求職者からの<br />「指名」が、貴社に<br />直接届きます</h3>
-        <p>求職者がアドバイザーの実績・専門領域を比較して指名する“逆指名”モデル。温度感の高い接点が、スカウト送信なしで生まれます。</p>
+        <h3>ハイクラス求職者からの<br />「指名」が、貴社に<br />直接届く仕組み</h3>
+        <p>求職者がアドバイザーの実績・専門領域を比較して指名する“指名型（プル型）”モデル。温度感の高い接点が、スカウト送信なしで生まれる設計です。</p>
       </div>
       <div class="sum-card">
         <span class="k">Ⅲ</span>
-        <h3>審査通過そのものが、<br />貴社とエースの<br />ブランドになります</h3>
+        <h3>審査通過そのものが、<br />貴社とエースの<br />ブランドに</h3>
         <p>「Mark＝一流の証」を掲げる審査制の場に立つこと自体が、アドバイザー個人と貴社の信頼の可視化につながります。</p>
       </div>
     </div>
@@ -548,7 +550,7 @@ svg{display:block}
         <p class="d">求職者が実績・専門領域を比較したうえで指名するプル型。「あなたに任せたい」という状態から支援が始まります。</p>
         <ul>
           <li>指名＝比較検討を終えた、温度感の高い接点</li>
-          <li>プロフィールが24時間、貴社エースの営業窓口に</li>
+          <li>プロフィールが、貴社エースの常設の窓口として機能する設計</li>
           <li>実力と専門性が、そのまま機会に変わる</li>
         </ul>
       </div>
@@ -611,7 +613,7 @@ svg{display:block}
       <div class="lane-steps">
         <div class="lane-step">
           <span class="s">STEP 01</span><h4>会員登録（審査制）</h4>
-          <p>ハイクラス特化のため、経歴をもとに簡単な審査を実施。</p>
+          <p>ハイクラス特化のため、経歴をもとに審査を実施。</p>
         </div>
         <div class="lane-step">
           <span class="s">STEP 02</span><h4>アドバイザーを検索・比較</h4>
@@ -672,21 +674,21 @@ svg{display:block}
 <div class="scaler"><section class="slide">
   <div class="slide-body">
     <div class="sec-head"><span class="sec-num">06</span><p class="sec-label">Benefits for Agencies</p></div>
-    <h2 class="h-title">貴社にとっての、４つのメリット。</h2>
+    <h2 class="h-title">貴社にとっての、4つのメリット。</h2>
     <div class="gold-rule"></div>
     <div class="merit-grid">
       <div class="merit">
         <span class="n">1</span>
         <div>
-          <h3>温度感の高い「指名」から商談が始まる</h3>
-          <p>求職者は複数のアドバイザーを比較・納得したうえで指名します。「まず話を聞いてみたい」ではなく「あなたに任せたい」から始まる面談は、その後の支援効率を大きく高めます。</p>
+          <h3>温度感の高い「指名」から面談が始まる</h3>
+          <p>求職者は複数のアドバイザーを比較・納得したうえで指名します。「まず話を聞いてみたい」ではなく「あなたに任せたい」から始まる面談により、支援効率の向上が期待できます。</p>
         </div>
       </div>
       <div class="merit">
         <span class="n">2</span>
         <div>
           <h3>スカウト課金に依存しない、新しい接点</h3>
-          <p>登録・掲載は審査制。掲載そのものが求職者への露出となり、大量送信の工数や媒体課金に依存しない、継続的なハイクラス接点をつくれます。</p>
+          <p>登録・掲載は審査制。掲載そのものが求職者への露出となり、大量送信の工数や媒体課金に依存しない、継続的なハイクラス接点の構築を目指せます。</p>
         </div>
       </div>
       <div class="merit">
@@ -704,6 +706,7 @@ svg{display:block}
         </div>
       </div>
     </div>
+    <p class="note" style="margin-top:18px">※ 効果に関する記述はサービス設計に基づく想定であり、成果を保証するものではありません。</p>
   </div>
   <div class="slide-foot">
     <span class="f-brand"><b>MarkGate</b><span>人材紹介エージェント様向けご提案資料</span></span>
@@ -722,39 +725,39 @@ svg{display:block}
     <table class="cmp">
       <thead>
         <tr>
-          <th style="width:132px"></th>
-          <th>スカウト媒体</th>
-          <th>求人広告・自社集客</th>
-          <th class="mg">MarkGate</th>
+          <td style="width:132px"></td>
+          <th scope="col">スカウト媒体</th>
+          <th scope="col">求人広告・自社集客</th>
+          <th scope="col" class="mg">MarkGate</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th>接点の起点</th>
+          <th scope="row">接点の起点</th>
           <td>アドバイザーからの送信（プッシュ型）</td>
           <td>求人・企業情報への応募</td>
           <td class="mg">求職者からの「指名」（プル型）</td>
         </tr>
         <tr>
-          <th>求職者の温度感</th>
+          <th scope="row">求職者の温度感</th>
           <td>比較検討前。返信後の見極めが必要</td>
           <td>案件起点。担当者は選べない</td>
           <td class="mg">比較・納得済み。「任せたい」状態から開始</td>
         </tr>
         <tr>
-          <th>可視化されるもの</th>
+          <th scope="row">可視化されるもの</th>
           <td>求人案件・スカウト文面</td>
           <td>会社・求人情報</td>
           <td class="mg">アドバイザー個人の実績・専門性</td>
         </tr>
         <tr>
-          <th>主な工数・費用</th>
+          <th scope="row">主な工数・費用</th>
           <td>送信工数＋データベース利用・課金</td>
           <td>掲載費・広告運用</td>
           <td class="mg">プロフィール整備のみ（掲載は審査制・無料を予定※）</td>
         </tr>
         <tr>
-          <th>対象層</th>
+          <th scope="row">対象層</th>
           <td>媒体登録者全般</td>
           <td>広く一般</td>
           <td class="mg">ハイクラス・エグゼクティブ（年収800万円以上を想定）</td>
@@ -850,7 +853,7 @@ svg{display:block}
         <li><b>指名にはメッセージが添付</b>され、求職者の意図・温度感を把握したうえで面談に入れます。</li>
         <li>プロフィールは<b>掲載後も更新可能</b>。実績を積むほど、指名の入口が強くなります。</li>
       </ul>
-      <div class="prof-card" aria-label="プロフィール掲載イメージ">
+      <div class="prof-card" role="group" aria-label="プロフィール掲載イメージ">
         <div class="prof-top">
           <div class="prof-avatar">M</div>
           <div>
@@ -892,13 +895,13 @@ svg{display:block}
     <div class="price-grid">
       <div class="price-card">
         <p class="t">初期費用</p>
-        <p class="v">０<small>円（予定）</small></p>
-        <p>登録申請・審査に費用はかかりません。</p>
+        <p class="v">0<small>円（予定）</small></p>
+        <p>登録申請・審査に費用はかからない予定です。</p>
       </div>
       <div class="price-card hl">
         <p class="t">掲載料・月額費用</p>
-        <p class="v">０<small>円（予定）</small></p>
-        <p>審査通過後のプロフィール掲載・指名受領に、固定費はかかりません。</p>
+        <p class="v">0<small>円（予定）</small></p>
+        <p>審査通過後のプロフィール掲載・指名受領に、固定費はかからない予定です。</p>
       </div>
       <div class="price-card">
         <p class="t">成果発生時</p>
@@ -909,6 +912,7 @@ svg{display:block}
     <div class="price-banner">
       <b>【重要】</b>本ページはサービス正式リリースに向けた想定モデルであり、確定した料金体系ではありません。
       正式な料金・契約条件は、リリース時に個別のご案内・契約書面にて確定いたします。先行登録いただいたエージェント様には、確定前に優先してご説明の機会を設けます。
+      なお、成果連動モデルは当社の有料職業紹介事業許可の取得を前提に設計します。
     </div>
   </div>
   <div class="slide-foot">
@@ -939,7 +943,7 @@ svg{display:block}
       <div class="onb-step">
         <span class="s">STEP 03</span>
         <h4>登録申請・審査</h4>
-        <p>書類審査と面談を実施します（費用はかかりません）。</p>
+        <p>書類審査と面談を実施します（無料を予定・詳細はP.11）。</p>
       </div>
       <div class="onb-step">
         <span class="s">STEP 04</span>
@@ -954,11 +958,11 @@ svg{display:block}
     </div>
     <div class="onb-note">
       <span class="t">所要期間の目安</span>
-      <p class="note">お申し込みからプロフィール公開まで、２〜３週間程度を想定しています（審査状況により前後します）。</p>
+      <p class="note">お申し込みからプロフィール公開まで、2〜3週間程度を想定しています（審査状況により前後します）。</p>
     </div>
     <div class="onb-note">
       <span class="t">先行登録のご案内</span>
-      <p class="note">正式リリースに先立ち、先行登録エージェント様を募集しています。初期に参画いただいた貴社エースのプロフィールは、リリース時点から求職者の比較・指名の対象となります。</p>
+      <p class="note">正式リリースに先立ち、先行登録エージェント様を募集しています。初期に参画いただいた貴社エースのプロフィールは、リリース時点から求職者の比較・指名の対象となります。リリース時期・求職者側の集客計画は、ご説明の際に最新の状況をご案内します。</p>
     </div>
   </div>
   <div class="slide-foot">
@@ -997,8 +1001,8 @@ svg{display:block}
         <p class="a"><i>A.</i>求職者側も審査制です。経営幹部・管理職・高度専門職を中心とした、年収800万円以上を想定するハイクラス層に特化しています。</p>
       </div>
       <div class="faq-item">
-        <p class="q"><i>Q.</i>アドバイザーが退職・異動した場合は？</p>
-        <p class="a"><i>A.</i>掲載は所属情報を含むプロフィール単位のため、変更時は更新・掲載停止に対応します。運用の詳細はご契約時にご案内します。</p>
+        <p class="q"><i>Q.</i>求職者はどのように集めるのですか？</p>
+        <p class="a"><i>A.</i>審査制を軸に、ご紹介・招待、ハイクラス層向けの情報発信、提携チャネルなどを組み合わせ、質を担保しながら段階的に拡大する計画です。想定規模や進捗は、ご説明の際に最新の状況をご案内します。</p>
       </div>
     </div>
   </div>
@@ -1009,7 +1013,41 @@ svg{display:block}
 </section></div>
 
 <!-- ============================================================
-     P.14 クロージング / 会社概要
+     P.14 FAQ（情報の取り扱い・ご契約）
+     ============================================================ -->
+<div class="scaler"><section class="slide">
+  <div class="slide-body">
+    <div class="sec-head"><span class="sec-num">13</span><p class="sec-label">FAQ — Data &amp; Contract</p></div>
+    <h2 class="h-title">情報の取り扱い・ご契約について。</h2>
+    <div class="gold-rule"></div>
+    <div class="faq">
+      <div class="faq-item">
+        <p class="q"><i>Q.</i>MarkGateの法的な位置づけは？</p>
+        <p class="a"><i>A.</i>求職者と貴社アドバイザーの接点を提供するプラットフォームです。職業紹介（あっせん）および企業への紹介は、許可を保有する貴社の紹介事業として実施いただきます。当社も有料職業紹介事業許可の取得を申請準備中です。</p>
+      </div>
+      <div class="faq-item">
+        <p class="q"><i>Q.</i>成約情報や求職者情報はどのように扱われますか？</p>
+        <p class="a"><i>A.</i>貴社の成約情報は、手数料算定など運営上必要な目的に限定して利用し、他のエージェント様への開示や競合比較への流用は行わない方針です。ご契約時に秘密保持条項を含む書面を締結します。</p>
+      </div>
+      <div class="faq-item">
+        <p class="q"><i>Q.</i>掲載によって引き抜きリスクは高まりませんか？</p>
+        <p class="a"><i>A.</i>個人の直接連絡先は公開せず、指名はプラットフォームを経由する設計方針です。氏名・写真の掲載粒度も選択いただける想定です。確定済みの仕様・条件は、ご契約前にご説明します。</p>
+      </div>
+      <div class="faq-item">
+        <p class="q"><i>Q.</i>アドバイザーが退職・異動した場合は？</p>
+        <p class="a"><i>A.</i>掲載は貴社とのご契約に紐づく設計です。退職・異動の際は掲載停止・所属情報の変更に対応し、プロフィールや指名履歴が個人アカウントとして他社へ引き継がれることはありません（詳細条件は契約書面にて確定します）。</p>
+      </div>
+    </div>
+    <p class="note" style="margin-top:18px">※ 本ページの記載は現時点の設計方針です。確定した仕様・契約条件は、ご契約前に書面にてご案内します。</p>
+  </div>
+  <div class="slide-foot">
+    <span class="f-brand"><b>MarkGate</b><span>人材紹介エージェント様向けご提案資料</span></span>
+    <span class="pageno">14</span>
+  </div>
+</section></div>
+
+<!-- ============================================================
+     P.15 クロージング / 会社概要
      ============================================================ -->
 <div class="scaler"><section class="slide slide-dark">
   <div class="slide-body">
@@ -1022,36 +1060,36 @@ svg{display:block}
         </h2>
         <p class="close-lead">
           トップアドバイザーだけが、開ける扉。<br />
-          その最初の一歩は、無料の登録申請と審査から始まります。<br />
+          その最初の一歩は、登録申請と審査から。登録・審査は無料の予定です。<br />
           サービス詳細のご説明・デモのご案内も承ります。
         </p>
-        <span class="close-cta">お問い合わせ・登録申請はこちら</span>
-        <p class="close-sub">コーポレートサイトのお問い合わせフォームより「アドバイザー登録を申請したい」または「提携・協業について」をご選択ください。</p>
+        <a class="close-cta" href="../index.html#contact">お問い合わせ・登録申請はこちら</a>
+        <p class="close-sub">コーポレートサイトのお問い合わせフォームより「アドバイザー登録を申請したい」または「提携・協業について」をご選択ください。<br />（サイトURLは確定後、本資料および配布用PDFに記載します）</p>
       </div>
       <div>
         <table class="co-table">
           <tbody>
-            <tr><th>会社名</th><td>MarkGate株式会社（マークゲート）</td></tr>
-            <tr><th>事業内容</th><td>ハイクラス層向け人材紹介プラットフォームの企画・運営<br />有料職業紹介事業</td></tr>
-            <tr><th>許可番号</th><td>有料職業紹介事業許可番号：申請準備中</td></tr>
-            <tr><th>サービス</th><td>MarkGate（マークゲート）─ トップアドバイザー限定・指名型転職プラットフォーム</td></tr>
-            <tr><th>お問い合わせ</th><td>コーポレートサイト お問い合わせフォームまで</td></tr>
+            <tr><th scope="row">会社名</th><td>MarkGate株式会社（マークゲート）</td></tr>
+            <tr><th scope="row">事業内容</th><td>ハイクラス層向け人材紹介プラットフォームの企画・運営<br />有料職業紹介事業（許可取得後に開始予定）</td></tr>
+            <tr><th scope="row">許可番号</th><td>有料職業紹介事業許可番号：申請準備中</td></tr>
+            <tr><th scope="row">サービス</th><td>MarkGate（マークゲート）─ トップアドバイザー限定・指名型転職プラットフォーム</td></tr>
+            <tr><th scope="row">お問い合わせ</th><td>コーポレートサイト お問い合わせフォームまで（URLは確定後に記載）</td></tr>
           </tbody>
         </table>
-        <p class="note" style="margin-top:16px">※ 会社概要の詳細（設立・代表者・所在地・資本金）は確定後に掲載いたします。<br />※ 本資料の内容は2026年7月時点のものであり、予告なく変更される場合があります。</p>
+        <p class="note" style="margin-top:16px">※ 会社概要の詳細（設立・代表者・所在地・資本金）は確定後に掲載いたします。<br />※ 本資料の内容は2026年7月時点のものであり、予告なく変更される場合があります。<br />※ 効果に関する記述はサービス設計に基づく想定であり、成果を保証するものではありません。</p>
       </div>
     </div>
   </div>
   <div class="slide-foot">
     <span class="f-brand"><b>MarkGate</b><span>人材紹介エージェント様向けご提案資料</span></span>
-    <span class="pageno">14</span>
+    <span class="pageno">15</span>
   </div>
 </section></div>
 
 </div><!-- /deck -->
 
 <div class="print-hint">
-  この資料は <b>Ctrl / ⌘ + P</b> → 「PDFに保存」（A4横・余白なし）でそのままPDF化できます。
+  この資料は <b>Ctrl / ⌘ + P</b> → 「PDFに保存」でそのままPDF化できます。<br />（A4横・余白なし。背景が印刷されない場合は「背景のグラフィック」を有効に）
 </div>
 
 <script>
