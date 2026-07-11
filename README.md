@@ -34,7 +34,9 @@
 │           ├── common.js      # 共通ヘッダー/フッター・指名モーダル・共通部品
 │           ├── index.js / advisors.js / advisor.js / mypage.js / inbox.js  # 各ページ制御
 ├── sales/
-│   └── index.html          # 人材紹介エージェント向け営業資料（A4横スライド15枚 / 印刷でPDF化可）
+│   ├── index.html               # 人材紹介エージェント向け営業資料（A4横スライド15枚 / 印刷でPDF化可）
+│   ├── markgate-agent-deck.pptx # 同資料のPowerPoint版（編集可能なネイティブpptx）
+│   └── generate_pptx.py         # PowerPoint版の生成スクリプト（python-pptx）
 ├── vercel.json             # 静的ホスティング設定（Vercel / cleanUrls）
 └── README.md
 ```
@@ -93,6 +95,8 @@ Playwright による E2E 検証（`scratchpad/verify.mjs` 相当）で、全ペ�
   FAQ → FAQ（情報の取り扱い・ご契約） → 会社概要/CTA
 - 料金は「月額5万円・開始キャンペーンで1年目無料」を記載済み。実績値・所要期間などの未確定項目は「想定」「目安」と明示しています。確定後に差し替えてください。
 - サイトURL・問い合わせ先・リリース時期の確定後は、P.15のCTA周りとP.12の先行登録案内を差し替えてください。
+- PowerPoint版は `sales/markgate-agent-deck.pptx`（游明朝／游ゴシック使用・全文編集可）。
+  内容を更新した場合は `pip install python-pptx` の上 `python3 sales/generate_pptx.py sales/markgate-agent-deck.pptx` で再生成できます。
 
 ## デザイン
 
