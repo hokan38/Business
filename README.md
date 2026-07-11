@@ -95,8 +95,11 @@ Playwright による E2E 検証（`scratchpad/verify.mjs` 相当）で、全ペ�
   FAQ → FAQ（情報の取り扱い・ご契約） → 会社概要/CTA
 - 料金は「月額5万円・開始キャンペーンで1年目無料」を記載済み。実績値・所要期間などの未確定項目は「想定」「目安」と明示しています。確定後に差し替えてください。
 - サイトURL・問い合わせ先・リリース時期の確定後は、P.15のCTA周りとP.12の先行登録案内を差し替えてください。
-- PowerPoint版は `sales/markgate-agent-deck.pptx`（游明朝／游ゴシック使用・全文編集可）。
-  内容を更新した場合は `pip install python-pptx` の上 `python3 sales/generate_pptx.py sales/markgate-agent-deck.pptx` で再生成できます。
+- **正となる資料は PowerPoint版** `sales/markgate-agent-deck.pptx`（游明朝／游ゴシック使用・全文編集可）。
+  以後の文言修正はPPTX（または生成元の `sales/generate_pptx.py`）に対して行ってください。
+  スクリプトから再生成する場合は `pip install python-pptx` の上
+  `python3 sales/generate_pptx.py sales/markgate-agent-deck.pptx` を実行します。
+  `sales/index.html`（Web版）は参考版であり、内容を変えた場合はPPTXに追従させてください。
 
 ## デザイン
 

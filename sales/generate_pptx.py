@@ -46,6 +46,9 @@ DARK_SUB = RGBColor.from_string("8E96A8")   # ダーク面の注記
 SERIF_LAT, SERIF_EA = "Garamond", "游明朝"
 SANS_LAT, SANS_EA = "Yu Gothic", "游ゴシック"
 
+# 全テキスト共通の文字サイズ倍率（レイアウトはこの倍率前提で調整済み）
+FONT_SCALE = 1.18
+
 FOOTER_TEXT = "人材紹介エージェント様向けご提案資料"
 
 
@@ -67,7 +70,7 @@ def _set_fonts(run, serif=False, latin=None, ea=None):
 
 def _style_run(run, text, size=9, color=INK, bold=False, serif=False, spc=None):
     run.text = text
-    run.font.size = Pt(size)
+    run.font.size = Pt(round(size * FONT_SCALE, 1))
     run.font.color.rgb = color
     run.font.bold = bold
     _set_fonts(run, serif=serif)
@@ -146,15 +149,15 @@ def header(slide, num, label, title_runs, dark=False, lead=None):
         ([(label, dict(size=7.5, color=(GOLD_L if dark else GOLD_T), spc=3))], {}),
     ])
     n_lines = sum(1 for _ in title_runs)
-    text_box(slide, 19, 22, 259, 12 * n_lines, [
+    text_box(slide, 19, 22, 259, 14 * n_lines, [
         (runs, dict(spacing=1.2)) for runs in title_runs
     ])
-    y = 22 + 12 * n_lines
+    y = 22 + 14 * n_lines
     if lead:
-        text_box(slide, 19, y + 1, 250, 10, [
+        text_box(slide, 19, y + 1, 255, 14, [
             (lead, dict(spacing=1.4)),
         ])
-        y += 10
+        y += 15
     rect(slide, 19, y + 2, 14, 0.7, fill=GOLD)
     return y + 8
 
@@ -429,7 +432,7 @@ def build(out_path):
             text_box(s, 19, yy + 1.5, 40, 4, [
                 ([t(tag, size=7, color=GOLD_T, spc=1.5)], dict(align=PP_ALIGN.CENTER)),
             ])
-        sw, sh = 49.4, 30
+        sw, sh = 49.4, 33
         for i, (head, body) in enumerate(steps):
             sx = 19 + i * (sw + 3)
             hl = (i == hl_idx)
@@ -454,14 +457,14 @@ def build(out_path):
         ("面談・求人提案", "市場価値の見極めと、上位ポジションの提案。"),
         ("選考・内定・入社", "書類・面接対策から条件交渉まで一気通貫。"),
     ], 2)
-    lane(y + 50, "貴社アドバイザーの動き", False, [
+    lane(y + 54, "貴社アドバイザーの動き", False, [
         ("登録申請", "実績上位のアドバイザーを対象にご申請。"),
         ("審査", "成約実績・専門性・経歴を基準に審査。"),
         ("プロフィール掲載", "専門領域・実績・支援スタンスを掲載。"),
         ("指名を受領", "求職者からの指名がメッセージ付きで届く。"),
         ("支援開始", "面談を設定し、通常どおりの紹介業務へ。"),
     ], 3)
-    text_box(s, 19, y + 98, 259, 10, [
+    text_box(s, 19, y + 105, 259, 10, [
         ([t("※ 指名後の転職支援・企業への紹介は、従来どおり貴社（登録アドバイザー）の紹介業務として実施いただきます。MarkGateは求職者との質の高い接点を提供します。",
             size=7.5, color=MUTED)], dict(spacing=1.4)),
     ])
@@ -506,7 +509,7 @@ def build(out_path):
     y = header(s, "07", "CHANNEL COMPARISON",
                [[title_r("既存チャネルと競合せず、"), title_r("補完", gold=True),
                  title_r("します。")]])
-    cols = [34, 70, 70, 85]
+    cols = [38, 68, 68, 85]
     rows = [
         ("", "スカウト媒体", "求人広告・自社集客", "MarkGate"),
         ("接点の起点", "アドバイザーからの送信（プッシュ型）", "求人・企業情報への応募",
@@ -573,13 +576,13 @@ def build(out_path):
     ])
     cy = y + 9
     for head, body in crits:
-        rect(s, 19, cy, 140, 19, fill=PAPER, line=LINE_SOFT, line_w=0.5)
-        rect(s, 19, cy, 1, 19, fill=GOLD)
-        text_box(s, 25, cy + 2.5, 130, 15, [
+        rect(s, 19, cy, 140, 22, fill=PAPER, line=LINE_SOFT, line_w=0.5)
+        rect(s, 19, cy, 1, 22, fill=GOLD)
+        text_box(s, 25, cy + 3, 130, 18, [
             ([t(head, size=10.5, color=INK, serif=True, bold=True)], dict(after=1)),
             ([t(body, size=8, color=INK_SOFT)], dict(spacing=1.3)),
         ])
-        cy += 22.5
+        cy += 25.5
     steps = [
         ("登録申請", "貴社の対象アドバイザーについて、申請フォームからご提出ください。"),
         ("書類審査", "経歴・実績・専門領域を確認します。"),
@@ -594,12 +597,12 @@ def build(out_path):
     for i, (head, body) in enumerate(steps):
         rect(s, sx, cy + 0.5, 5, 5, line=GOLD, line_w=0.75, shape=MSO_SHAPE.OVAL)
         if i < len(steps) - 1:
-            rect(s, sx + 2.3, cy + 6, 0.35, 14.5, fill=LINE_GOLD)
-        text_box(s, sx + 9, cy, 97, 18, [
+            rect(s, sx + 2.3, cy + 6, 0.35, 17, fill=LINE_GOLD)
+        text_box(s, sx + 9, cy, 97, 20, [
             ([t(head, size=10.5, color=INK, serif=True, bold=True)], dict(after=1)),
             ([t(body, size=8, color=INK_SOFT)], dict(spacing=1.3)),
         ])
-        cy += 20.5
+        cy += 23
     text_box(s, sx, cy + 1, 106, 8, [
         ([t("※ 審査基準の詳細・提出書類は、お問い合わせ後に個別にご案内します。",
             size=7.5, color=MUTED)], dict(spacing=1.35)),
