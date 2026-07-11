@@ -44,7 +44,7 @@ WHITE = RGBColor.from_string("FFFFFF")
 SERIF_LAT, SERIF_EA = "Garamond", "游明朝"
 SANS_LAT, SANS_EA = "Yu Gothic", "游ゴシック"
 
-FONT_SCALE = 1.0  # 全体の文字サイズ倍率
+FONT_SCALE = 1.15  # 全体の文字サイズ倍率
 
 
 def _set_fonts(run, serif=False):
@@ -140,8 +140,8 @@ def big_title(slide, runs_lines, y=28, size=29, dark=False):
             st.setdefault("size", size)
             styled.append((text, st))
         paras.append((styled, dict(spacing=1.25)))
-    text_box(slide, MX, y, CW, 16 * len(runs_lines), paras)
-    return y + 15.5 * len(runs_lines)
+    text_box(slide, MX, y, CW, 18.5 * len(runs_lines), paras)
+    return y + 18 * len(runs_lines)
 
 
 def lead(slide, text, y, dark=False):
@@ -211,11 +211,11 @@ def build(out_path):
           t(".", size=56, color=GOLD, serif=True)], {}),
     ])
     text_box(s, MX, 92, 300, 12, [
-        ([t("絞るから、届く。スカウトと指名のハイクラス転職。",
+        ([t("選ばれるから、届く。“指名”で始まるハイクラス転職。",
             size=17.5, color=WHITE, serif=True, bold=True, spc=2)], {}),
     ])
     text_box(s, MX, 112, 300, 16, [
-        ([t("「量の競争」で飽和した転職スカウト市場を、送り手を絞る「質の競争」へ。",
+        ([t("「量の競争」で飽和した転職スカウト市場に、求職者がCAを選ぶ「指名」という新しい入口を。",
             size=9.5, color=GRAY_D, spc=1)], dict(spacing=1.6)),
         ([t("実績トップクラスのキャリアアドバイザーだけが参加できる、品質保証型マッチングプラットフォーム。",
             size=9.5, color=GRAY_D, spc=1)], dict(spacing=1.6)),
@@ -231,13 +231,13 @@ def build(out_path):
     # ================= P.02 01/EXECUTIVE SUMMARY =================
     s = add_slide(prs)
     sec_label(s, "01 / EXECUTIVE SUMMARY")
-    y = big_title(s, [[t("絞るから、"), t("届く", color=GOLD), t("。")]])
-    lead(s, "トップクラスのCAだけが参加できる、スカウトと指名の双方向マッチングです。", y + 1)
+    y = big_title(s, [[t("選ばれるから、"), t("届く", color=GOLD), t("。")]])
+    lead(s, "トップクラスのCAだけが参加できる、“指名”型のマッチングです。", y + 1)
     cards = [
-        ("01", "届くスカウト", "SCOUTS THAT LAND",
-         "送り手をトップクラスのCAに限定。総量が絞られ、1通が読まれる。", "light", INK),
-        ("02", "指名も届く", "NAMED BY CANDIDATES",
-         "求職者がプロフィールを見て指名。受け身でも温度の高い面談が届く。", "dark", None),
+        ("01", "トップCA限定", "VETTED ADVISORS",
+         "実績・専門性・支援品質の審査制。掲載されていること自体が証明になる。", "light", INK),
+        ("02", "指名が届く", "NAMED BY CANDIDATES",
+         "求職者がプロフィールを見て指名。温度の高い面談が、送信ゼロで届く。", "dark", None),
         ("03", "成約まで費用ゼロ", "SUCCESS FEE ONLY",
          "初年度利用料0円。費用は成約時に、紹介手数料の20%だけ。", "light", GOLD),
     ]
@@ -299,7 +299,7 @@ def build(out_path):
         ([t("約100通の送信が必要な計算。", size=11, color=WHITE, bold=True)],
          dict(spacing=1.5)),
     ])
-    hline(s, rx + 10, py + 47, rw - 20, color=GOLD, th=0.4)
+    hline(s, rx + 10, py + 50, rw - 20, color=GOLD, th=0.4)
     src_note(s, "出典: ビズリーチ公式サイト公表値（2026年1月末時点） / VOLLECT・buddy-data・miidas スカウト返信率調査（2025〜2026年）")
 
     # ================= P.04 03/CANDIDATES =================
@@ -353,22 +353,22 @@ def build(out_path):
     ])
     hline(s, MX, 32.3, 11.5, color=GOLD, th=0.6)
     text_box(s, MX, 39, CW, 34, [
-        ([t("送り手を絞ることで、", size=27, color=WHITE, serif=True, bold=True,
+        ([t("“送る”のをやめて、", size=27, color=WHITE, serif=True, bold=True,
             spc=1)], dict(spacing=1.3)),
         ([t("“", size=27, color=WHITE, serif=True, bold=True),
-          t("届く", size=27, color=GOLD_L, serif=True, bold=True),
-          t("”を取り戻す。", size=27, color=WHITE, serif=True, bold=True)],
+          t("選ばれる", size=27, color=GOLD_L, serif=True, bold=True),
+          t("”へ。", size=27, color=WHITE, serif=True, bold=True)],
          dict(spacing=1.3)),
     ])
     text_box(s, MX, 78, CW, 9, [
         ([t("MarkGate", size=14, color=WHITE, serif=True),
           t(".", size=14, color=GOLD, serif=True),
-          t("　— 審査制 × 届くスカウト × 指名", size=10, color=GRAY_D, spc=2)], {}),
+          t("　— 審査制 × 指名", size=10, color=GRAY_D, spc=2)], {}),
     ])
     cols = [
         ("Quality", "実績・専門性・支援品質で審査。トップクラスのCAだけが参加できる。"),
-        ("Reach", "送信総量が絞られるから、1通が埋もれない。返信率を構造で高める設計。"),
-        ("Choice", "求職者からの指名も届く。攻めと受け、双方向のマッチング。"),
+        ("Choice", "求職者が実績・専門領域を見て、相談相手を自分で選び、指名する。"),
+        ("Trust", "選ばれて始まる面談だから、温度が高い。辞退や音信不通が起きにくい。"),
     ]
     cw3, gap3 = 94, 7.8
     for i, (head, body) in enumerate(cols):
@@ -433,7 +433,7 @@ def build(out_path):
     steps = [
         ("01", "審査・登録", "貴社アドバイザーが実績・専門性の審査にエントリー。"),
         ("02", "プロフィール公開", "得意領域・実績・人柄をプラットフォームに掲載。"),
-        ("03", "スカウト & 指名", "CAからのスカウトも、求職者からの指名も。双方向でつながる。"),
+        ("03", "指名の受信", "プロフィールを見た求職者から、指名が届く。"),
         ("04", "面談・成約", "以降は通常の紹介業務。成約時に初めて費用が発生します。"),
     ]
     cw4, gap4 = 70.4, 5.3
@@ -441,10 +441,9 @@ def build(out_path):
         cx = MX + i * (cw4 + gap4)
         col_item(s, cx, 64, cw4, num, head, body, head_size=12.5)
     band(s, [
-        t("送り手が絞られているから、1通のスカウトが競争に埋もれない。",
-          size=10.5, color=WHITE),
-        t("母集団形成はプラットフォームの仕事です。", size=10.5, color=GOLD_L,
-          bold=True),
+        t("掲載して、待つだけ。", size=10.5, color=WHITE),
+        t("母集団形成と指名の創出は、プラットフォームの仕事です。", size=10.5,
+          color=GOLD_L, bold=True),
     ])
 
     # ================= P.08 07/SCREENING =================
@@ -452,7 +451,7 @@ def build(out_path):
     sec_label(s, "07 / SCREENING")
     y = big_title(s, [[t("審査は、狭き門ほど、"), t("価値", color=GOLD),
                        t("になる。")]])
-    lead(s, "「誰でも登録できる場」にしないこと自体が、貴社のスカウトが届く理由です。", y + 1)
+    lead(s, "「誰でも登録できる場」にしないこと自体が、求職者が安心して“指名”できる理由です。", y + 1)
     crits = [
         ("実績", "TRACK RECORD", "支援領域での決定実績・経験を、事実ベースで確認します。"),
         ("専門性", "EXPERTISE", "業界・職種への理解の深さと、得意領域の明確さを審査します。"),
@@ -498,12 +497,12 @@ def build(out_path):
     # ================= P.09 08/PRODUCTIVITY =================
     s = add_slide(prs)
     sec_label(s, "08 / PRODUCTIVITY")
-    y = big_title(s, [[t("“送る仕事”を、減らす"), t("構造", color=GOLD),
+    y = big_title(s, [[t("“送る仕事”を、なくす"), t("構造", color=GOLD),
                        t("。")]])
     lead(s, "数値ではなく、工数が減る「仕組み」でご説明します。理由は3つあります。", y + 1)
     cols = [
-        ("01", "大量送信が、前提でなくなる",
-         "送り手が絞られた場では、埋もれ対策の“数打ち”が要らない。読まれる前提で、1通に時間を使えます。"),
+        ("01", "送る工数が、ゼロになる",
+         "指名は“待って受け取る”接点。スカウト送信や文面作成の工数そのものが発生しません。"),
         ("02", "指名は、送信ゼロで届く",
          "プロフィールを見た求職者から、面談リクエストが届く。待っている間の母集団形成は、当社の仕事です。"),
         ("03", "追いかける時間が、減る",
@@ -573,9 +572,10 @@ def build(out_path):
     colw = [52, 88, 80, 77.6]
     ty, hh, rh = 71, 15, 14
     rows = [
-        ("スカウトの競争環境", ("✕", "誰でも登録可。送信過多で受信箱が飽和"),
-         ("—", "スカウト機能なし"), ("◎", "審査制で送り手を限定")),
-        ("求職者からの指名", ("✕", "不可"), ("✕", "不可"), ("◎", "指名が届く")),
+        ("求職者との接点", ("✕", "スカウト送信（受信箱で競争・埋もれる）"),
+         ("△", "面談リストの購入"), ("◎", "求職者からの「指名」が届く")),
+        ("担当者を選べるか", ("✕", "選べない"), ("✕", "選べない"),
+         ("◎", "求職者がCAを選んで指名")),
         ("成約前の費用", ("✕", "基本料金60万円/6か月〜 +通数課金"),
          ("✕", "面談1件 1.4万〜3.5万円"), ("◎", "0円（初年度は利用料も無料）")),
         ("成功報酬", ("✕", "手数料の30%（初回契約の例）"),
@@ -589,7 +589,7 @@ def build(out_path):
     heads = [
         ("比較軸", None, INK), ("スカウト型DB", "ビズリーチ等", INK),
         ("送客型サービス", "面談課金・リスト課金", INK),
-        ("MarkGate", "審査制×双方向マッチング", WHITE),
+        ("MarkGate", "審査制×指名型マッチング", WHITE),
     ]
     tx = MX
     for i, (head, sub, color) in enumerate(heads):
@@ -680,7 +680,7 @@ def build(out_path):
     rect(s, MX + 168, ny - 3, CW - 168, 20, fill=DARK)
     text_box(s, MX + 176, ny - 3, CW - 184, 20, [
         ([t("MarkGate: ", size=9.5, color=GOLD_L, bold=True),
-          t("成約まで0円。スカウト工数の削減まで含めて、利益率が変わる。",
+          t("成約まで0円。“送る工数”がないことまで含めて、利益率が変わる。",
             size=9.5, color=WHITE, bold=True)], dict(spacing=1.5)),
     ], anchor=MSO_ANCHOR.MIDDLE)
     src_note(s, "※試算は例示です。30%はスカウト型媒体の紹介会社向け初回契約の公開情報の一例。実際の条件は各社の契約によります。")
@@ -797,7 +797,7 @@ def build(out_path):
         ([t("YEAR 1", size=8, color=GRAY, spc=2.5)], dict(after=3)),
         ([t("¥0", size=24, color=INK, serif=True),
           t("　初年度 利用料", size=10.5, color=INK, bold=True)], dict(after=3)),
-        ([t("登録・掲載・スカウト・指名の受信・面談まで、すべて無料。",
+        ([t("登録・掲載・指名の受信・面談まで、すべて無料。",
             size=8.5, color=GRAY)], {}),
     ])
     y2 = py + bh + 6
@@ -810,7 +810,7 @@ def build(out_path):
         ([t("平均決定単価 約103万円/件の一部で回収できる水準です。",
             size=8.5, color=GRAY)], {}),
     ])
-    src_note(s, "スカウト通数課金・広告費・送客費・掲載料は一切なし。　※平均決定単価の出典: 厚生労働省「令和6年度職業紹介事業報告書の集計結果」")
+    src_note(s, "通数課金・広告費・送客費・掲載料は一切なし。　※平均決定単価の出典: 厚生労働省「令和6年度職業紹介事業報告書の集計結果」")
 
     # ================= P.16 15/LAUNCH PARTNER =================
     s = add_slide(prs)
@@ -843,8 +843,8 @@ def build(out_path):
     rw = W - MX - rx
     rect(s, rx, 60, rw, 96, fill=DARK)
     merits = [
-        ("01", "初期ほど、スカウトが効く",
-         "参加CAを限定してローンチ。送信競争が最も少ない時期に始められる。"),
+        ("01", "初期ほど、指名が集中する",
+         "参加CAを限定してローンチ。掲載が少ない時期ほど、1人あたりの露出が大きい。"),
         ("02", "露出の優先",
          "検索結果・特集企画で、先行登録アドバイザーを優先表示。"),
         ("03", "サービス設計に参画",
@@ -873,9 +873,8 @@ def build(out_path):
     text_box(s, MX, 42, CW, 36, [
         ([t("絞られた場所でだけ、", size=27, color=WHITE, serif=True, bold=True,
             spc=1)], dict(spacing=1.3)),
-        ([t("スカウトも指名も", size=27, color=GOLD_L, serif=True, bold=True,
-            spc=1),
-          t("、届く。", size=27, color=WHITE, serif=True, bold=True, spc=1)],
+        ([t("“指名”", size=27, color=GOLD_L, serif=True, bold=True, spc=1),
+          t("は届く。", size=27, color=WHITE, serif=True, bold=True, spc=1)],
          dict(spacing=1.3)),
     ])
     text_box(s, MX, 84, CW, 8, [
