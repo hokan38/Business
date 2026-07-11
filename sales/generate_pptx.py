@@ -1,85 +1,80 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-MarkGate 人材紹介エージェント様向けご提案資料 — PowerPoint(.pptx) 生成スクリプト
+MarkGate 人材紹介エージェント様向けご案内資料 — PowerPoint(.pptx) 生成スクリプト
 
-sales/index.html（A4横・15枚）と同じ構成・配色（Deep Navy × Gold）の
-編集可能なネイティブPPTXを生成します。
+16:9・エディトリアルデザイン（ウォームブラック × クリーム × ゴールド）。
+図解・数値中心の全17スライドを、編集可能なネイティブPPTXとして生成します。
+この PPTX が営業資料の「正」です。
 
 使い方:
     pip install python-pptx
     python3 sales/generate_pptx.py [出力パス.pptx]
-
-フォントは PowerPoint 標準の「游明朝」（見出し）/「游ゴシック」（本文）、
-欧文は Garamond を指定しています（未インストール環境では自動代替）。
 """
 import sys
 
 from pptx import Presentation
-from pptx.util import Mm, Pt, Emu
+from pptx.util import Mm, Pt
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.oxml.ns import qn
 
-# ---------- 配色（style.css のトークンに対応） ----------
-NAVY = RGBColor.from_string("0A0E1A")
-NAVY7 = RGBColor.from_string("141B33")
-NAVY_BOX = RGBColor.from_string("131A30")   # ダーク面のカード
-INK = RGBColor.from_string("1A1D29")
-INK_SOFT = RGBColor.from_string("3A3F4D")
-GOLD = RGBColor.from_string("C6A15B")
-GOLD_L = RGBColor.from_string("E2C88A")
-GOLD_T = RGBColor.from_string("7A6030")     # 小サイズ文字用の濃いゴールド
-CREAM = RGBColor.from_string("F8F6F1")
-CREAM2 = RGBColor.from_string("F1EDE3")
-PAPER = RGBColor.from_string("FFFFFF")
-HL_BG = RGBColor.from_string("FDF9F0")      # 強調カードの背景
-HL_BG2 = RGBColor.from_string("FBF4E6")     # フロー強調
-MUTED = RGBColor.from_string("5F6672")
-LINE_GOLD = RGBColor.from_string("DECBA2")  # 罫線（ゴールド系）
-LINE_SOFT = RGBColor.from_string("D9D9DE")  # 罫線（グレー系）
+# ---------- キャンバス（16:9） ----------
+W, H = 338.6, 190.5          # mm
+MX = 20.5                    # 左右マージン
+CW = W - MX * 2              # コンテンツ幅 ≒ 297.6
+
+# ---------- 配色 ----------
+DARK = RGBColor.from_string("131009")     # ウォームブラック（背景・パネル）
+DARK2 = RGBColor.from_string("1A1610")    # ダーク面のカード
+CREAM = RGBColor.from_string("F4F1E9")    # クリーム背景
+CREAM2 = RGBColor.from_string("EBE5D8")   # クリーム面のカード
+CREAM3 = RGBColor.from_string("E7E1D2")   # 表ヘッダー
+INK = RGBColor.from_string("201C15")      # 本文（濃）
+GRAY = RGBColor.from_string("8F8A7B")     # リード文・注釈（クリーム面）
+GRAY_D = RGBColor.from_string("ABA595")   # 本文（ダーク面）
+GRAY_D2 = RGBColor.from_string("7E7868")  # 注釈（ダーク面）
+GOLD = RGBColor.from_string("B8934E")     # ゴールド（罫線・強調）
+GOLD_T = RGBColor.from_string("8A6A32")   # ゴールド（クリーム面の小さい文字）
+GOLD_L = RGBColor.from_string("D8C08C")   # ゴールド（ダーク面の文字）
+RED = RGBColor.from_string("A03A2A")      # ネガティブ強調
 WHITE = RGBColor.from_string("FFFFFF")
-DARK_BODY = RGBColor.from_string("B9BFCC")  # ダーク面の本文
-DARK_SUB = RGBColor.from_string("8E96A8")   # ダーク面の注記
 
 SERIF_LAT, SERIF_EA = "Garamond", "游明朝"
 SANS_LAT, SANS_EA = "Yu Gothic", "游ゴシック"
 
-# 全テキスト共通の文字サイズ倍率（レイアウトはこの倍率前提で調整済み）
-FONT_SCALE = 1.18
-
-FOOTER_TEXT = "人材紹介エージェント様向けご提案資料"
+FONT_SCALE = 1.0  # 全体の文字サイズ倍率
 
 
-def _set_fonts(run, serif=False, latin=None, ea=None):
-    lat = latin or (SERIF_LAT if serif else SANS_LAT)
-    east = ea or (SERIF_EA if serif else SANS_EA)
-    run.font.name = lat
+def _set_fonts(run, serif=False):
+    run.font.name = SERIF_LAT if serif else SANS_LAT
     rPr = run._r.get_or_add_rPr()
-    ea_el = rPr.find(qn("a:ea"))
-    if ea_el is None:
-        ea_el = rPr.makeelement(qn("a:ea"), {})
-        latin_el = rPr.find(qn("a:latin"))
-        if latin_el is not None:
-            latin_el.addnext(ea_el)
-        else:
-            rPr.append(ea_el)
-    ea_el.set("typeface", east)
+    ea = rPr.find(qn("a:ea"))
+    if ea is None:
+        ea = rPr.makeelement(qn("a:ea"), {})
+        latin = rPr.find(qn("a:latin"))
+        (latin.addnext(ea) if latin is not None else rPr.append(ea))
+    ea.set("typeface", SERIF_EA if serif else SANS_EA)
 
 
-def _style_run(run, text, size=9, color=INK, bold=False, serif=False, spc=None):
+def _style_run(run, text, size=9.5, color=INK, bold=False, serif=False,
+               italic=False, spc=None):
     run.text = text
     run.font.size = Pt(round(size * FONT_SCALE, 1))
     run.font.color.rgb = color
     run.font.bold = bold
+    run.font.italic = italic
     _set_fonts(run, serif=serif)
     if spc:
         run._r.get_or_add_rPr().set("spc", str(int(spc * 100)))
 
 
+def t(text, **kw):
+    return (text, kw)
+
+
 def text_box(slide, x, y, w, h, paras, anchor=MSO_ANCHOR.TOP):
-    """paras: [(runs, opts)] / runs: [(text, style_dict)] / opts: align, spacing, after"""
     tb = slide.shapes.add_textbox(Mm(x), Mm(y), Mm(w), Mm(h))
     tf = tb.text_frame
     tf.word_wrap = True
@@ -89,7 +84,7 @@ def text_box(slide, x, y, w, h, paras, anchor=MSO_ANCHOR.TOP):
     for i, (runs, opts) in enumerate(paras):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.alignment = opts.get("align", PP_ALIGN.LEFT)
-        p.line_spacing = opts.get("spacing", 1.25)
+        p.line_spacing = opts.get("spacing", 1.3)
         if opts.get("after"):
             p.space_after = Pt(opts["after"])
         if opts.get("before"):
@@ -99,9 +94,8 @@ def text_box(slide, x, y, w, h, paras, anchor=MSO_ANCHOR.TOP):
     return tb
 
 
-def rect(slide, x, y, w, h, fill=None, line=None, line_w=0.75, dash=None,
-         shape=MSO_SHAPE.RECTANGLE):
-    sp = slide.shapes.add_shape(shape, Mm(x), Mm(y), Mm(w), Mm(h))
+def rect(slide, x, y, w, h, fill=None, line=None, line_w=0.75):
+    sp = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Mm(x), Mm(y), Mm(w), Mm(h))
     if fill is None:
         sp.fill.background()
     else:
@@ -112,766 +106,812 @@ def rect(slide, x, y, w, h, fill=None, line=None, line_w=0.75, dash=None,
     else:
         sp.line.color.rgb = line
         sp.line.width = Pt(line_w)
-        if dash:
-            ln = sp.line._get_or_add_ln()
-            d = ln.makeelement(qn("a:prstDash"), {"val": dash})
-            ln.append(d)
     sp.shadow.inherit = False
-    sp.text_frame.word_wrap = True
     return sp
 
 
+def hline(slide, x, y, w, color=GOLD, th=0.35):
+    rect(slide, x, y, w, th, fill=color)
+
+
 def add_slide(prs, dark=False):
-    slide = prs.slides.add_slide(prs.slide_layouts[6])
-    rect(slide, 0, 0, 297, 210, fill=(NAVY if dark else CREAM))
-    return slide
+    s = prs.slides.add_slide(prs.slide_layouts[6])
+    rect(s, 0, 0, W, H, fill=(DARK if dark else CREAM))
+    return s
 
 
-def footer(slide, page, dark=False):
-    c_brand = GOLD_L if dark else GOLD_T
-    c_txt = DARK_SUB if dark else MUTED
-    text_box(slide, 19, 199.5, 200, 6, [
-        ([("MarkGate", dict(size=9, color=c_brand, bold=True, serif=True)),
-          ("　" + FOOTER_TEXT, dict(size=7, color=c_txt))], {}),
+def sec_label(slide, text, dark=False):
+    """左上のセクションラベル（例: 01 / EXECUTIVE SUMMARY）＋短い金罫"""
+    text_box(slide, MX, 14.5, 200, 7, [
+        ([t(text, size=10.5, color=(GOLD_L if dark else GOLD_T),
+            serif=True, italic=True, spc=2.5)], {}),
     ])
-    text_box(slide, 250, 199.5, 28, 6, [
-        ([(f"{page:02d}", dict(size=9, color=c_txt, serif=True, spc=1))],
-         dict(align=PP_ALIGN.RIGHT)),
+    hline(slide, MX, 22.8, 11.5, color=GOLD, th=0.6)
+
+
+def big_title(slide, runs_lines, y=28, size=29, dark=False):
+    paras = []
+    for runs in runs_lines:
+        styled = []
+        for text, kw in runs:
+            st = dict(size=size, bold=True, serif=True,
+                      color=kw.get("color", WHITE if dark else INK), spc=1)
+            st.update(kw)
+            st.setdefault("size", size)
+            styled.append((text, st))
+        paras.append((styled, dict(spacing=1.25)))
+    text_box(slide, MX, y, CW, 16 * len(runs_lines), paras)
+    return y + 15.5 * len(runs_lines)
+
+
+def lead(slide, text, y, dark=False):
+    text_box(slide, MX, y, CW, 9, [
+        ([t(text, size=10.5, color=(GRAY_D if dark else GRAY), spc=1)],
+         dict(spacing=1.4)),
+    ])
+    return y + 10
+
+
+def band(slide, runs, y=163.5):
+    """下部の黒帯メッセージ"""
+    rect(slide, MX, y, CW, 12.5, fill=DARK)
+    text_box(slide, MX + 8, y, CW - 16, 12.5,
+             [(runs, dict(align=PP_ALIGN.CENTER))], anchor=MSO_ANCHOR.MIDDLE)
+
+
+def src_note(slide, text, y=180):
+    text_box(slide, MX, y, CW, 6, [
+        ([t(text, size=7, color=GRAY)], {}),
     ])
 
 
-def header(slide, num, label, title_runs, dark=False, lead=None):
-    """セクション見出し。コンテンツ開始Y(mm)を返す。"""
-    text_box(slide, 19, 12, 20, 10, [
-        ([(num, dict(size=17, color=GOLD, serif=True))], {}),
-    ])
-    text_box(slide, 33, 15.2, 200, 6, [
-        ([(label, dict(size=7.5, color=(GOLD_L if dark else GOLD_T), spc=3))], {}),
-    ])
-    n_lines = sum(1 for _ in title_runs)
-    text_box(slide, 19, 22, 259, 14 * n_lines, [
-        (runs, dict(spacing=1.2)) for runs in title_runs
-    ])
-    y = 22 + 14 * n_lines
-    if lead:
-        text_box(slide, 19, y + 1, 255, 14, [
-            (lead, dict(spacing=1.4)),
+def col_item(slide, x, y, w, num, head, body, dark=False, rule=GOLD,
+             eng=None, head_size=12.5):
+    """金罫＋斜体番号＋見出し＋短文 の縦コラム"""
+    hline(slide, x, y, w, color=rule, th=0.4)
+    yy = y + 4
+    if num:
+        text_box(slide, x, yy, w, 9, [
+            ([t(num, size=15, color=(GOLD_L if dark else GOLD_T),
+                serif=True, italic=True)], {}),
         ])
-        y += 15
-    rect(slide, 19, y + 2, 14, 0.7, fill=GOLD)
-    return y + 8
-
-
-def t(text, **kw):
-    return (text, kw)
-
-
-def title_r(text, color=INK, gold=False):
-    return t(text, size=22, color=(GOLD_T if gold else color), serif=True, bold=True)
-
-
-def title_r_dark(text, gold=False):
-    return t(text, size=22, color=(GOLD_L if gold else WHITE), serif=True, bold=True)
+        yy += 10.5
+    head_runs = [t(head, size=head_size, bold=True,
+                   color=(WHITE if dark else INK))]
+    if eng:
+        head_runs = [head_runs[0]]
+    text_box(slide, x, yy, w, 8, [(head_runs, {})])
+    yy += 7.5
+    if eng:
+        text_box(slide, x, yy, w, 5, [
+            ([t(eng, size=6.8, color=(GRAY_D2 if dark else GRAY), spc=2)], {}),
+        ])
+        yy += 6
+    text_box(slide, x, yy + 0.5, w, 24, [
+        ([t(body, size=9.3, color=(GRAY_D if dark else INK))],
+         dict(spacing=1.45)),
+    ])
 
 
 # ============================================================
 def build(out_path):
     prs = Presentation()
-    prs.slide_width = Mm(297)
-    prs.slide_height = Mm(210)
+    prs.slide_width = Mm(W)
+    prs.slide_height = Mm(H)
 
-    # ---------- P.01 表紙 ----------
+    # ================= P.01 表紙（ダーク） =================
     s = add_slide(prs, dark=True)
-    # ゲートモチーフ（ロゴ簡略版）
-    try:
-        fb = s.shapes.build_freeform(Mm(24), Mm(52), scale=1)
-        fb.add_line_segments(
-            [(Mm(24), Mm(38)), (Mm(31), Mm(33.5)), (Mm(38), Mm(38)),
-             (Mm(38), Mm(52)), (Mm(24), Mm(52))], close=True)
-        gate = fb.convert_to_shape()
-        gate.fill.background()
-        gate.line.color.rgb = GOLD_L
-        gate.line.width = Pt(1.4)
-        gate.shadow.inherit = False
-    except Exception:
-        pass
-    text_box(s, 24, 60, 240, 7, [
-        ([t("人材紹介エージェント様向け ご提案資料", size=10.5, color=GOLD_L, spc=4)], {}),
+    hline(s, MX, 15, CW, color=GOLD, th=0.35)
+    hline(s, MX, 167, CW, color=GOLD, th=0.35)
+    text_box(s, MX, 40, 250, 8, [
+        ([t("人材紹介エージェント様向け ご案内資料", size=11, color=GOLD_L, spc=4)], {}),
     ])
-    text_box(s, 24, 72, 250, 42, [
-        ([t("貴社のエースが、", size=33, color=WHITE, serif=True, bold=True)],
-         dict(spacing=1.25)),
-        ([t("“指名される”", size=33, color=GOLD_L, serif=True, bold=True),
-          t("時代へ。", size=33, color=WHITE, serif=True, bold=True)],
-         dict(spacing=1.25)),
+    text_box(s, MX, 51, 300, 32, [
+        ([t("MarkGate", size=56, color=WHITE, serif=True),
+          t(".", size=56, color=GOLD, serif=True)], {}),
     ])
-    text_box(s, 24, 118, 250, 18, [
-        ([t("トップキャリアアドバイザーだけが登録できる、", size=11.5,
-            color=RGBColor.from_string("D5D9E2"))], dict(spacing=1.5)),
-        ([t("ハイクラス特化の指名型転職プラットフォーム「MarkGate」のご案内",
-            size=11.5, color=RGBColor.from_string("D5D9E2"))], dict(spacing=1.5)),
+    text_box(s, MX, 92, 300, 12, [
+        ([t("絞るから、届く。スカウトと指名のハイクラス転職。",
+            size=17.5, color=WHITE, serif=True, bold=True, spc=2)], {}),
     ])
-    text_box(s, 24, 150, 250, 9, [
-        ([t("MarkGate", size=14, color=WHITE, bold=True, serif=True),
-          t("　／　", size=9, color=GOLD),
-          t("MarkGate株式会社", size=9, color=DARK_BODY, spc=1),
-          t("　／　", size=9, color=GOLD),
-          t("2026年7月", size=9, color=DARK_BODY, spc=1)], {}),
+    text_box(s, MX, 112, 300, 16, [
+        ([t("「量の競争」で飽和した転職スカウト市場を、送り手を絞る「質の競争」へ。",
+            size=9.5, color=GRAY_D, spc=1)], dict(spacing=1.6)),
+        ([t("実績トップクラスのキャリアアドバイザーだけが参加できる、品質保証型マッチングプラットフォーム。",
+            size=9.5, color=GRAY_D, spc=1)], dict(spacing=1.6)),
+    ])
+    text_box(s, MX, 172, 150, 6, [
+        ([t("CONFIDENTIAL　·　2026", size=8, color=GRAY_D2, spc=3)], {}),
+    ])
+    text_box(s, W - MX - 120, 171, 120, 7, [
+        ([t("— Quality over Quantity —", size=10.5, color=GOLD_L,
+            serif=True, italic=True)], dict(align=PP_ALIGN.RIGHT)),
     ])
 
-    # ---------- P.02 サマリー ----------
+    # ================= P.02 01/EXECUTIVE SUMMARY =================
     s = add_slide(prs)
-    y = header(s, "01", "EXECUTIVE SUMMARY",
-               [[title_r("本日お伝えしたい、3つのこと。")]])
+    sec_label(s, "01 / EXECUTIVE SUMMARY")
+    y = big_title(s, [[t("絞るから、"), t("届く", color=GOLD), t("。")]])
+    lead(s, "トップクラスのCAだけが参加できる、スカウトと指名の双方向マッチングです。", y + 1)
     cards = [
-        ("Ⅰ", "MarkGateは\nトップアドバイザー限定の\n指名型プラットフォーム",
-         "各エージェントの実績上位アドバイザーのみが審査制で登録できる、ハイクラス・エグゼクティブ特化の転職プラットフォームです。"),
-        ("Ⅱ", "ハイクラス求職者からの\n「指名」が、貴社に\n直接届く仕組み",
-         "求職者がアドバイザーの実績・専門領域を比較して指名する“指名型（プル型）”モデル。温度感の高い接点が、スカウト送信なしで生まれる設計です。"),
-        ("Ⅲ", "審査通過そのものが、\n貴社とエースの\nブランドに",
-         "「Mark＝一流の証」を掲げる審査制の場に立つこと自体が、アドバイザー個人と貴社の信頼の可視化につながります。"),
+        ("01", "届くスカウト", "SCOUTS THAT LAND",
+         "送り手をトップクラスのCAに限定。総量が絞られ、1通が読まれる。", "light", INK),
+        ("02", "指名も届く", "NAMED BY CANDIDATES",
+         "求職者がプロフィールを見て指名。受け身でも温度の高い面談が届く。", "dark", None),
+        ("03", "成約まで費用ゼロ", "SUCCESS FEE ONLY",
+         "初年度利用料0円。費用は成約時に、紹介手数料の20%だけ。", "light", GOLD),
     ]
-    cw, ch, gap = 82.3, 88, 6
-    cy = y + 4
-    for i, (num, head, body) in enumerate(cards):
-        cx = 19 + i * (cw + gap)
-        rect(s, cx, cy, cw, ch, fill=PAPER, line=LINE_SOFT, line_w=0.5)
-        rect(s, cx, cy, cw, 0.9, fill=GOLD)
-        paras = [([t(num, size=15, color=GOLD, serif=True)], dict(after=6))]
-        for ln in head.split("\n"):
-            paras.append(([t(ln, size=12.5, color=INK, serif=True, bold=True)],
-                          dict(spacing=1.3)))
-        paras.append(([t(body, size=8.5, color=INK_SOFT)],
-                      dict(spacing=1.45, before=7)))
-        text_box(s, cx + 7, cy + 7, cw - 14, ch - 14, paras)
-    by = cy + ch + 7
-    rect(s, 19, by, 259, 17, fill=NAVY)
-    rect(s, 27, by + 5.2, 24, 6.6, line=GOLD_L, line_w=0.75)
-    text_box(s, 27, by + 6.6, 24, 4, [
-        ([t("本日のご提案", size=7, color=GOLD_L, spc=2)], dict(align=PP_ALIGN.CENTER)),
-    ])
-    text_box(s, 57, by, 214, 17, [
-        ([t("貴社の", size=12, color=WHITE, serif=True),
-          t("トップキャリアアドバイザー", size=12, color=GOLD_L, serif=True),
-          t("の、MarkGateへのご登録（審査制）をご検討ください。",
-            size=12, color=WHITE, serif=True)], {}),
-    ], anchor=MSO_ANCHOR.MIDDLE)
-    footer(s, 2)
+    cw, ch, gap = 94, 74, 7.8
+    cy = 76
+    for i, (num, head, eng, body, mode, rule) in enumerate(cards):
+        cx = MX + i * (cw + gap)
+        dark_card = (mode == "dark")
+        rect(s, cx, cy, cw, ch, fill=(DARK if dark_card else CREAM2))
+        if rule is not None:
+            hline(s, cx, cy - 0.6, cw, color=rule, th=0.6)
+        text_box(s, cx + 9, cy + 12, cw - 18, ch - 20, [
+            ([t(num, size=16, color=(GOLD_L if dark_card else GOLD_T),
+                serif=True, italic=True)], dict(after=8)),
+            ([t(head, size=13.5, bold=True,
+                color=(WHITE if dark_card else INK))], dict(after=1.5)),
+            ([t(eng, size=6.8, color=(GRAY_D2 if dark_card else GRAY), spc=2)],
+             dict(after=6)),
+            ([t(body, size=9.5, color=(GRAY_D if dark_card else INK))],
+             dict(spacing=1.5)),
+        ])
 
-    # ---------- P.03 課題（ダーク） ----------
+    # ================= P.03 02/PROBLEM =================
+    s = add_slide(prs)
+    sec_label(s, "02 / PROBLEM")
+    y = big_title(s, [[t("スカウトは、もう"), t("読まれていない", color=RED), t("。")]])
+    lead(s, "同じデータベースに送り手が殺到し、優秀層の受信箱は飽和しています。", y + 1)
+    py, ph = 74, 96
+    lw = 141
+    rect(s, MX, py, lw, ph, fill=CREAM2)
+    hline(s, MX, py - 0.6, lw, color=INK, th=0.6)
+    text_box(s, MX + 10, py + 10, lw - 20, ph - 18, [
+        ([t("SENDERS　—　送り手", size=8.5, color=GOLD_T, serif=True,
+            italic=True, spc=2)], dict(after=8)),
+        ([t("41,800", size=38, color=INK, serif=True),
+          t(" 社", size=13, color=INK, bold=True)], dict(after=1)),
+        ([t("ビズリーチ 累計導入企業数（2026年1月末・公表値）", size=7.3, color=GRAY)],
+         dict(after=8)),
+        ([t("9,700", size=23, color=INK, serif=True),
+          t(" 名+", size=11, color=INK, bold=True)], dict(after=1, before=6)),
+        ([t("同・登録ヘッドハンター数", size=7.3, color=GRAY)], {}),
+    ])
+    hline(s, MX + 10, py + 52, lw - 20, color=GOLD, th=0.4)
+    text_box(s, MX + lw + 2, py, 16, ph, [
+        ([t("→", size=15, color=GRAY)], dict(align=PP_ALIGN.CENTER)),
+    ], anchor=MSO_ANCHOR.MIDDLE)
+    rx = MX + lw + 20
+    rw = W - MX - rx
+    rect(s, rx, py, rw, ph, fill=DARK)
+    text_box(s, rx + 10, py + 10, rw - 20, ph - 18, [
+        ([t("RECEIVERS　—　受け手（優秀層）", size=8.5, color=GOLD_L, serif=True,
+            italic=True, spc=2)], dict(after=8)),
+        ([t("2−10", size=38, color=WHITE, serif=True),
+          t(" %", size=14, color=WHITE, bold=True)], dict(after=1)),
+        ([t("スカウト返信率の業界レンジ（平均は約5%）", size=7.3, color=GRAY_D2)],
+         dict(after=16)),
+        ([t("面談5件の確保に、", size=11, color=WHITE, bold=True)],
+         dict(spacing=1.5)),
+        ([t("約100通の送信が必要な計算。", size=11, color=WHITE, bold=True)],
+         dict(spacing=1.5)),
+    ])
+    hline(s, rx + 10, py + 47, rw - 20, color=GOLD, th=0.4)
+    src_note(s, "出典: ビズリーチ公式サイト公表値（2026年1月末時点） / VOLLECT・buddy-data・miidas スカウト返信率調査（2025〜2026年）")
+
+    # ================= P.04 03/CANDIDATES =================
+    s = add_slide(prs)
+    sec_label(s, "03 / CANDIDATES")
+    big_title(s, [[t("求職者は、"), t("“担当者”", color=GOLD), t("で選びたい。")]])
+    sy = 60
+    text_box(s, MX, sy, 140, 26, [
+        ([t("36", size=44, color=INK, serif=True),
+          t(" %", size=16, color=INK, bold=True)], {}),
+    ])
+    hline(s, MX, sy + 27, 138, color=GOLD, th=0.4)
+    text_box(s, MX, sy + 30, 140, 6, [
+        ([t("転職エージェントを「信用できない」と回答（利用経験者調査）",
+            size=7.5, color=GRAY)], {}),
+    ])
+    x2 = MX + 160
+    text_box(s, x2, sy, 140, 26, [
+        ([t("4.2", size=44, color=INK, serif=True),
+          t(" 社", size=16, color=INK, bold=True)], {}),
+    ])
+    hline(s, x2, sy + 27, 137, color=GOLD, th=0.4)
+    text_box(s, x2, sy + 30, 140, 6, [
+        ([t("転職決定者が登録するエージェント数（利用者全体の平均は約2.1社）",
+            size=7.5, color=GRAY)], {}),
+    ])
+    by = sy + 46
+    hline(s, MX, by, 138, color=GRAY, th=0.25)
+    text_box(s, MX, by + 4, 140, 40, [
+        ([t("不満・不信の上位", size=11.5, color=INK, bold=True)], dict(after=4)),
+        ([t("・ 担当者の企業・業界知識の不足", size=8.8, color=INK)],
+         dict(spacing=1.6)),
+        ([t("・ 転職を急かす強引な提案", size=8.8, color=INK)], dict(spacing=1.6)),
+        ([t("・ 希望と合わない求人ばかりの紹介", size=8.8, color=INK)],
+         dict(spacing=1.6)),
+    ])
+    rect(s, x2 - 7, by + 2, W - MX - x2 + 7, 40, fill=DARK)
+    text_box(s, x2 + 3, by + 8, W - MX - x2 - 13, 30, [
+        ([t("— INSIGHT —", size=7.5, color=GOLD_L, spc=2)], dict(after=4)),
+        ([t("複数登録は「担当者ガチャ」へのヘッジ行動。実績あるCAを自分で選べる場には、求職者側の明確な需要がある。",
+            size=10, color=WHITE, bold=True)], dict(spacing=1.55)),
+    ])
+    src_note(s, "出典: マイナビスカウティング調査（2024年, n=101） / hape 転職エージェント利用者調査（2025年, n=320） / リクナビNEXT調べ")
+
+    # ================= P.05 04/SOLUTION（ダーク） =================
     s = add_slide(prs, dark=True)
-    y = header(s, "02", "BACKGROUND",
-               [[title_r_dark("ハイクラス紹介の現場で、")],
-                [title_r_dark("いま起きていること。")]], dark=True)
-    issues = [
-        ("Ⅰ", "スカウト依存の消耗戦",
-         "各社が同じデータベースへ大量のスカウトを送り合い、候補者の受信箱は飽和。送信量を増やしても、返信は容易に増えない構造になりつつあります。"),
-        ("Ⅱ", "ハイクラス層ほど“売り込み”に反応しない",
-         "経営幹部・高度専門職ほど、届く連絡の量ではなく「誰からの連絡か」で動きます。選ぶ立場の求職者に対して、“選ばれるための接点”が不足しています。"),
-        ("Ⅲ", "エースの実績が、社外から見えない",
-         "どれほど成約実績を積み上げても、トップアドバイザー個人の信頼は社外に可視化されにくく、個人の実力が新しい出会いにつながりません。"),
-        ("Ⅳ", "集客コストの上昇",
-         "媒体掲載費・スカウト課金・広告費は上昇傾向にあり、決定単価の高いハイクラス領域でも、集客コストが利益を圧迫し始めています。"),
+    hline(s, MX, 13, CW, color=GOLD, th=0.35)
+    text_box(s, MX, 24, 200, 7, [
+        ([t("04 / SOLUTION", size=10.5, color=GOLD_L, serif=True, italic=True,
+            spc=2.5)], {}),
+    ])
+    hline(s, MX, 32.3, 11.5, color=GOLD, th=0.6)
+    text_box(s, MX, 39, CW, 34, [
+        ([t("送り手を絞ることで、", size=27, color=WHITE, serif=True, bold=True,
+            spc=1)], dict(spacing=1.3)),
+        ([t("“", size=27, color=WHITE, serif=True, bold=True),
+          t("届く", size=27, color=GOLD_L, serif=True, bold=True),
+          t("”を取り戻す。", size=27, color=WHITE, serif=True, bold=True)],
+         dict(spacing=1.3)),
+    ])
+    text_box(s, MX, 78, CW, 9, [
+        ([t("MarkGate", size=14, color=WHITE, serif=True),
+          t(".", size=14, color=GOLD, serif=True),
+          t("　— 審査制 × 届くスカウト × 指名", size=10, color=GRAY_D, spc=2)], {}),
+    ])
+    cols = [
+        ("Quality", "実績・専門性・支援品質で審査。トップクラスのCAだけが参加できる。"),
+        ("Reach", "送信総量が絞られるから、1通が埋もれない。返信率を構造で高める設計。"),
+        ("Choice", "求職者からの指名も届く。攻めと受け、双方向のマッチング。"),
     ]
-    bw, bh, gap = 126.5, 44, 6
-    for i, (num, head, body) in enumerate(issues):
-        bx = 19 + (i % 2) * (bw + gap)
-        byy = y + 4 + (i // 2) * (bh + gap)
-        rect(s, bx, byy, bw, bh, fill=NAVY_BOX, line=RGBColor.from_string("4A4531"),
-             line_w=0.5)
-        text_box(s, bx + 7, byy + 6, 10, 10, [
-            ([t(num, size=14, color=GOLD_L, serif=True)], {}),
+    cw3, gap3 = 94, 7.8
+    for i, (head, body) in enumerate(cols):
+        cx = MX + i * (cw3 + gap3)
+        hline(s, cx, 104, cw3, color=GOLD, th=0.4)
+        text_box(s, cx, 110, cw3, 12, [
+            ([t(head, size=19, color=GOLD_L, serif=True, italic=True)], {}),
         ])
-        text_box(s, bx + 19, byy + 6, bw - 26, bh - 12, [
-            ([t(head, size=11.5, color=WHITE, serif=True, bold=True)],
-             dict(after=3)),
-            ([t(body, size=8.5, color=DARK_BODY)], dict(spacing=1.4)),
+        text_box(s, cx, 124, cw3, 22, [
+            ([t(body, size=9.3, color=GRAY_D)], dict(spacing=1.5)),
         ])
-    text_box(s, 19, y + 4 + 2 * (bh + gap) + 2, 259, 6, [
-        ([t("※ 本ページは業界環境に関する当社の課題認識を整理したものです。",
-            size=7.5, color=DARK_SUB)], {}),
-    ])
-    footer(s, 3, dark=True)
+    hline(s, MX, 168, CW, color=GOLD, th=0.35)
 
-    # ---------- P.04 発想の転換 ----------
+    # ================= P.06 05/NOMINATION =================
     s = add_slide(prs)
-    y = header(s, "03", "PARADIGM SHIFT",
-               [[title_r("「探して、送る」から、"), title_r("「選ばれて、届く」", gold=True),
-                 title_r("へ。")]])
-    colw, colh = 119, 92
-    cy = y + 6
-
-    def shift_col(x, new):
-        if new:
-            rect(s, x, cy, colw, colh, fill=HL_BG, line=GOLD, line_w=1)
-        else:
-            rect(s, x, cy, colw, colh, fill=PAPER, line=LINE_SOFT, line_w=0.5)
-
-    shift_col(19, False)
-    shift_col(19 + colw + 21, True)
-    arrow = text_box(s, 19 + colw + 2, cy, 17, colh, [
-        ([t("→", size=20, color=GOLD, serif=True)], dict(align=PP_ALIGN.CENTER)),
-    ], anchor=MSO_ANCHOR.MIDDLE)
-
-    def diagram(x, yy, nodes):
-        nx = x
-        for i, (label, navy) in enumerate(nodes):
-            wdt = 8 + len(label) * 4.2
-            rect(s, nx, yy, wdt, 8.5, fill=(NAVY if navy else CREAM),
-                 line=(NAVY if navy else LINE_SOFT), line_w=0.5)
-            text_box(s, nx, yy + 1.2, wdt, 6, [
-                ([t(label, size=8.5, color=(GOLD_L if navy else INK),
-                    serif=navy)], dict(align=PP_ALIGN.CENTER)),
-            ])
-            nx += wdt + 2
-            if i < len(nodes) - 1:
-                text_box(s, nx - 1, yy + 1.4, 6, 6, [
-                    ([t("→", size=9, color=GOLD_T)], {}),
-                ])
-                nx += 5
-
-    # 左列（従来）
-    x = 19
-    rect(s, x + 7, cy + 6, 30, 6.4, fill=CREAM2)
-    text_box(s, x + 7, cy + 7.5, 30, 4, [
-        ([t("従来のスカウト型", size=7, color=MUTED, spc=1.5)],
-         dict(align=PP_ALIGN.CENTER)),
-    ])
-    text_box(s, x + 7, cy + 15, colw - 14, 8, [
-        ([t("エージェントが、求職者を探す", size=13, color=INK, serif=True, bold=True)], {}),
-    ])
-    diagram(x + 7, cy + 25, [("アドバイザー", False), ("スカウト送信", False), ("求職者", False)])
-    text_box(s, x + 7, cy + 37, colw - 14, 14, [
-        ([t("送信の「量」が接点を左右するプッシュ型。返信率に左右され、面談開始時点の温度感も読みにくい構造です。",
-            size=8.5, color=INK_SOFT)], dict(spacing=1.4)),
-    ])
-    bl = ["大量送信・文面作成の工数が常時発生",
-          "候補者は比較検討前で、温度感が低いことも",
-          "成果が送信量と媒体費に依存"]
-    text_box(s, x + 7, cy + 55, colw - 14, 30, [
-        ([t("－ ", size=8.5, color=MUTED), t(b, size=8.5, color=INK_SOFT)],
-         dict(spacing=1.5)) for b in bl
-    ])
-
-    # 右列（MarkGate）
-    x = 19 + colw + 21
-    rect(s, x + 7, cy + 6, 34, 6.4, fill=NAVY)
-    text_box(s, x + 7, cy + 7.5, 34, 4, [
-        ([t("MarkGateの指名型", size=7, color=GOLD_L, spc=1.5)],
-         dict(align=PP_ALIGN.CENTER)),
-    ])
-    text_box(s, x + 7, cy + 15, colw - 14, 8, [
-        ([t("求職者が、アドバイザーを選ぶ", size=13, color=INK, serif=True, bold=True)], {}),
-    ])
-    diagram(x + 7, cy + 25, [("求職者", False), ("MarkGate", True), ("指名が届く", False)])
-    text_box(s, x + 7, cy + 37, colw - 14, 14, [
-        ([t("求職者が実績・専門領域を比較したうえで指名するプル型。「あなたに任せたい」という状態から支援が始まります。",
-            size=8.5, color=INK_SOFT)], dict(spacing=1.4)),
-    ])
-    br = ["指名＝比較検討を終えた、温度感の高い接点",
-          "プロフィールが、貴社エースの常設の窓口として機能する設計",
-          "実力と専門性が、そのまま機会に変わる"]
-    text_box(s, x + 7, cy + 55, colw - 14, 32, [
-        ([t("－ ", size=8.5, color=GOLD_T), t(b, size=8.5, color=INK_SOFT)],
-         dict(spacing=1.5)) for b in br
-    ])
-    footer(s, 4)
-
-    # ---------- P.05 MarkGateとは ----------
-    s = add_slide(prs)
-    y = header(s, "04", "ABOUT MARKGATE", [[title_r("MarkGateとは。")]],
-               lead=[t("各人材紹介エージェントの実績トップクラスのキャリアアドバイザーだけが集う、ハイクラス層のための転職プラットフォームです。",
-                       size=10, color=INK_SOFT)])
-    pillars = [
-        ("01", "トップアドバイザー限定\n（審査制）",
-         "各エージェントの実績上位者のみが、経歴・成約実績・専門性を基準とした独自審査を通過して登録。一定水準のアドバイザーだけが集う環境を担保します。"),
-        ("02", "ハイクラス・\nエグゼクティブ特化",
-         "経営幹部・管理職・高度専門職、年収800万円以上のハイクラス層に特化。決定単価の高い領域に絞った、質の高いマッチングの場です。"),
-        ("03", "アドバイザーを\n“選べる・指名できる”",
-         "求職者はアドバイザーの専門領域・実績・支援スタンスを比較し、自分に最適な伴走者を指名。指名はアドバイザーへ直接届きます。"),
-    ]
-    cw, ch, gap = 82.3, 74, 6
-    cy = y + 3
-    for i, (num, head, body) in enumerate(pillars):
-        cx = 19 + i * (cw + gap)
-        rect(s, cx, cy, cw, ch, fill=PAPER, line=LINE_SOFT, line_w=0.5)
-        rect(s, cx + 7, cy + ch - 1.2, cw - 14, 0.8, fill=GOLD_L)
-        paras = [([t(num, size=15, color=GOLD, serif=True)], dict(after=4))]
-        for ln in head.split("\n"):
-            paras.append(([t(ln, size=12, color=INK, serif=True, bold=True)],
-                          dict(spacing=1.3)))
-        paras.append(([t(body, size=8.5, color=INK_SOFT)],
-                      dict(spacing=1.45, before=5)))
-        text_box(s, cx + 7, cy + 6, cw - 14, ch - 12, paras)
-    by = cy + ch + 7
-    rect(s, 19, by, 259, 22, fill=CREAM2)
-    rect(s, 19, by, 1.2, 22, fill=GOLD)
-    text_box(s, 27, by, 245, 22, [
-        ([t("“", size=11.5, color=INK, serif=True),
-          t("Mark", size=11.5, color=GOLD_T, serif=True, bold=True),
-          t("（一流の証）”を持つ者だけが立つ、キャリアの“", size=11.5, color=INK, serif=True),
-          t("Gate", size=11.5, color=GOLD_T, serif=True, bold=True),
-          t("（門）”。", size=11.5, color=INK, serif=True)], dict(spacing=1.5)),
-        ([t("—— 私たちは、実力あるアドバイザーが正当に選ばれる市場をつくります。",
-            size=11.5, color=INK, serif=True)], dict(spacing=1.5)),
-    ], anchor=MSO_ANCHOR.MIDDLE)
-    footer(s, 5)
-
-    # ---------- P.06 仕組み ----------
-    s = add_slide(prs)
-    y = header(s, "05", "HOW IT WORKS", [[title_r("サービスの仕組み。")]])
-
-    def lane(yy, tag, navy_tag, steps, hl_idx):
-        if navy_tag:
-            rect(s, 19, yy, 30, 6.4, fill=NAVY)
-            text_box(s, 19, yy + 1.5, 30, 4, [
-                ([t(tag, size=7, color=GOLD_L, spc=1.5)], dict(align=PP_ALIGN.CENTER)),
-            ])
-        else:
-            rect(s, 19, yy, 40, 6.4, fill=CREAM2, line=LINE_GOLD, line_w=0.5)
-            text_box(s, 19, yy + 1.5, 40, 4, [
-                ([t(tag, size=7, color=GOLD_T, spc=1.5)], dict(align=PP_ALIGN.CENTER)),
-            ])
-        sw, sh = 49.4, 33
-        for i, (head, body) in enumerate(steps):
-            sx = 19 + i * (sw + 3)
-            hl = (i == hl_idx)
-            rect(s, sx, yy + 9, sw, sh, fill=(HL_BG2 if hl else PAPER),
-                 line=(GOLD if hl else LINE_SOFT), line_w=0.75 if hl else 0.5)
-            text_box(s, sx + 4, yy + 12, sw - 8, sh - 6, [
-                ([t(f"STEP 0{i+1}", size=7.5, color=GOLD_T, serif=True, spc=1)],
-                 dict(after=2)),
-                ([t(head, size=9.5, color=INK, serif=True, bold=True)],
-                 dict(after=1.5, spacing=1.2)),
-                ([t(body, size=7.2, color=INK_SOFT)], dict(spacing=1.35)),
-            ])
-            if i < len(steps) - 1:
-                text_box(s, sx + sw - 1.2, yy + 9 + sh / 2 - 3, 6, 6, [
-                    ([t("›", size=12, color=GOLD)], {}),
-                ])
-
-    lane(y + 2, "求職者の動き", True, [
-        ("会員登録（審査制）", "ハイクラス特化のため、経歴をもとに審査を実施。"),
-        ("アドバイザーを検索・比較", "業界・職種・対応年収・支援スタンスで絞り込み。"),
-        ("“この人”を指名", "実績・専門領域に納得したうえで、指名メッセージを送信。"),
-        ("面談・求人提案", "市場価値の見極めと、上位ポジションの提案。"),
-        ("選考・内定・入社", "書類・面接対策から条件交渉まで一気通貫。"),
-    ], 2)
-    lane(y + 54, "貴社アドバイザーの動き", False, [
-        ("登録申請", "実績上位のアドバイザーを対象にご申請。"),
-        ("審査", "成約実績・専門性・経歴を基準に審査。"),
-        ("プロフィール掲載", "専門領域・実績・支援スタンスを掲載。"),
-        ("指名を受領", "求職者からの指名がメッセージ付きで届く。"),
-        ("支援開始", "面談を設定し、通常どおりの紹介業務へ。"),
-    ], 3)
-    text_box(s, 19, y + 105, 259, 10, [
-        ([t("※ 指名後の転職支援・企業への紹介は、従来どおり貴社（登録アドバイザー）の紹介業務として実施いただきます。MarkGateは求職者との質の高い接点を提供します。",
-            size=7.5, color=MUTED)], dict(spacing=1.4)),
-    ])
-    footer(s, 6)
-
-    # ---------- P.07 メリット ----------
-    s = add_slide(prs)
-    y = header(s, "06", "BENEFITS FOR AGENCIES",
-               [[title_r("貴社にとっての、4つのメリット。")]])
-    merits = [
-        ("1", "温度感の高い「指名」から面談が始まる",
-         "求職者は複数のアドバイザーを比較・納得したうえで指名します。「まず話を聞いてみたい」ではなく「あなたに任せたい」から始まる面談により、支援効率の向上が期待できます。"),
-        ("2", "スカウト課金に依存しない、新しい接点",
-         "登録・掲載は審査制。掲載そのものが求職者への露出となり、大量送信の工数や媒体課金に依存しない、継続的なハイクラス接点の構築を目指せます。"),
-        ("3", "「審査通過」が、エースと貴社の証明になる",
-         "トップアドバイザー限定の場に立つこと自体がブランドです。エース個人の市場価値の可視化は、貴社の対外的な信頼・採用力・社内のモチベーションにも波及します。"),
-        ("4", "決定単価の高い案件に集中できる",
-         "会員は年収800万円以上を想定したハイクラス・エグゼクティブ層。トップアドバイザーの時間を、最も価値の高い支援に集中させることができます。"),
-    ]
-    bw, bh, gap = 126.5, 46, 6
-    for i, (num, head, body) in enumerate(merits):
-        bx = 19 + (i % 2) * (bw + gap)
-        byy = y + 4 + (i // 2) * (bh + gap)
-        rect(s, bx, byy, bw, bh, fill=PAPER, line=LINE_SOFT, line_w=0.5)
-        rect(s, bx + 6, byy + 6, 10, 10, line=GOLD, line_w=0.75,
-             shape=MSO_SHAPE.OVAL)
-        text_box(s, bx + 6, byy + 8, 10, 6, [
-            ([t(num, size=11, color=GOLD_T, serif=True)], dict(align=PP_ALIGN.CENTER)),
-        ])
-        text_box(s, bx + 20, byy + 6, bw - 27, bh - 11, [
-            ([t(head, size=11.5, color=INK, serif=True, bold=True)], dict(after=2.5)),
-            ([t(body, size=8.5, color=INK_SOFT)], dict(spacing=1.4)),
-        ])
-    text_box(s, 19, y + 4 + 2 * (bh + gap) + 2, 259, 6, [
-        ([t("※ 効果に関する記述はサービス設計に基づく想定であり、成果を保証するものではありません。",
-            size=7.5, color=MUTED)], {}),
-    ])
-    footer(s, 7)
-
-    # ---------- P.08 チャネル比較 ----------
-    s = add_slide(prs)
-    y = header(s, "07", "CHANNEL COMPARISON",
-               [[title_r("既存チャネルと競合せず、"), title_r("補完", gold=True),
-                 title_r("します。")]])
-    cols = [38, 68, 68, 85]
-    rows = [
-        ("", "スカウト媒体", "求人広告・自社集客", "MarkGate"),
-        ("接点の起点", "アドバイザーからの送信（プッシュ型）", "求人・企業情報への応募",
-         "求職者からの「指名」（プル型）"),
-        ("求職者の温度感", "比較検討前。返信後の見極めが必要", "案件起点。担当者は選べない",
-         "比較・納得済み。「任せたい」状態から開始"),
-        ("可視化されるもの", "求人案件・スカウト文面", "会社・求人情報",
-         "アドバイザー個人の実績・専門性"),
-        ("主な工数・費用", "送信工数＋データベース利用・課金", "掲載費・広告運用",
-         "プロフィール整備＋月額費用（開始キャンペーンにより1年目無料※）"),
-        ("対象層", "媒体登録者全般", "広く一般",
-         "ハイクラス・エグゼクティブ（年収800万円以上を想定）"),
-    ]
-    row_h = [10, 13, 13, 13, 15, 13]
-    ty = y + 3
-    for r, row in enumerate(rows):
-        tx = 19
-        for c, cell in enumerate(row):
-            w = cols[c]
-            if r == 0:
-                fill = GOLD if c == 3 else NAVY
-                color = NAVY if c == 3 else WHITE
-                rect(s, tx, ty, w, row_h[0], fill=fill)
-                if cell:
-                    text_box(s, tx + 3, ty, w - 6, row_h[0],
-                             [([t(cell, size=9.5, color=color, serif=True,
-                                  bold=True)], {})],
-                             anchor=MSO_ANCHOR.MIDDLE)
-            else:
-                if c == 0:
-                    fill, color, size, bold = CREAM2, INK, 8.5, True
-                elif c == 3:
-                    fill, color, size, bold = HL_BG, INK, 8.5, False
-                else:
-                    fill, color, size, bold = PAPER, INK_SOFT, 8.5, False
-                rect(s, tx, ty, w, row_h[r], fill=fill, line=LINE_SOFT, line_w=0.4)
-                text_box(s, tx + 3, ty, w - 6, row_h[r],
-                         [([t(cell, size=size, color=color, bold=bold)],
-                           dict(spacing=1.25))],
-                         anchor=MSO_ANCHOR.MIDDLE)
-            tx += w
-        ty += row_h[r]
-    # MarkGate列の強調枠
-    rect(s, 19 + sum(cols[:3]), y + 3, cols[3], sum(row_h), line=GOLD, line_w=1)
-    text_box(s, 19, ty + 3, 259, 10, [
-        ([t("※ 各チャネルの特徴は一般的な傾向を整理したものです。料金の詳細は P.11 をご覧ください。既存のスカウト・広告チャネルと併用いただけます。",
-            size=7.5, color=MUTED)], dict(spacing=1.4)),
-    ])
-    footer(s, 8)
-
-    # ---------- P.09 審査 ----------
-    s = add_slide(prs)
-    y = header(s, "08", "SCREENING", [[title_r("登録アドバイザーの審査について。")]],
-               lead=[t("「トップアドバイザーだけが集う」というプラットフォームの価値は、審査によって守られます。だからこそ、通過したアドバイザーの掲載には意味が生まれます。",
-                       size=10, color=INK_SOFT)])
-    crits = [
-        ("成約実績", "ハイクラス帯（年収800万円以上を想定）での決定実績・成約の質を重視します。"),
-        ("専門性", "特定の業界・職種・レイヤーにおける知見の深さと、非公開・上位ポジションへの接続力。"),
-        ("経歴・所属での位置づけ", "キャリアアドバイザーとしての経験と、所属エージェントにおける実績上位であること。"),
-        ("支援スタンス", "求職者のキャリアに長期目線で向き合う姿勢。プラットフォームの品質をともに守れる方。"),
-    ]
-    text_box(s, 19, y + 2, 100, 5, [
-        ([t("主な審査基準", size=8, color=GOLD_T, spc=2.5)], {}),
-    ])
-    cy = y + 9
-    for head, body in crits:
-        rect(s, 19, cy, 140, 22, fill=PAPER, line=LINE_SOFT, line_w=0.5)
-        rect(s, 19, cy, 1, 22, fill=GOLD)
-        text_box(s, 25, cy + 3, 130, 18, [
-            ([t(head, size=10.5, color=INK, serif=True, bold=True)], dict(after=1)),
-            ([t(body, size=8, color=INK_SOFT)], dict(spacing=1.3)),
-        ])
-        cy += 25.5
+    sec_label(s, "05 / NOMINATION")
+    y = big_title(s, [[t("求職者が、CAを"), t("“指名”", color=GOLD), t("する。")]])
+    lead(s, "“会社宛の問い合わせ”ではなく、“あなた宛の相談”が届きます。", y + 1)
+    py, ph = 73, 80
+    lw = 141
+    rect(s, MX, py, lw, ph, fill=CREAM2)
+    hline(s, MX, py - 0.6, lw, color=INK, th=0.6)
     steps = [
-        ("登録申請", "貴社の対象アドバイザーについて、申請フォームからご提出ください。"),
-        ("書類審査", "経歴・実績・専門領域を確認します。"),
-        ("面談", "支援スタンス・専門性について、オンラインでお話を伺います。"),
-        ("掲載開始", "プロフィールを作成し、公開。指名の受付が始まります。"),
+        ("01", "審査を通過したCAだけの一覧を見る"),
+        ("02", "実績・専門領域・支援スタイルで比較する"),
+        ("03", "「この人に相談したい」— 指名する"),
     ]
-    sx = 172
-    text_box(s, sx, y + 2, 100, 5, [
-        ([t("審査の流れ", size=8, color=GOLD_T, spc=2.5)], {}),
-    ])
-    cy = y + 9
-    for i, (head, body) in enumerate(steps):
-        rect(s, sx, cy + 0.5, 5, 5, line=GOLD, line_w=0.75, shape=MSO_SHAPE.OVAL)
-        if i < len(steps) - 1:
-            rect(s, sx + 2.3, cy + 6, 0.35, 17, fill=LINE_GOLD)
-        text_box(s, sx + 9, cy, 97, 20, [
-            ([t(head, size=10.5, color=INK, serif=True, bold=True)], dict(after=1)),
-            ([t(body, size=8, color=INK_SOFT)], dict(spacing=1.3)),
-        ])
-        cy += 23
-    text_box(s, sx, cy + 1, 106, 8, [
-        ([t("※ 審査基準の詳細・提出書類は、お問い合わせ後に個別にご案内します。",
-            size=7.5, color=MUTED)], dict(spacing=1.35)),
-    ])
-    footer(s, 9)
-
-    # ---------- P.10 プロフィール掲載イメージ ----------
-    s = add_slide(prs)
-    y = header(s, "09", "PROFILE",
-               [[title_r("プロフィールが、エースの"),
-                 title_r("“指名される窓口”", gold=True), title_r("に。")]])
-    points = [
-        ("経歴・支援実績", "を構造化して掲載。定量・定性の両面で、アドバイザーの実力を伝えます。"),
-        ("専門領域（業界／職種／対応年収帯）", "で検索・絞り込みの対象に。得意分野の求職者と出会えます。"),
-        ("支援スタンス", "（伴走型・提案型など）も明示。ミスマッチの少ない指名につながります。"),
-        ("指名にはメッセージが添付", "され、求職者の意図・温度感を把握したうえで面談に入れます。"),
-        ("プロフィールは掲載後も更新可能", "。実績を積むほど、指名の入口が強くなります。"),
-    ]
-    text_box(s, 19, y + 6, 118, 90, [
-        ([t("－ ", size=9.5, color=GOLD_T),
-          t(b, size=9.5, color=INK, bold=True),
-          t(rest, size=9.5, color=INK_SOFT)],
-         dict(spacing=1.5, after=6)) for b, rest in points
-    ])
-    # サンプルカード
-    cx, cy2, cw2, ch2 = 150, y + 3, 128, 92
-    rect(s, cx, cy2, cw2, ch2, fill=PAPER, line=LINE_GOLD, line_w=0.75)
-    rect(s, cx + 7, cy2 + 6, 15, 15, fill=NAVY7, shape=MSO_SHAPE.OVAL)
-    text_box(s, cx + 7, cy2 + 9.5, 15, 8, [
-        ([t("M", size=13, color=GOLD_L, serif=True)], dict(align=PP_ALIGN.CENTER)),
-    ])
-    text_box(s, cx + 26, cy2 + 5.5, cw2 - 33, 18, [
-        ([t("掲載イメージ（サンプル）", size=11.5, color=INK, serif=True, bold=True)],
-         dict(after=1)),
-        ([t("シニアキャリアアドバイザー ｜ ○○エージェント所属", size=7.5, color=MUTED)],
-         dict(after=2)),
-        ([t(" 審査通過 ", size=7, color=GOLD_T),
-          t("　", size=7),
-          t(" 経営幹部・CxO ", size=7, color=GOLD_T),
-          t("　", size=7),
-          t(" 年収1,000万円〜 ", size=7, color=GOLD_T)], {}),
-    ])
-    rect(s, cx + 7, cy2 + 25, cw2 - 14, 0.4, fill=LINE_SOFT)
-    prof_rows = [
-        ("専門領域", "製造業・メーカー ／ 経営企画・事業責任者クラス"),
-        ("支援実績", "ハイクラス帯の決定実績、リピート・紹介率などを掲載"),
-        ("支援スタンス", "中長期のキャリア戦略から逆算する伴走型"),
-        ("経歴", "キャリア・得意分野の背景を記載"),
-    ]
-    ry = cy2 + 29
-    for k, v in prof_rows:
-        text_box(s, cx + 7, ry, 26, 6, [
-            ([t(k, size=8, color=MUTED)], {}),
-        ])
-        text_box(s, cx + 35, ry, cw2 - 42, 6, [
-            ([t(v, size=8, color=INK)], {}),
-        ])
-        ry += 8.5
-    rect(s, cx + 7, ry + 2, cw2 - 14, 9, fill=GOLD)
-    text_box(s, cx + 7, ry + 4.2, cw2 - 14, 5, [
-        ([t("このアドバイザーを指名する", size=8.5, color=NAVY, bold=True, spc=1.5)],
-         dict(align=PP_ALIGN.CENTER)),
-    ])
-    text_box(s, 19, y + 100, 259, 6, [
-        ([t("※ 上記はイメージです。実際の掲載項目・レイアウトはプラットフォームの仕様に準じます。",
-            size=7.5, color=MUTED)], {}),
-    ])
-    footer(s, 10)
-
-    # ---------- P.11 料金 ----------
-    s = add_slide(prs)
-    y = header(s, "10", "PRICING", [[title_r("ご利用料金。")]],
-               lead=[t("開始キャンペーン期間中にご参画いただくと、1年目の月額費用は無料です。",
-                       size=10, color=INK_SOFT)])
-    prices = [
-        ("初期費用", "0", "円", "登録申請・審査に費用はかかりません。", False),
-        ("月額費用（1年目）", "0", "円",
-         "通常 月額5万円のところ、開始キャンペーンにより現在は無料でご利用いただけます。", True),
-        ("月額費用（2年目以降）", "5", "万円／月",
-         "2年目以降は、月額5万円でご利用いただけます。", False),
-    ]
-    cw, ch, gap = 82.3, 62, 6
-    cy = y + 4
-    for i, (label, num, unit, body, hl) in enumerate(prices):
-        cx = 19 + i * (cw + gap)
-        rect(s, cx, cy, cw, ch, fill=(HL_BG if hl else PAPER),
-             line=(GOLD if hl else LINE_SOFT), line_w=1 if hl else 0.5)
-        text_box(s, cx + 6, cy + 8, cw - 12, ch - 14, [
-            ([t(label, size=8.5, color=GOLD_T, spc=1.5)],
-             dict(align=PP_ALIGN.CENTER, after=6)),
-            ([t(num, size=24, color=INK, serif=True, bold=True),
-              t(" " + unit, size=11, color=INK_SOFT, serif=True)],
-             dict(align=PP_ALIGN.CENTER, after=5)),
-            ([t(body, size=8.5, color=INK_SOFT)],
-             dict(align=PP_ALIGN.CENTER, spacing=1.45)),
-        ])
-    by = cy + ch + 8
-    rect(s, 19, by, 259, 20, fill=CREAM2, line=GOLD, line_w=0.75, dash="dash")
-    text_box(s, 27, by, 243, 20, [
-        ([t("【開始キャンペーンについて】", size=9, color=GOLD_T, bold=True),
-          t("適用条件・期間の詳細は、お申し込み時にご案内します。キャンペーンは予告なく終了する場合があります。正式なご契約条件は、契約書面にてご案内します。",
-            size=9, color=INK_SOFT)], dict(spacing=1.5)),
+    paras = [([t("CANDIDATE　—　求職者の体験", size=8.5, color=GOLD_T,
+                 serif=True, italic=True, spc=2)], dict(after=9))]
+    for num, txt in steps:
+        paras.append(([t(num + "　", size=11, color=GOLD_T, serif=True, italic=True),
+                       t(txt, size=10, color=INK)], dict(spacing=1.5, after=7)))
+    text_box(s, MX + 10, py + 9, lw - 20, ph - 16, paras)
+    text_box(s, MX + lw + 2, py, 16, ph, [
+        ([t("→", size=15, color=GRAY)], dict(align=PP_ALIGN.CENTER)),
     ], anchor=MSO_ANCHOR.MIDDLE)
-    footer(s, 11)
+    rx = MX + lw + 20
+    rw = W - MX - rx
+    rect(s, rx, py, rw, ph, fill=DARK)
+    text_box(s, rx + 10, py + 9, rw - 20, ph - 16, [
+        ([t("YOUR CA　—　貴社CAの受信箱", size=8.5, color=GOLD_L, serif=True,
+            italic=True, spc=2)], dict(after=7)),
+        ([t("「あなたに相談したい」という", size=12.5, color=WHITE, bold=True)],
+         dict(spacing=1.5)),
+        ([t("指名リクエストが、直接届く。", size=12.5, color=WHITE, bold=True)],
+         dict(spacing=1.5, after=8)),
+        ([t("自らCAを選んだ求職者だから、面談への温度が最初から高い。辞退や音信不通が起きにくい構造です。",
+            size=8.8, color=GRAY_D)], dict(spacing=1.5, before=10)),
+    ])
+    hline(s, rx + 10, py + 38.5, rw - 20, color=GOLD, th=0.4)
+    band(s, [
+        t("プロフィールは貴社の資産 — ", size=10.5, color=WHITE),
+        t("エースの実績が、24時間はたらく集客装置になる。", size=10.5,
+          color=GOLD_L, bold=True),
+    ], y=161)
 
-    # ---------- P.12 導入までの流れ ----------
+    # ================= P.07 06/HOW IT WORKS =================
     s = add_slide(prs)
-    y = header(s, "11", "ONBOARDING", [[title_r("導入までの流れ。")]])
-    onb = [
-        ("お問い合わせ", "本資料の内容について、オンラインで詳しくご説明します。"),
-        ("登録候補の選定", "貴社の実績上位アドバイザーから、登録候補をご選定ください。"),
-        ("登録申請・審査", "書類審査と面談を実施します（無料・料金はP.11）。"),
-        ("プロフィール掲載", "掲載内容を一緒に磨き込み、公開します。"),
-        ("指名受領・支援開始", "求職者からの指名を受け、面談・支援を開始します。"),
+    sec_label(s, "06 / HOW IT WORKS")
+    big_title(s, [[t("仕組み — 貴社の業務は、"), t("これまで通り", color=GOLD),
+                   t("。")]])
+    steps = [
+        ("01", "審査・登録", "貴社アドバイザーが実績・専門性の審査にエントリー。"),
+        ("02", "プロフィール公開", "得意領域・実績・人柄をプラットフォームに掲載。"),
+        ("03", "スカウト & 指名", "CAからのスカウトも、求職者からの指名も。双方向でつながる。"),
+        ("04", "面談・成約", "以降は通常の紹介業務。成約時に初めて費用が発生します。"),
     ]
-    sw, sh = 49.4, 44
-    cy = y + 4
-    for i, (head, body) in enumerate(onb):
-        sx = 19 + i * (sw + 3)
-        rect(s, sx, cy, sw, sh, fill=PAPER, line=LINE_SOFT, line_w=0.5)
-        rect(s, sx, cy, sw, 0.9, fill=GOLD)
-        text_box(s, sx + 5, cy + 6, sw - 10, sh - 10, [
-            ([t(f"STEP 0{i+1}", size=8, color=GOLD_T, serif=True, spc=1)],
-             dict(after=3)),
-            ([t(head, size=10.5, color=INK, serif=True, bold=True)],
-             dict(after=2, spacing=1.2)),
-            ([t(body, size=7.8, color=INK_SOFT)], dict(spacing=1.4)),
-        ])
-    ny = cy + sh + 8
-    notes = [
-        ("所要期間の目安",
-         "お申し込みからプロフィール公開まで、2〜3週間程度を想定しています（審査状況により前後します）。"),
-        ("先行登録のご案内",
-         "正式リリースに先立ち、先行登録エージェント様を募集しています。初期に参画いただいた貴社エースのプロフィールは、リリース時点から求職者の比較・指名の対象となります。リリース時期・求職者側の集客計画は、ご説明の際に最新の状況をご案内します。"),
-    ]
-    for tag, body in notes:
-        rect(s, 19, ny, 34, 6.6, line=LINE_GOLD, line_w=0.5)
-        text_box(s, 19, ny + 1.6, 34, 4, [
-            ([t(tag, size=7, color=GOLD_T, spc=1)], dict(align=PP_ALIGN.CENTER)),
-        ])
-        text_box(s, 58, ny + 0.6, 220, 12, [
-            ([t(body, size=8, color=MUTED)], dict(spacing=1.4)),
-        ])
-        ny += 15
-    footer(s, 12)
+    cw4, gap4 = 70.4, 5.3
+    for i, (num, head, body) in enumerate(steps):
+        cx = MX + i * (cw4 + gap4)
+        col_item(s, cx, 64, cw4, num, head, body, head_size=12.5)
+    band(s, [
+        t("送り手が絞られているから、1通のスカウトが競争に埋もれない。",
+          size=10.5, color=WHITE),
+        t("母集団形成はプラットフォームの仕事です。", size=10.5, color=GOLD_L,
+          bold=True),
+    ])
 
-    # ---------- P.13 FAQ ----------
+    # ================= P.08 07/SCREENING =================
     s = add_slide(prs)
-    y = header(s, "12", "FAQ", [[title_r("よくあるご質問。")]])
-    faqs = [
-        ("何名まで登録できますか？",
-         "人数の上限ではなく「実績上位であること」が基準です。審査を通過したアドバイザーはご登録いただけます。まずは貴社のエース級の方からのお申し込みをおすすめします。"),
-        ("費用はかかりますか？",
-         "登録申請・審査は無料です。月額費用は通常5万円ですが、開始キャンペーンにより1年目は無料でご利用いただけます（2年目以降は月額5万円。詳細はP.11）。"),
-        ("他社のアドバイザーと並ぶことに懸念があります。",
-         "比較される場は、実力あるエースにとってはむしろ証明の場です。指名は求職者の意思で行われるため、実績と専門性が正当に評価されます。掲載内容の磨き込みも支援します。"),
-        ("既存のスカウト媒体や自社集客と競合しませんか？",
-         "MarkGateは「求職者からの指名」というプル型の接点で、既存のプッシュ型チャネルと役割が異なります。併用いただく前提の、追加チャネルとしてご活用ください。"),
-        ("求職者の質はどのように担保されますか？",
-         "求職者側も審査制です。経営幹部・管理職・高度専門職を中心とした、年収800万円以上を想定するハイクラス層に特化しています。"),
-        ("求職者はどのように集めるのですか？",
-         "審査制を軸に、ご紹介・招待、ハイクラス層向けの情報発信、提携チャネルなどを組み合わせ、質を担保しながら段階的に拡大する計画です。想定規模や進捗は、ご説明の際に最新の状況をご案内します。"),
+    sec_label(s, "07 / SCREENING")
+    y = big_title(s, [[t("審査は、狭き門ほど、"), t("価値", color=GOLD),
+                       t("になる。")]])
+    lead(s, "「誰でも登録できる場」にしないこと自体が、貴社のスカウトが届く理由です。", y + 1)
+    crits = [
+        ("実績", "TRACK RECORD", "支援領域での決定実績・経験を、事実ベースで確認します。"),
+        ("専門性", "EXPERTISE", "業界・職種への理解の深さと、得意領域の明確さを審査します。"),
+        ("支援品質", "QUALITY", "求職者本位の支援姿勢。参画後も求職者評価で継続的に確認します。"),
     ]
-    bw, bh, gap = 126.5, 36, 5
-    for i, (q, a) in enumerate(faqs):
-        bx = 19 + (i % 2) * (bw + gap)
-        byy = y + 3 + (i // 2) * (bh + gap)
-        rect(s, bx, byy, bw, bh, fill=PAPER, line=LINE_SOFT, line_w=0.5)
-        text_box(s, bx + 6, byy + 4, bw - 12, bh - 8, [
-            ([t("Q. ", size=9.5, color=GOLD_T, serif=True, bold=True),
-              t(q, size=9.5, color=INK, serif=True, bold=True)], dict(after=2)),
-            ([t("A. ", size=8, color=MUTED, serif=True),
-              t(a, size=8, color=INK_SOFT)], dict(spacing=1.35)),
+    cy = 72
+    for head, eng, body in crits:
+        hline(s, MX, cy, 152, color=GOLD, th=0.4)
+        text_box(s, MX, cy + 3.5, 152, 7, [
+            ([t(head, size=12, color=INK, bold=True),
+              t("　" + eng, size=7, color=GRAY, spc=2)], {}),
         ])
-    footer(s, 13)
+        text_box(s, MX, cy + 11, 152, 8, [
+            ([t(body, size=8.8, color=INK)], dict(spacing=1.4)),
+        ])
+        cy += 28.5
+    rx = MX + 168
+    rw = W - MX - rx
+    rect(s, rx, 68, rw, 87, fill=DARK)
+    entry = [
+        "審査の結果は、外部に一切公開されません",
+        "不通過の場合も、実績を積んでの再エントリーが可能です",
+        "審査通過後、掲載するかどうかは貴社が決められます",
+    ]
+    paras = [
+        ([t("Entry", size=15, color=GOLD_L, serif=True, italic=True)],
+         dict(after=3)),
+        ([t("安心してエントリーいただくために", size=10.5, color=WHITE, bold=True)],
+         dict(after=7)),
+    ]
+    for e in entry:
+        paras.append(([t("◎　", size=9, color=GOLD_L),
+                       t(e, size=9, color=WHITE)], dict(spacing=1.5, after=6)))
+    paras.append(([t("※審査基準の詳細は、説明会でご確認いただけます。",
+                     size=6.8, color=GRAY_D2)], dict(before=3)))
+    text_box(s, rx + 9, 76, rw - 18, 75, paras)
+    band(s, [
+        t("審査があるから — ", size=10.5, color=WHITE),
+        t("「掲載されている」こと自体が、貴社アドバイザーの証明になる。",
+          size=10.5, color=GOLD_L, bold=True),
+    ])
 
-    # ---------- P.14 FAQ（情報の取り扱い・ご契約） ----------
+    # ================= P.09 08/PRODUCTIVITY =================
     s = add_slide(prs)
-    y = header(s, "13", "FAQ — DATA & CONTRACT",
-               [[title_r("情報の取り扱い・ご契約について。")]])
-    faqs2 = [
-        ("MarkGateの法的な位置づけは？",
-         "求職者と貴社アドバイザーの接点を提供するプラットフォームです。職業紹介（あっせん）および企業への紹介は、許可を保有する貴社の紹介事業として実施いただきます。当社も有料職業紹介事業許可の取得を申請準備中です。"),
-        ("成約情報や求職者情報はどのように扱われますか？",
-         "貴社の成約情報・求職者情報は、運営上必要な目的に限定して利用し、他のエージェント様への開示や競合比較への流用は行わない方針です。ご契約時に秘密保持条項を含む書面を締結します。"),
-        ("掲載によって引き抜きリスクは高まりませんか？",
-         "個人の直接連絡先は公開せず、指名はプラットフォームを経由する設計方針です。氏名・写真の掲載粒度も選択いただける想定です。確定済みの仕様・条件は、ご契約前にご説明します。"),
-        ("アドバイザーが退職・異動した場合は？",
-         "掲載は貴社とのご契約に紐づく設計です。退職・異動の際は掲載停止・所属情報の変更に対応し、プロフィールや指名履歴が個人アカウントとして他社へ引き継がれることはありません（詳細条件は契約書面にて確定します）。"),
+    sec_label(s, "08 / PRODUCTIVITY")
+    y = big_title(s, [[t("“送る仕事”を、減らす"), t("構造", color=GOLD),
+                       t("。")]])
+    lead(s, "数値ではなく、工数が減る「仕組み」でご説明します。理由は3つあります。", y + 1)
+    cols = [
+        ("01", "大量送信が、前提でなくなる",
+         "送り手が絞られた場では、埋もれ対策の“数打ち”が要らない。読まれる前提で、1通に時間を使えます。"),
+        ("02", "指名は、送信ゼロで届く",
+         "プロフィールを見た求職者から、面談リクエストが届く。待っている間の母集団形成は、当社の仕事です。"),
+        ("03", "追いかける時間が、減る",
+         "自らCAを選んだ求職者は、面談への温度が高い。音信不通や日程再調整に費やす工数が構造的に小さい。"),
     ]
-    bw, bh, gap = 126.5, 48, 6
-    for i, (q, a) in enumerate(faqs2):
-        bx = 19 + (i % 2) * (bw + gap)
-        byy = y + 4 + (i // 2) * (bh + gap)
-        rect(s, bx, byy, bw, bh, fill=PAPER, line=LINE_SOFT, line_w=0.5)
-        text_box(s, bx + 6, byy + 5, bw - 12, bh - 10, [
-            ([t("Q. ", size=9.5, color=GOLD_T, serif=True, bold=True),
-              t(q, size=9.5, color=INK, serif=True, bold=True)], dict(after=2.5)),
-            ([t("A. ", size=8, color=MUTED, serif=True),
-              t(a, size=8, color=INK_SOFT)], dict(spacing=1.35)),
-        ])
-    text_box(s, 19, y + 4 + 2 * (bh + gap) + 2, 259, 6, [
-        ([t("※ 本ページの記載は現時点の設計方針です。確定した仕様・契約条件は、ご契約前に書面にてご案内します。",
-            size=7.5, color=MUTED)], {}),
+    cw3, gap3 = 94, 7.8
+    for i, (num, head, body) in enumerate(cols):
+        col_item(s, MX + i * (cw3 + gap3), 72, cw3, num, head, body,
+                 head_size=12)
+    band(s, [
+        t("送信に使っていた時間を、面談と支援へ。", size=10.5, color=WHITE),
+        t("削減幅は、説明会で貴社の運用に合わせて一緒に試算します。", size=10.5,
+          color=GOLD_L, bold=True),
     ])
-    footer(s, 14)
 
-    # ---------- P.15 クロージング / 会社概要 ----------
-    s = add_slide(prs, dark=True)
-    text_box(s, 24, 42, 120, 6, [
-        ([t("CONTACT", size=8.5, color=GOLD_L, spc=3)], {}),
+    # ================= P.10 09/AUDIENCE =================
+    s = add_slide(prs)
+    sec_label(s, "09 / AUDIENCE")
+    y = big_title(s, [[t("母集団は、「CAを"), t("選びたい人", color=GOLD),
+                       t("」から。")]])
+    lead(s, "貴社に集客をお願いすることはありません。母集団形成は、当社の責任です。", y + 1)
+    items = [
+        ("不満の、受け皿になる",
+         "スカウト過多と「担当者ガチャ」への不満はすでに定量化されています（→ 03）。「担当者を自分で選べる」体験そのものが、移る動機になります。"),
+        ("プロフィールが、入り口になる",
+         "審査通過CAの公開プロフィールが、検索と比較の受け皿に。掲載が増えるほど、母集団の入り口も増える構造です。"),
+        ("広く浅くは、やらない",
+         "初期はハイクラス×主要領域に絞り、LP・SNS・PRを集中投下。審査制という切り口自体が、発信の素材になります。"),
+    ]
+    cy = 70
+    for head, body in items:
+        hline(s, MX, cy, 152, color=GOLD, th=0.4)
+        text_box(s, MX, cy + 3.5, 152, 7, [
+            ([t(head, size=12, color=INK, bold=True)], {}),
+        ])
+        text_box(s, MX, cy + 11, 152, 12, [
+            ([t(body, size=8.5, color=INK)], dict(spacing=1.45)),
+        ])
+        cy += 29.5
+    rx = MX + 168
+    rw = W - MX - rx
+    rect(s, rx, 66, rw, 89, fill=DARK)
+    text_box(s, rx + 9, 74, rw - 18, 46, [
+        ([t("Balance", size=15, color=GOLD_L, serif=True, italic=True)],
+         dict(after=3)),
+        ([t("需給バランスの管理", size=10.5, color=WHITE, bold=True)],
+         dict(after=5)),
+        ([t("初期は参加CA数を意図的に絞り、求職者数とのバランスを見ながら段階的に拡大します。「登録したのに、指名が来ない」を避けるための設計です。",
+            size=8.8, color=GRAY_D)], dict(spacing=1.5)),
     ])
-    text_box(s, 24, 52, 130, 32, [
-        ([t("まずは、貴社のエースを", size=25, color=WHITE, serif=True, bold=True)],
-         dict(spacing=1.3)),
-        ([t("一名から。", size=25, color=GOLD_L, serif=True, bold=True)],
-         dict(spacing=1.3)),
+    hline(s, rx + 9, 124, rw - 18, color=GOLD, th=0.4)
+    text_box(s, rx + 9, 129, rw - 18, 20, [
+        ([t("だから完全成果報酬 — 集客投資のリスクは、貴社ではなく当社が負います。",
+            size=8.8, color=WHITE)], dict(spacing=1.5)),
     ])
-    text_box(s, 24, 90, 128, 30, [
-        ([t("トップアドバイザーだけが、開ける扉。", size=9.5,
-            color=RGBColor.from_string("D5D9E2"))], dict(spacing=1.6)),
-        ([t("その最初の一歩は、無料の登録申請と審査から。", size=9.5,
-            color=RGBColor.from_string("D5D9E2"))], dict(spacing=1.6)),
-        ([t("いまなら開始キャンペーンにより、1年目の月額費用も無料です。", size=9.5,
-            color=RGBColor.from_string("D5D9E2"))], dict(spacing=1.6)),
-        ([t("サービス詳細のご説明・デモのご案内も承ります。", size=9.5,
-            color=RGBColor.from_string("D5D9E2"))], dict(spacing=1.6)),
+    band(s, [
+        t("求職者が集まらなければ、当社の売上もゼロ — ", size=10.5, color=WHITE),
+        t("母集団形成に本気である理由は、料金体系そのものです。", size=10.5,
+          color=GOLD_L, bold=True),
     ])
-    rect(s, 24, 126, 80, 12, fill=GOLD)
-    text_box(s, 24, 129.2, 80, 6, [
-        ([t("お問い合わせ・登録申請はこちら", size=9.5, color=NAVY, bold=True, spc=1)],
+
+    # ================= P.11 10/DIFFERENTIATION =================
+    s = add_slide(prs)
+    sec_label(s, "10 / DIFFERENTIATION")
+    y = big_title(s, [[t("既存チャネルとの、"), t("違い", color=GOLD), t("。")]])
+    lead(s, "置き換えではなく、リスクゼロで併用できる「第3のチャネル」です。", y + 1)
+    colw = [52, 88, 80, 77.6]
+    ty, hh, rh = 71, 15, 14
+    rows = [
+        ("スカウトの競争環境", ("✕", "誰でも登録可。送信過多で受信箱が飽和"),
+         ("—", "スカウト機能なし"), ("◎", "審査制で送り手を限定")),
+        ("求職者からの指名", ("✕", "不可"), ("✕", "不可"), ("◎", "指名が届く")),
+        ("成約前の費用", ("✕", "基本料金60万円/6か月〜 +通数課金"),
+         ("✕", "面談1件 1.4万〜3.5万円"), ("◎", "0円（初年度は利用料も無料）")),
+        ("成功報酬", ("✕", "手数料の30%（初回契約の例）"),
+         ("△", "面談購入費が別途先行"), ("◎", "手数料の20%")),
+    ]
+    total_h = hh + rh * len(rows)
+    # ヘッダー
+    rect(s, MX, ty, colw[0] + colw[1] + colw[2], hh, fill=CREAM3)
+    x3 = MX + colw[0] + colw[1] + colw[2]
+    rect(s, x3, ty, colw[3], total_h, fill=DARK)  # MarkGate列（全行ダーク）
+    heads = [
+        ("比較軸", None, INK), ("スカウト型DB", "ビズリーチ等", INK),
+        ("送客型サービス", "面談課金・リスト課金", INK),
+        ("MarkGate", "審査制×双方向マッチング", WHITE),
+    ]
+    tx = MX
+    for i, (head, sub, color) in enumerate(heads):
+        paras = [([t(head, size=10, color=color, bold=True)], {})]
+        if sub:
+            paras.append(([t(sub, size=6.8,
+                             color=(GOLD_L if i == 3 else GRAY), spc=1)], {}))
+        text_box(s, tx + 5, ty + 2.2, colw[i] - 10, hh - 4, paras)
+        tx += colw[i]
+    # 本文行
+    mark_color = {"✕": RED, "△": GRAY, "—": GRAY, "◎": GOLD}
+    ry = ty + hh
+    for label_, c1, c2, c3 in rows:
+        hline(s, MX, ry, colw[0] + colw[1] + colw[2], color=GRAY, th=0.2)
+        hline(s, x3 + 4, ry, colw[3] - 8, color=RGBColor.from_string("3A3323"),
+              th=0.2)
+        text_box(s, MX + 5, ry, colw[0] - 8, rh, [
+            ([t(label_, size=9, color=INK, bold=True)], {}),
+        ], anchor=MSO_ANCHOR.MIDDLE)
+        for ci, cell in ((1, c1), (2, c2)):
+            cx = MX + sum(colw[:ci])
+            text_box(s, cx + 5, ry, colw[ci] - 10, rh, [
+                ([t(cell[0] + " ", size=9, color=mark_color[cell[0]], bold=True),
+                  t(cell[1], size=8.8, color=INK)], dict(spacing=1.25)),
+            ], anchor=MSO_ANCHOR.MIDDLE)
+        text_box(s, x3 + 5, ry, colw[3] - 10, rh, [
+            ([t(c3[0] + " ", size=9, color=GOLD_L, bold=True),
+              t(c3[1], size=8.8, color=WHITE)], dict(spacing=1.25)),
+        ], anchor=MSO_ANCHOR.MIDDLE)
+        ry += rh
+    src_note(s, "※各サービスの内容・料金は公開情報に基づく一般的な整理であり、個別の契約条件により異なります。")
+
+    # ================= P.12 11/ECONOMICS =================
+    s = add_slide(prs)
+    sec_label(s, "11 / ECONOMICS")
+    y = big_title(s, [[t("同じ1成約で、"), t("手残り", color=GOLD),
+                       t("が変わる。")]])
+    lead(s, "理論年収600万円・紹介手数料率35%の場合の試算です。", y + 1)
+    fy = 70
+    text_box(s, MX, fy, 62, 22, [
+        ([t("理論年収（例）", size=7.5, color=GRAY)], dict(after=2)),
+        ([t("600", size=30, color=INK, serif=True),
+          t(" 万円", size=12, color=INK, bold=True)], {}),
+    ])
+    text_box(s, MX + 64, fy + 9, 12, 10, [
+        ([t("×", size=13, color=GRAY)], dict(align=PP_ALIGN.CENTER)),
+    ])
+    text_box(s, MX + 78, fy, 50, 22, [
+        ([t("紹介手数料率（例）", size=7.5, color=GRAY)], dict(after=2)),
+        ([t("35", size=30, color=INK, serif=True),
+          t(" %", size=12, color=INK, bold=True)], {}),
+    ])
+    text_box(s, MX + 128, fy + 9, 12, 10, [
+        ([t("=", size=13, color=GRAY)], dict(align=PP_ALIGN.CENTER)),
+    ])
+    rect(s, MX + 145, fy - 2, 90, 27, fill=DARK)
+    text_box(s, MX + 153, fy + 1.5, 76, 22, [
+        ([t("成約時に発生する紹介手数料", size=7.5, color=GOLD_L)], dict(after=2)),
+        ([t("210", size=27, color=WHITE, serif=True),
+          t(" 万円", size=12, color=WHITE, bold=True)], {}),
+    ])
+    dy = 107
+    text_box(s, MX, dy - 6, 100, 5, [
+        ([t("手数料の分配", size=7.5, color=GRAY, spc=1)], {}),
+    ])
+    bw_total = CW
+    bw80 = bw_total * 0.8
+    rect(s, MX, dy, bw80, 14, fill=DARK)
+    rect(s, MX + bw80, dy, bw_total - bw80, 14, fill=GOLD)
+    text_box(s, MX, dy, bw80, 14, [
+        ([t("貴社の受取 168万円 (80%)", size=11, color=WHITE, bold=True)],
          dict(align=PP_ALIGN.CENTER)),
+    ], anchor=MSO_ANCHOR.MIDDLE)
+    text_box(s, MX + bw80, dy, bw_total - bw80, 14, [
+        ([t("42万円", size=10, color=DARK, bold=True)],
+         dict(align=PP_ALIGN.CENTER)),
+    ], anchor=MSO_ANCHOR.MIDDLE)
+    text_box(s, MX, dy + 15.5, bw_total, 5, [
+        ([t("プラットフォーム利用分（20%）", size=7.3, color=GRAY)],
+         dict(align=PP_ALIGN.RIGHT)),
     ])
-    text_box(s, 24, 141, 130, 16, [
-        ([t("コーポレートサイトのお問い合わせフォームより「アドバイザー登録を申請したい」または「提携・協業について」をご選択ください。",
-            size=7.5, color=DARK_SUB)], dict(spacing=1.5)),
-        ([t("（サイトURLは確定後、本資料および配布用PDFに記載します）",
-            size=7.5, color=DARK_SUB)], dict(spacing=1.5)),
+    ny = dy + 27
+    text_box(s, MX, ny, 150, 18, [
+        ([t("スカウト型DB経由の一例: ", size=9, color=INK, bold=True),
+          t("成功報酬30%なら63万円+固定費・通数課金。手残りが20万円以上変わる。",
+            size=9, color=INK)], dict(spacing=1.5)),
     ])
-    # 会社概要
-    co = [
-        ("会社名", "MarkGate株式会社（マークゲート）"),
-        ("設立", "2026年7月13日"),
-        ("代表取締役", "山本 朋鑑"),
-        ("お問い合わせ", "コーポレートサイト お問い合わせフォームまで（URLは確定後に記載）"),
+    rect(s, MX + 168, ny - 3, CW - 168, 20, fill=DARK)
+    text_box(s, MX + 176, ny - 3, CW - 184, 20, [
+        ([t("MarkGate: ", size=9.5, color=GOLD_L, bold=True),
+          t("成約まで0円。スカウト工数の削減まで含めて、利益率が変わる。",
+            size=9.5, color=WHITE, bold=True)], dict(spacing=1.5)),
+    ], anchor=MSO_ANCHOR.MIDDLE)
+    src_note(s, "※試算は例示です。30%はスカウト型媒体の紹介会社向け初回契約の公開情報の一例。実際の条件は各社の契約によります。")
+
+    # ================= P.13 12/FOR YOUR BRAND =================
+    s = add_slide(prs)
+    sec_label(s, "12 / FOR YOUR BRAND")
+    big_title(s, [[t("「審査制」は、貴社の"), t("ブランド", color=GOLD),
+                   t("になる。")]])
+    items = [
+        ("合格実績が、会社の信用に",
+         "「審査通過アドバイザー○名在籍」は、求職者にも求人企業にも通じる証明になる。"),
+        ("契約は、法人単位",
+         "ご契約・請求・成約売上はすべてエージェント法人に紐づく設計。個人への報酬の直接支払いはありません。"),
+        ("育成の、ものさしに",
+         "審査基準と求職者からの評価が、アドバイザー教育のKPIとして機能する。"),
     ]
-    cy = 58
-    for k, v in co:
-        text_box(s, 163, cy, 28, 10, [
-            ([t(k, size=8.5, color=GOLD_L, spc=1)], {}),
+    cy = 62
+    for head, body in items:
+        hline(s, MX, cy, 152, color=GOLD, th=0.4)
+        text_box(s, MX, cy + 3.5, 152, 7, [
+            ([t(head, size=12, color=INK, bold=True)], {}),
         ])
-        text_box(s, 195, cy, 82, 12, [
-            ([t(v, size=8.5, color=RGBColor.from_string("DADDE4"))],
-             dict(spacing=1.4)),
+        text_box(s, MX, cy + 11, 152, 12, [
+            ([t(body, size=8.8, color=INK)], dict(spacing=1.45)),
         ])
-        cy += 13 if len(v) < 30 else 17
-        rect(s, 163, cy - 3.5, 114, 0.3, fill=RGBColor.from_string("53492F"))
-    text_box(s, 163, cy + 2, 114, 24, [
-        ([t("※ 所在地・資本金などの詳細は、確定後に掲載いたします。",
-            size=7, color=DARK_SUB)], dict(spacing=1.5)),
-        ([t("※ 本資料の内容は2026年7月時点のものであり、予告なく変更される場合があります。",
-            size=7, color=DARK_SUB)], dict(spacing=1.5)),
-        ([t("※ 効果に関する記述はサービス設計に基づく想定であり、成果を保証するものではありません。",
-            size=7, color=DARK_SUB)], dict(spacing=1.5)),
+        cy += 31
+    rx = MX + 168
+    rw = W - MX - rx
+    rect(s, rx, 58, rw, 98, fill=DARK)
+    text_box(s, rx + 9, 66, rw - 18, 84, [
+        ([t("Q.", size=15, color=GOLD_L, serif=True, italic=True)],
+         dict(after=3)),
+        ([t("エース社員が個人として有名になると、独立や引き抜きが心配…",
+            size=10.5, color=WHITE, bold=True)], dict(spacing=1.5, after=7)),
+        ([t("A.", size=15, color=GOLD_L, serif=True, italic=True)],
+         dict(after=3)),
+        ([t("指名は「貴社所属の○○さん」に届きます。プロフィール・実績・評価は会社の資産として蓄積され、採用広報にも活用できます。",
+            size=9.3, color=GRAY_D)], dict(spacing=1.55, after=5)),
+        ([t("※公開範囲は貴社ポリシーに合わせ設定可能。", size=6.8, color=GRAY_D2)],
+         {}),
     ])
-    footer(s, 15, dark=True)
+
+    # ================= P.14 13/FAQ =================
+    s = add_slide(prs)
+    sec_label(s, "13 / FAQ")
+    big_title(s, [[t("よくいただく、"), t("4つ", color=GOLD),
+                   t("のご質問。")]])
+    faqs = [
+        ("求職者は、集まるのか?",
+         [t("ローンチ前のため、実績数値はまだありません。だからこそ、料金は", size=8.8, color=INK),
+          t("完全成果報酬", size=8.8, color=INK, bold=True),
+          t(" — 成約が生まれるまで費用は一切発生せず、集客投資のリスクは当社が負う設計です。（集め方は 09 / AUDIENCE）",
+            size=8.8, color=INK)]),
+        ("成功報酬20%は、高くないか?",
+         [t("スカウト型媒体は成功報酬30%の例に加え、", size=8.8, color=INK),
+          t("成約ゼロでも固定費・通数課金が発生", size=8.8, color=INK, bold=True),
+          t("します。かかる総費用と「手残り」での比較をおすすめします。（→ 11 / ECONOMICS）",
+            size=8.8, color=INK)]),
+        ("既存チャネルと併用できるか?",
+         [t("併用が前提の設計です。", size=8.8, color=INK, bold=True),
+          t("専任契約や独占をお願いすることはありません。今お使いの媒体を止めずに、費用ゼロの「第3のチャネル」として追加できます。",
+            size=8.8, color=INK)]),
+        ("始めるのに、手間はかからないか?",
+         [t("エントリーは法人単位の簡単な書類から。", size=8.8, color=INK),
+          t("プロフィール制作は当社が伴走", size=8.8, color=INK, bold=True),
+          t("するため、貴社アドバイザーの追加負担は最小限です。運用開始後の業務は、これまでの紹介業務と変わりません。",
+            size=8.8, color=INK)]),
+    ]
+    fw, fh_gap = 143, 44
+    for i, (q, a_runs) in enumerate(faqs):
+        fx = MX + (i % 2) * (fw + 11.6)
+        fy = 62 + (i // 2) * fh_gap
+        hline(s, fx, fy, fw, color=INK, th=0.3)
+        text_box(s, fx, fy + 3.5, fw, 7, [
+            ([t("Q. ", size=11, color=GOLD_T, serif=True, italic=True, bold=True),
+              t(q, size=11.5, color=INK, bold=True)], {}),
+        ])
+        text_box(s, fx, fy + 11.5, fw, 26, [
+            (a_runs, dict(spacing=1.5)),
+        ])
+    band(s, [
+        t("4つに共通する設計 — ", size=10.5, color=WHITE),
+        t("貴社がリスクを取らずに、試せること。", size=10.5, color=GOLD_L,
+          bold=True),
+        t(" 成約まで、1円もかかりません。", size=10.5, color=WHITE),
+    ])
+
+    # ================= P.15 14/PRICING =================
+    s = add_slide(prs)
+    sec_label(s, "14 / PRICING")
+    big_title(s, [[t("成約まで、"), t("費用はかかりません", color=GOLD),
+                   t("。")]])
+    py, ph = 62, 100
+    lw = 145
+    rect(s, MX, py, lw, ph, fill=DARK)
+    text_box(s, MX + 12, py + 12, lw - 24, ph - 22, [
+        ([t("SUCCESS FEE　·　成約時のみ", size=8.5, color=GOLD_L, spc=2.5)],
+         dict(after=8)),
+        ([t("20", size=46, color=WHITE, serif=True),
+          t(" %", size=18, color=GOLD_L, bold=True)], dict(after=2)),
+        ([t("成約時の紹介手数料に対して", size=8.5, color=GRAY_D)], dict(after=18)),
+        ([t("貴社の取り分 ", size=12, color=WHITE, bold=True),
+          t("80%", size=12, color=GOLD_L, bold=True)], dict(before=6)),
+    ])
+    hline(s, MX + 12, py + 58, lw - 24, color=RGBColor.from_string("3A3323"),
+          th=0.3)
+    rx = MX + lw + 12
+    rw = W - MX - rx
+    bh = 47
+    rect(s, rx, py, rw, bh, fill=CREAM2)
+    hline(s, rx, py - 0.6, rw, color=INK, th=0.6)
+    text_box(s, rx + 10, py + 7, rw - 20, bh - 12, [
+        ([t("YEAR 1", size=8, color=GRAY, spc=2.5)], dict(after=3)),
+        ([t("¥0", size=24, color=INK, serif=True),
+          t("　初年度 利用料", size=10.5, color=INK, bold=True)], dict(after=3)),
+        ([t("登録・掲載・スカウト・指名の受信・面談まで、すべて無料。",
+            size=8.5, color=GRAY)], {}),
+    ])
+    y2 = py + bh + 6
+    rect(s, rx, y2, rw, bh, fill=CREAM2)
+    hline(s, rx, y2 - 0.6, rw, color=GOLD, th=0.6)
+    text_box(s, rx + 10, y2 + 7, rw - 20, bh - 12, [
+        ([t("YEAR 2+", size=8, color=GOLD_T, spc=2.5)], dict(after=3)),
+        ([t("¥50,000", size=22, color=INK, serif=True),
+          t("　月額（2年目以降）", size=10.5, color=INK, bold=True)], dict(after=3)),
+        ([t("平均決定単価 約103万円/件の一部で回収できる水準です。",
+            size=8.5, color=GRAY)], {}),
+    ])
+    src_note(s, "スカウト通数課金・広告費・送客費・掲載料は一切なし。　※平均決定単価の出典: 厚生労働省「令和6年度職業紹介事業報告書の集計結果」")
+
+    # ================= P.16 15/LAUNCH PARTNER =================
+    s = add_slide(prs)
+    sec_label(s, "15 / LAUNCH PARTNER")
+    big_title(s, [[t("ローンチパートナーを、"), t("募集します", color=GOLD),
+                   t("。")]])
+    tl = [
+        ("先行登録の受付（現在）", "法人単位でエントリー。アドバイザー1名からでも可能。"),
+        ("審査・掲載準備", "アドバイザー審査と「選ばれるプロフィール」制作を支援。"),
+        ("サービスローンチ", "先行登録エージェント様から優先的に掲載を開始します（時期は確定後にご案内）。"),
+    ]
+    cy = 66
+    for i, (head, body) in enumerate(tl):
+        dot = s.shapes.add_shape(MSO_SHAPE.OVAL, Mm(MX + 1.2), Mm(cy + 1.5),
+                                 Mm(3.4), Mm(3.4))
+        dot.fill.solid()
+        dot.fill.fore_color.rgb = GOLD
+        dot.line.fill.background()
+        dot.shadow.inherit = False
+        if i < len(tl) - 1:
+            rect(s, MX + 2.7, cy + 6.5, 0.35, 25, fill=GOLD_L)
+        text_box(s, MX + 11, cy, 140, 7, [
+            ([t(head, size=12.5, color=INK, bold=True)], {}),
+        ])
+        text_box(s, MX + 11, cy + 7.5, 140, 10, [
+            ([t(body, size=8.8, color=GRAY)], dict(spacing=1.4)),
+        ])
+        cy += 30
+    rx = MX + 168
+    rw = W - MX - rx
+    rect(s, rx, 60, rw, 96, fill=DARK)
+    merits = [
+        ("01", "初期ほど、スカウトが効く",
+         "参加CAを限定してローンチ。送信競争が最も少ない時期に始められる。"),
+        ("02", "露出の優先",
+         "検索結果・特集企画で、先行登録アドバイザーを優先表示。"),
+        ("03", "サービス設計に参画",
+         "審査基準・機能へのご要望をローンチ前に直接反映。"),
+    ]
+    paras = [([t("先行登録 — 3つのメリット", size=11.5, color=WHITE, bold=True)],
+              dict(after=8))]
+    for num, head, body in merits:
+        paras.append(([t(num + "　", size=10.5, color=GOLD_L, serif=True,
+                         italic=True),
+                       t(head, size=10.5, color=WHITE, bold=True)],
+                      dict(after=1.5)))
+        paras.append(([t(body, size=8.3, color=GRAY_D)],
+                      dict(spacing=1.45, after=6)))
+    text_box(s, rx + 10, 69, rw - 20, 82, paras)
+    src_note(s, "※求職者との需給バランスを保つため、同一領域の先行登録枠には上限を設けています。")
+
+    # ================= P.17 16/CONTACT（ダーク） =================
+    s = add_slide(prs, dark=True)
+    hline(s, MX, 13, CW, color=GOLD, th=0.35)
+    text_box(s, MX, 26, 200, 7, [
+        ([t("16 / CONTACT", size=10.5, color=GOLD_L, serif=True, italic=True,
+            spc=2.5)], {}),
+    ])
+    hline(s, MX, 34.3, 11.5, color=GOLD, th=0.6)
+    text_box(s, MX, 42, CW, 36, [
+        ([t("絞られた場所でだけ、", size=27, color=WHITE, serif=True, bold=True,
+            spc=1)], dict(spacing=1.3)),
+        ([t("スカウトも指名も", size=27, color=GOLD_L, serif=True, bold=True,
+            spc=1),
+          t("、届く。", size=27, color=WHITE, serif=True, bold=True, spc=1)],
+         dict(spacing=1.3)),
+    ])
+    text_box(s, MX, 84, CW, 8, [
+        ([t("まずは30分のオンライン説明会で、貴社に合わせた活用シミュレーションをご提案します。",
+            size=10.5, color=GRAY_D, spc=1)], {}),
+    ])
+    rect(s, MX, 96, 152, 12, line=GOLD, line_w=0.75)
+    text_box(s, MX, 96, 152, 12, [
+        ([t("先行登録・説明会は無料 — 掲載の義務や、専任の縛りはありません。",
+            size=9.3, color=GOLD_L)], dict(align=PP_ALIGN.CENTER)),
+    ], anchor=MSO_ANCHOR.MIDDLE)
+    hline(s, MX, 138, CW, color=GOLD, th=0.35)
+    text_box(s, MX, 146, 160, 20, [
+        ([t("MarkGate", size=22, color=WHITE, serif=True),
+          t(".", size=22, color=GOLD, serif=True)], dict(after=2)),
+        ([t("QUALITY OVER QUANTITY　·　2026", size=7, color=GRAY_D2, spc=3)], {}),
+    ])
+    text_box(s, W - MX - 130, 146, 130, 26, [
+        ([t("MarkGate株式会社　代表取締役: 山本 朋鑑", size=8.8, color=GRAY_D)],
+         dict(align=PP_ALIGN.RIGHT, spacing=1.6)),
+        ([t("設立: 2026年7月13日", size=8.8, color=GRAY_D)],
+         dict(align=PP_ALIGN.RIGHT, spacing=1.6)),
+        ([t("MAIL・TEL: 確定後に記載", size=8.8, color=GRAY_D)],
+         dict(align=PP_ALIGN.RIGHT, spacing=1.6)),
+    ])
+    text_box(s, MX, 176, 150, 6, [
+        ([t("※連絡先は確定後に差し替えてご利用ください。", size=6.8,
+            color=GRAY_D2)], {}),
+    ])
+    text_box(s, W - MX - 100, 176, 100, 6, [
+        ([t("— Thank you. —", size=9.5, color=GOLD_L, serif=True, italic=True)],
+         dict(align=PP_ALIGN.RIGHT)),
+    ])
 
     prs.save(out_path)
-    print(f"saved: {out_path} ({len(prs.slides.__iter__.__self__._sldIdLst)} slides)")
+    print(f"saved: {out_path} ({len(prs.slides._sldIdLst)} slides)")
 
 
 if __name__ == "__main__":
